@@ -3,10 +3,30 @@
   "scripts": {
     "start": {
       "cmd": "deno run mod.ts",
-      "desc": "run my app.ts file",
-      "allow" [
+      "desc": "run my mod.ts file",
+      "importMap": "import_map.json",
+      "allow": [
         "net"
       ]
     }
+  },
+
+  "watcher": {
+    "exts": [
+      "js", "jsx", "ts", "tsx", "json"
+    ],
+    "match": [
+      "**/*.*"
+    ],
+    "paths":[
+      "./mod.ts"
+    ],
+    "skip": [
+      "*/.git/*", "Dockerfile"
+    ]
+  },
+
+  "logger": {
+    "fullscreen": true
   }
 }
