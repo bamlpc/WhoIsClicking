@@ -1,4 +1,5 @@
 // entry point for the proyect
+// @ts-ignore
 import {Application, Router} from "./deps.ts";
 
 const app = new Application();

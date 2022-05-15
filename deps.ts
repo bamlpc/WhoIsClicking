@@ -5,7 +5,7 @@
 //TODO: export {} from std/dasdsa/mod.ts
 
 //place third party modules bellow
-
+// @ts-ignore
 export {Application, Router} from "third/oak@v10.5.1/mod.ts";
 
 //TODO: export {} from third/dasd@version/mod.ts
