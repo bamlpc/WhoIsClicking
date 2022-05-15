@@ -8,7 +8,7 @@ router.get("/", (ctx) => {
     ctx.response.body = ctx.request.ip + " 152" + ctx.request.method;
 } )
 
-console.log("Running....");
+console.log("Running on http://localhost:8000...");
 
 app.use(router.routes());
 app.use(router.allowedMethods());
