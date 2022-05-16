@@ -10,28 +10,13 @@ Who is clicking is a simple yet powerful set of tools aimed to identify a person
 
 # Installation
 
-## API
+`docker-compose up`
 
-### 1. Install Deno:
-`iwr https://deno.land/install.ps1 -useb | iex`
+OR
 
-### 2. Install Denon:
-`deno install -qAf --unstable https://deno.land/x/denon/denon.ts`
+`docker compose up --build` the first time, and just `docker compose up` after we have our images builded.
 
-More info about Denon: [Denon Project](https://github.com/denosaurs/denon)
+&nbsp;
 
-### 3. Run the project:
-`denon start`
-
----
-
-## For locking versions on Deno run:
-`deno run --allow-net --importmap=import_map.json --lock-write --lock=lock.json mod.ts`
-
-## Frontend
-
-### 1. Install Dependencies:
-`npm install`
-
-### 2. Run:
-`npm start`
+* Backend: [http://localhost:8000](http://localhost:3000 )
+* Frontend: [http://localhost:3000](http://localhost:3000 )
