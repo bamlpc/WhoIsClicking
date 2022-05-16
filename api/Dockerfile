@@ -1,10 +1,7 @@
-FROM deno:1.21.3
+FROM denoland/deno:latest as base
+
+WORKDIR /app
+
+COPY . ./
 
 RUN deno install -qAf --unstable https://deno.land/x/denon/denon.ts
-
-WORKDIR usr/app
-
-## COPY deps.ts .
-## deno cache deps.ts
-
-COPY . .
