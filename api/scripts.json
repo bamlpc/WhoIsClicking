@@ -2,7 +2,7 @@
   "$schema": "https://deno.land/x/denon@2.5.0/schema.json",
   "scripts": {
     "start": {
-      "cmd": "deno run mod.ts",
+      "cmd": "deno run --lock=lock.json mod.ts",
       "desc": "run my mod.ts file",
       "importMap": "import_map.json",
       "allow": [

@@ -10,13 +10,28 @@ Who is clicking is a simple yet powerful set of tools aimed to identify a person
 
 # Installation
 
-## 1. Install Deno:
+## API
+
+### 1. Install Deno:
 `iwr https://deno.land/install.ps1 -useb | iex`
 
-## 2. Install Denon:
+### 2. Install Denon:
 `deno install -qAf --unstable https://deno.land/x/denon/denon.ts`
 
 More info about Denon: [Denon Project](https://github.com/denosaurs/denon)
 
-## 3. Run the project:
+### 3. Run the project:
 `denon start`
+
+---
+
+## For locking versions on Deno run:
+`deno run --allow-net --importmap=import_map.json --lock-write --lock=lock.json mod.ts`
+
+## Frontend
+
+### 1. Install Dependencies:
+`npm install`
+
+### 2. Run:
+`npm start`
