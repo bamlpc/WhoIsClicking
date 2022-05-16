@@ -5,7 +5,7 @@ const app = new Application();
 const router = new Router();
 
 router.get("/", (ctx) => {
-    ctx.response.body = ctx.request.ip + " 152" + ctx.request.method;
+    ctx.response.body = ctx.request.ip + " 152 " + ctx.request.method;
 } )
 
 console.log("Running on http://localhost:8000...");
