@@ -21,11 +21,12 @@ services:
     init: true
     environment:
       - URL=http://localhost
+      - PORT=8000
       - MONGO_URL=mongodb://mongodb:27017
       - DB_NAME=who_is_clicking
       - API_VERSION=v1
     volumes:
-      - ./api:/app
+      - ./api:/usr/app
     ports:
       - '8000:8000'
 
