@@ -1,7 +1,13 @@
-FROM denoland/deno:latest as base
+FROM denoland/deno:1.22.0 as base
 
-WORKDIR /app
+RUN deno install -qAf --unstable https://deno.land/x/denon@2.5.0/denon.ts
 
-COPY . ./
+WORKDIR /usr/app
 
-RUN deno install -qAf --unstable https://deno.land/x/denon/denon.ts
+COPY deps.ts ./
+
+COPY ./config ./config
+
+RUN deno cache --importmap=config/import_map.json deps.ts
+
+COPY . .

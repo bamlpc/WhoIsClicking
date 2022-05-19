@@ -14,7 +14,7 @@ Who is clicking is a simple yet powerful set of tools aimed to identify a person
 
 OR
 
-`docker compose up --build` the first time, and just `docker compose up` after we have our images builded.
+`docker-compose up --build` the first time, and just `docker compose up` after we have our images builded.
 
 &nbsp;
 
