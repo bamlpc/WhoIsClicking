@@ -20,3 +20,15 @@ OR
 
 * Backend: [http://localhost:8000](http://localhost:3000 )
 * Frontend: [http://localhost:3000](http://localhost:3000 )
+
+---
+
+## Usefull Commands
+
+### Deno Debugging
+`denon run --inspect-brk --allow-read --allow-net deps.ts`
+
+[chrome://inspect](chrome://inspect)
+
+### Update Deno Lock File
+`deno cache --importmap=config/import_map.json --lock-write --lock=config/lock.json deps.ts`
