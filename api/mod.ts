@@ -1,16 +1,12 @@
 // entry point for the proyect
-import { Application } from "./deps.ts";
+import { Application } from "deps";
 import router from './src/routes/routes.ts';
-//import {MongoDatabase} from './src/helper/mongodb.ts';
+import MongoDatabase from './src/helper/mongodb.ts';
 
 
 const URL = (Deno.env.get('URL') || 'https://localhost');
-const PORT = (Deno.env.get('PORT') || 8000);
-const MONGO_URL = (Deno.env.get('MONGO_URL') || 'mongodb://localhost:27017');
+const PORT = Deno.env.get('PORT') || 8000;
 
-/*const mongoDb = new MongoDatabase('todo', MONGO_URL);
-
-mongoDb.connect();*/
 
 const app = new Application();
 
@@ -22,6 +18,6 @@ console.log(`Running on ${URL}:${PORT}...`);
 
 app.use(router.routes());
 app.use(router.allowedMethods());
-await app.listen({ port: PORT });
+await app.listen({ port: 8000 });
 
 
