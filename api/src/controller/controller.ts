@@ -1,12 +1,11 @@
 //TODO: fix the types
-import MongoDatabase from '../helper/mongodb.ts'
+//import mongoDatabase from '../helper/mongodb.ts'
 import { validateTodo } from '../utils/validation.ts';
 import {ITodo} from '../model/todoModel.ts'
+import log from "../middlewares/logger.ts"
 
-const mongoDb = MongoDatabase.getInstance().getDatabase.collection('todo');
-
-const get = async (context: any) => {
-    console.log('Getting a todo');
+const get = (context: any) => {
+    log.info('Getting a todo');
     try {
         const todo = {
             tittle: "My todo",
@@ -31,14 +30,13 @@ const get = async (context: any) => {
 }
 
 const post = async(context: any) => {
-    console.log('Adding a TODO');
+    log.info('Adding a TODO');
 
     const body = context.request.body();
     const data = <ITodo> await body.value;
     let response: Object;
     try {
         await validateTodo(data);
-        const reqResponse = await mongoDb.insertOne(data);
         response = {
             succes: true,
             data

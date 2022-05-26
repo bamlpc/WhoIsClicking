@@ -1,23 +1,32 @@
 // entry point for the proyect
 import { Application } from "deps";
 import router from './src/routes/routes.ts';
-import MongoDatabase from './src/helper/mongodb.ts';
+import log from "./src/middlewares/logger.ts"
 
 
 const URL = (Deno.env.get('URL') || 'https://localhost');
 const PORT = Deno.env.get('PORT') || 8000;
 
-
 const app = new Application();
 
-router.get("/", (ctx: any) => {
-    ctx.response.body = ctx.request.ip + " 152 " + ctx.request.method;
-} )
+app.addEventListener("error", (event) => {
+    log.error(event.error);
+  });
+  
+  app.use(async (ctx, next) => {
+    try {
+      await next();
+    } catch(err) {
+      ctx.response.body = "Internal server error";
+      throw err;
+    }
+  });
 
-console.log(`Running on ${URL}:${PORT}...`);
+log.info(`Running on ${URL}:${PORT}...`);
 
 app.use(router.routes());
 app.use(router.allowedMethods());
+
 await app.listen({ port: 8000 });
 
 

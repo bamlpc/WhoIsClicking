@@ -1,40 +1,11 @@
 import { MongoClient } from 'deps';
 
-class MongoDatabase {
+const client = new MongoClient;
+const DB_NAME = (Deno.env.get('DB_NAME') || 'todo');
+const MONGO_URL = (Deno.env.get('MONGO_URL') || 'mongodb://localhost:27017');
 
-    public client: MongoClient;
-    private static instance: MongoDatabase;
-    private MONGO_URL: string;
-    private DB_NAME: string;
+await client.connect(MONGO_URL);
+const mongoDatabase = client.database(DB_NAME);
 
-    constructor() {
-        
-        console.log('Connecting to mongo');
+export default mongoDatabase;
 
-        this.MONGO_URL = (Deno.env.get('MONGO_URL') || 'mongodb://localhost:27017');
-        this.DB_NAME = (Deno.env.get('DB_NAME') || 'todo');
-        this.client = { } as MongoClient;
-    }
-
-    async connect(){
-        const mongoClient = new MongoClient();
-        await mongoClient.connect(this.MONGO_URL);
-        this.client = mongoClient;
-    }
-
-    get getDatabase(){
-        return this.client.database(this.DB_NAME);
-    }
-
-    static async getInstance(): Promise<MongoDatabase>{
-        if(!MongoDatabase.instance) {
-            MongoDatabase.instance = new MongoDatabase()
-        }
-
-        await MongoDatabase.instance.connect();
-        return MongoDatabase.instance;
-    }
-
-}
-
-export default MongoDatabase
