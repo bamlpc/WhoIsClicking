@@ -13,10 +13,12 @@ scripts:
     - read
     - write
   cache:
-    cmd: deno cache --lock-write --lock=config/lock.json deps.ts
+    cmd: deno cache --lock-write deps.ts
     desc: update lockfile cache
     importMap: config/import_map.json
+    lock: config/lock.json
     watch: false
+
 
 watcher:
   interval: 350

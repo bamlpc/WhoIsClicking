@@ -7,7 +7,7 @@ await log.setup({
   loggers: {
     default:{
       level: "INFO",
-      handlers: ["console"],
+      handlers: ["console"]
     },
   },
 })

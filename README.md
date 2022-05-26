@@ -30,5 +30,5 @@ OR
 
 [chrome://inspect](chrome://inspect)
 
-### Update Deno Lock File
-`deno cache --importmap=config/import_map.json --lock-write --lock=config/lock.json deps.ts`
+### Update Deno Lock File and Cache
+`denon cache`
