@@ -1,7 +1,7 @@
 // entry point for the proyect
 import { Application } from "deps";
 import router from './src/routes/routes.ts';
-import log from "./src/middlewares/logger.ts"
+import log from "log"
 
 
 const URL = (Deno.env.get('URL') || 'https://localhost');
