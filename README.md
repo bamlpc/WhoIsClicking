@@ -26,7 +26,7 @@ OR
 ## Usefull Commands
 
 ### Deno Debugging
-`denon run --inspect-brk --allow-read --allow-net deps.ts`
+`denon debug`
 
 [chrome://inspect](chrome://inspect)
 

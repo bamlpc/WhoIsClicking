@@ -18,6 +18,11 @@ scripts:
     importMap: config/import_map.json
     lock: config/lock.json
     watch: false
+  debug:
+    cmd: deno run --inspect-brk deps.ts
+    desc: run debug tool
+    importMap: config/import_map.json
+    watch: false
 
 
 watcher:
