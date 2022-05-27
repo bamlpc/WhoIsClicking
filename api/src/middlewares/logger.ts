@@ -10,7 +10,7 @@ await log.setup({
       formatter: "{datetime} \n {levelName} {msg}"
   }),
   file: new log.handlers.RotatingFileHandler("WARNING", { //Log messages with level WARNING would be sent to rotating files with
-    filename: '../api/logs.txt',
+    filename: './logs.txt',
     maxBytes: 1000000,
     maxBackupCount: 50,
     formatter: rec => JSON.stringify({region: rec.loggerName, ts: rec.datetime, level: rec.levelName, data: rec.msg})})

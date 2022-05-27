@@ -22,6 +22,8 @@ app.use(async (ctx, next) => {
 });
 
 log.info(`Running on ${URL}:${PORT}...`);
+log.error("this is a test");
+log.critical("this is also a test");
 
 app.use(router.routes());
 app.use(router.allowedMethods());
