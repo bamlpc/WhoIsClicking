@@ -8,3 +8,6 @@
 {"region":"default","ts":"2022-05-27T16:17:48.268Z","level":"CRITICAL","data":"this is also a test"}
 {"region":"default","ts":"2022-05-27T16:25:24.206Z","level":"ERROR","data":"this is a test"}
 {"region":"default","ts":"2022-05-27T16:25:24.207Z","level":"CRITICAL","data":"this is also a test"}
+{"region":"default","ts":"2022-05-27T17:07:21.340Z","level":"ERROR","data":"this is a test"}
+{"region":"default","ts":"2022-05-27T17:07:21.342Z","level":"CRITICAL","data":"this is also a test"}
+---------------------------------------

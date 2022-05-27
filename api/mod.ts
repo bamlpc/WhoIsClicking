@@ -2,30 +2,24 @@
 import { Application } from "deps";
 import router from "./src/routes/routes.ts";
 import log from "log";
+import loggerMiddleware from "./src/middlewares/logger.ts";
+import errorMiddleware from "./src/middlewares/error.ts";
+import notFoundMiddleware from "./src/middlewares/notFound.ts";
+import timingMiddleware from "./src/middlewares/timing.ts";
+
+const app = new Application();
+
+app.use(loggerMiddleware);
+app.use(timingMiddleware);
+app.use(errorMiddleware);
+app.use(router.routes());
+app.use(router.allowedMethods());
+app.use(notFoundMiddleware);
+
 
 const URL = (Deno.env.get("URL") || "https://localhost");
 const PORT = Deno.env.get("PORT") || 8000;
 
-const app = new Application();
-
-app.addEventListener("error", (event) => {
-  log.error(event.error);
-});
-
-app.use(async (ctx, next) => {
-  try {
-    await next();
-  } catch (err) {
-    ctx.response.body = "Internal server error";
-    throw err;
-  }
-});
-
-log.info(`Running on ${URL}:${PORT}...`);
-log.error("this is a test");
-log.critical("this is also a test");
-
-app.use(router.routes());
-app.use(router.allowedMethods());
+log.info(`Running on ${URL}:${PORT}....`);
 
 await app.listen({ port: 8000 });

@@ -2,7 +2,7 @@
 //import mongoDatabase from '../helper/mongodb.ts'
 import { validateTodo } from "../utils/validation.ts";
 import { ITodo } from "../model/todoModel.ts";
-import log from "../middlewares/logger.ts";
+import log from "log";
 
 const get = (context: any) => {
   log.info("Getting a todo");
