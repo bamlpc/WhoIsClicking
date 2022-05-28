@@ -1,4 +1,3 @@
-// entry point for the proyect
 import { Application } from "deps";
 import router from "./src/routes/routes.ts";
 import log from "log";
@@ -17,7 +16,7 @@ app.use(router.allowedMethods());
 app.use(notFoundMiddleware);
 
 
-const URL = (Deno.env.get("URL") || "https://localhost");
+const URL = (Deno.env.get("URL") || "http://localhost");
 const PORT = Deno.env.get("PORT") || 8000;
 
 log.info(`Running on ${URL}:${PORT}....`);
