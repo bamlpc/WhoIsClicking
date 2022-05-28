@@ -4,7 +4,7 @@ import router from './src/routes/routes.ts';
 import log from "log"
 
 
-const URL = (Deno.env.get('URL') || 'https://localhost');
+const URL = (Deno.env.get('URL') || 'http://localhost');
 const PORT = Deno.env.get('PORT') || 8000;
 
 const app = new Application();
