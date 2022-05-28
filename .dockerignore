@@ -1,0 +1,5 @@
+#back end
+api/logs.*
+
+#front end
+frontend/node_modules

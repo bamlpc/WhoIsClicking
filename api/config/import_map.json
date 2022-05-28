@@ -1,8 +1,8 @@
 {
-    "imports":{
-        "deps": "../deps.ts",
-        "log": "../src/middlewares/logger.ts", 
-        "std/": "https://deno.land/std@0.136.0/",
-        "third/": "https://deno.land/x/"
-    }
+  "imports": {
+    "deps": "../deps.ts",
+    "log": "../src/utils/logger.ts",
+    "std/": "https://deno.land/std@0.136.0/",
+    "third/": "https://deno.land/x/"
+  }
 }
