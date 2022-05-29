@@ -1,25 +1,20 @@
-import { MongoClient } from 'deps';
+import mongoDatabase from '../helper/mongodb.ts';
+import log from 'log';
 
-const client = new MongoClient();
-const DB_NAME = 'Whoisclicking';
-const MONGO_URL = "mongodb+srv://deno:xVit62OXenMhktpN@cluster0.adchc.mongodb.net/?authMechanism=SCRAM-SHA-1";
-
-await client.connect(MONGO_URL);
-const mongoDatabase = client.database(DB_NAME);
 const links = mongoDatabase.collection("links");
 
 export class Link {
 
   static async create(probe: string, review: string, action: string) {
     try {
-      await links.insertOne({
+      const result = await links.insertOne({
         probe: probe,
         review: review,
         action: action,
       });
-      console.log("Data inserted");
+      return result;
     } catch (error) {
-      throw new Error(error);
+      log.error(error);
     }
   }
 

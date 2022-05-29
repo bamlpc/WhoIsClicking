@@ -1,22 +1,27 @@
 import { Application, Router } from "deps";
+import log from 'log';
 
 import { Link } from "../model/link.ts";
 
 export async function generateLinks() {
-  const probe = getRandomString(50);
-  const review = getRandomString(50);
-  const action = '';
+  const newLink = {
+    probe: getRandomString(50),
+    review: getRandomString(50),
+    action: ''
+  };
   try {
-    await Link.create(probe, review, action);
+    await Link.create(newLink.probe, newLink.review, newLink.action);
+    log.info(newLink);
+    return JSON.stringify(newLink);
   } catch (error) {
-    console.log(error);
+    log.error(error);
   }
 
 }
 
 function getRandomString(s: number) {
   if (s % 2 == 1) {
-    throw new Deno.errors.InvalidData("Only even sizes are supported");
+    log.warning("Only even sizes are supported");
   }
   const buf = new Uint8Array(s / 2);
   crypto.getRandomValues(buf);

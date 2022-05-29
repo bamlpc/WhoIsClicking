@@ -1,4 +1,4 @@
 # static files
 .vscode
-
+.env
 logs.txt
