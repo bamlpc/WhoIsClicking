@@ -1,6 +1,7 @@
 version: '3.7'
 
 services:
+
   frontend:
     build:
       context: ./frontend
@@ -37,7 +38,7 @@ services:
       - '8000:8000'
 
   mongodb:
-    image: mongo:latest
+    image: mongo:5.0.8
     restart: always
     container_name: mongodb
     volumes:
@@ -45,5 +46,31 @@ services:
     ports:
       - '27017:27017'
 
+  jenkins:
+    image: jenkins/jenkins:lts
+    restart: always
+    container_name: jenkins
+    depends_on:
+      - api
+      - frontend
+      - mongodb
+    volumes:
+      - ./jenkins:/var/jenkins_home
+    ports:
+      - '8080:8080'
+      - '50000:50000'
+
+  nginx:
+    image: nginx:1.21.6-alpine
+    restart: always
+    container_name: nginx
+    depends_on:
+      - frontend
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - '4000:80'
+      - '443:443'
+  
 volumes:
   mongodb:
