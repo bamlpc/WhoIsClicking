@@ -39,8 +39,8 @@ services:
       - MONGODB_PASS=${MONGODB_PASS}
       - BACKEND_VERSION=${BACKEND_VERSION}
     volumes:
-      - ./backend/src:/usr/app/src
       - ./backend/mod.ts:/usr/app/mod.ts
+      - ./backend/src:/usr/app/src
     ports:
       - '8000:8000'
     networks:
