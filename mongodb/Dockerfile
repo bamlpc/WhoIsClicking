@@ -1,0 +1,3 @@
+FROM mongo:5.0.8 as base
+
+CMD mongod --quiet
