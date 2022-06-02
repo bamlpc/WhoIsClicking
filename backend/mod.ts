@@ -15,12 +15,10 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 app.use(notFoundMiddleware);
 
-
 const URL = (Deno.env.get("URL"));
 const PORT = Deno.env.get("PORT");
 const VERSION = Deno.env.get("BACKEND_VERSION");  
 
 log.info(`Running backend_${VERSION} on ${URL}:${PORT}...`);
-
 
 await app.listen({ port: 8000 });

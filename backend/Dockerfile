@@ -1,4 +1,4 @@
-FROM denoland/deno:1.22.0 as base
+FROM denoland/deno:alpine-1.22.1 as base
 
 RUN deno install -qAf --unstable https://deno.land/x/denon@2.5.0/denon.ts
 
@@ -9,4 +9,5 @@ COPY ./config ./config
 COPY deps.ts denon.yml ./
 
 RUN denon cache
+
 
