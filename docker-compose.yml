@@ -39,7 +39,8 @@ services:
       - MONGODB_PASS=${MONGODB_PASS}
       - BACKEND_VERSION=${BACKEND_VERSION}
     volumes:
-      - ./backend:/usr/app
+      - ./backend/src:/usr/app/src
+      - ./backend/mod.ts:/usr/app/mod.ts
     ports:
       - '8000:8000'
     networks:
@@ -69,7 +70,7 @@ services:
       - frontend
       - mongodb
     volumes:
-      - ./jenkins:/var/jenkins_home
+      - ./jenkins/home:/var/jenkins_home
     ports:
       - '8080:8080'
       - '50000:50000'
@@ -85,7 +86,7 @@ services:
     depends_on:
       - frontend
     volumes:
-      - ./nginx:/etc/nginx/conf.d
+      - ./nginx:/etc/nginx/
     ports:
       - '4000:80'
       - '443:443'

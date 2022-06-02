@@ -4,13 +4,9 @@ RUN deno install -qAf --unstable https://deno.land/x/denon@2.5.0/denon.ts
 
 WORKDIR /usr/app
 
-RUN touch logs.txt
-
-COPY deps.ts ./
-
 COPY ./config ./config
 
-RUN deno cache --importmap=config/import_map.json deps.ts
+COPY deps.ts denon.yml ./
 
-COPY . .
+RUN denon cache
 

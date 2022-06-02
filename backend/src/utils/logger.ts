@@ -7,7 +7,7 @@ await log.setup({
   //definning handlers for each log level
   handlers: {
     console: new log.handlers.ConsoleHandler("DEBUG", { //Log messages with level ≥DEBUG would be sent to console
-      formatter: "{datetime} \n {levelName} {msg}"
+      formatter: `{datetime} {levelName} {msg}` //Define the format of the log message
   }),
   file: new log.handlers.RotatingFileHandler("WARNING", { //Log messages with level WARNING would be sent to rotating files with
     filename: './logs.txt',

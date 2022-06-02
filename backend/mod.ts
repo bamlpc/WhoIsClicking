@@ -20,6 +20,6 @@ const URL = (Deno.env.get("URL") || "TEST");
 const PORT = Deno.env.get("PORT") || "TEST";
 const VERSION = Deno.env.get("BACKEND_VERSION") || "TEST";  
 
-log.info(`Running backend${VERSION} on ${URL}:${PORT}....`);
+log.info(`Running backend${VERSION} on ${URL}:${PORT}...`);
 
 await app.listen({ port: 8000 });
