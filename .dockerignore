@@ -1,5 +1,5 @@
 #back end
-api/logs.*
+backend/logs.*
 
 #front end
 frontend/node_modules

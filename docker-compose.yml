@@ -8,7 +8,7 @@ services:
     container_name: frontend
     restart: on-failure
     depends_on:
-      - api
+      - backend
     command: npm start
     stdin_open: true
     tty: true
@@ -16,10 +16,14 @@ services:
       - ./frontend/src:/usr/app/src
     ports:
       - '3000:3000'
+    networks:
+      wic_network:
+        aliases: 
+          - frontend_ip
 
-  api:
+  backend:
     build:
-      context: ./api
+      context: ./backend
     restart: on-failure
     depends_on:
       - mongodb
@@ -27,15 +31,21 @@ services:
     command: denon start
     init: true
     environment:
-      - URL=http://localhost
-      - PORT=8000
-      - MONGO_URL=mongodb://mongodb:27017
-      - DB_NAME=who_is_clicking
-      - API_VERSION=v1
+      - URL=${URL}
+      - PORT=${PORT}
+      - MONGO_URL=${MONGO_URL}
+      - DB_NAME=${DB_NAME}
+      - MONGODB_USER=${MONGODB_USER}
+      - MONGODB_PASS=${MONGODB_PASS}
+      - BACKEND_VERSION=${BACKEND_VERSION}
     volumes:
-      - ./api:/usr/app
+      - ./backend:/usr/app
     ports:
       - '8000:8000'
+    networks:
+      wic_network:
+        aliases: 
+          - backend_ip
 
   mongodb:
     image: mongo:5.0.8
@@ -45,13 +55,17 @@ services:
       - mongodb:/data/db
     ports:
       - '27017:27017'
+    networks:
+      wic_network:
+        aliases: 
+          - mongodb_ip
 
   jenkins:
-    image: jenkins/jenkins:lts
+    image: jenkins/jenkins:2.350-alpine
     restart: always
     container_name: jenkins
     depends_on:
-      - api
+      - backend
       - frontend
       - mongodb
     volumes:
@@ -59,6 +73,10 @@ services:
     ports:
       - '8080:8080'
       - '50000:50000'
+    networks:
+      wic_network:
+        aliases:
+          - jenkins_ip
 
   nginx:
     image: nginx:1.21.6-alpine
@@ -71,6 +89,21 @@ services:
     ports:
       - '4000:80'
       - '443:443'
+    networks:
+      wic_network:
+        aliases:
+          - nginx_ip
   
 volumes:
-  mongodb:
+  mongodb: {}
+  jenkins: {}
+  nginx: {}
+  frontend: {}
+  backend: {}
+
+networks:
+  wic_network:
+    name: wic_net
+    driver: bridge
+    ipam:               #ip address management
+      driver: default

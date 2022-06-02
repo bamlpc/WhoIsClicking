@@ -1,0 +1,45 @@
+---
+"$schema": https://deno.land/x/denon@2.5.0/schema.json
+scripts:
+  start:
+    cmd: deno run mod.ts 
+    desc: run my mod.ts file
+    importMap: config/import_map.json
+    lock: config/lock.json
+    watch: true
+    allow:
+    - net
+    - env
+    - read
+    - write
+  cache:
+    cmd: deno cache --lock-write deps.ts
+    desc: update lockfile cache
+    importMap: config/import_map.json
+    lock: config/lock.json
+    watch: false
+  debug:
+    cmd: deno run --inspect-brk deps.ts
+    desc: run debug tool
+    importMap: config/import_map.json
+    watch: false
+
+
+watcher:
+  interval: 350
+  exts: #extension para la palabra que busca
+  - js
+  - jsx
+  - ts
+  - tsx
+  - json
+  match: #palabra que busca
+  - "**/*.*"
+  paths: #donde las busca
+  - "./mod.ts"
+  - "./src"
+  skip:
+  - "*/.git/*"
+  - Dockerfile
+logger:
+  fullscreen: true

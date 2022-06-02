@@ -18,4 +18,3 @@ export {
   required,
   validate,
 } from "third/validasaur@v0.15.0/mod.ts";
-export { config } from "third/dotenv@v3.1.0/mod.ts";
