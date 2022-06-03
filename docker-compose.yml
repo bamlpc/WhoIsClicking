@@ -56,9 +56,11 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: $MONGO_ROOT_USER
       MONGO_INITDB_ROOT_PASSWORD: $MONGO_ROOT_PASS
+      MONGO_INITDB_DATABASE: $DB_NAME
       MONGO_INITDB_USERNAME: $MONGODB_USER
       MONGO_INITDB_PASSWORD: $MONGODB_PASS
-      MONGO_INITDB_DATABASE: $DB_NAME
+      #MONGO_NON_ROOT_USERNAME: $MONGODB_USER
+      #MONGO_NON_ROOT_PASSWORD: $MONGODB_PASS
     volumes:
       - ./mongodb/data:/data/db
       - ./mongodb/data/log:/var/log/mongodb/
