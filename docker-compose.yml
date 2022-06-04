@@ -100,8 +100,7 @@ services:
     depends_on:
       - backend
     volumes:
-      #- ./nginx/log:/var/log/nginx/error.log
-      - ./nginx/log:/var/log/syslog
+      - ./nginx/log/:/var/log/syslog
     ports:
       - '81:80'
       - '443:443'
