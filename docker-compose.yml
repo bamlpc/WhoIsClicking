@@ -64,8 +64,6 @@ services:
       - ./mongodb/data:/data/db
       - ./mongodb/log:/var/log/mongodb/
       - ./mongodb/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
-    ports:
-      - '27017:27017'
     networks:
       wic_network:
         aliases: 
@@ -91,7 +89,7 @@ services:
       - '8080:8080'
       - '50000:50000'
     networks:
-      wic_network:
+      pipe_network:
         aliases:
           - jenkins_ip
 
@@ -121,6 +119,11 @@ volumes:
 networks:
   wic_network:
     name: wic_net
+    driver: bridge
+    ipam:               #ip address management
+      driver: default
+  pipe_network:
+    name: pipe_net
     driver: bridge
     ipam:               #ip address management
       driver: default
