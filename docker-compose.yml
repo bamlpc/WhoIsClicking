@@ -26,7 +26,8 @@ services:
       context: ./backend
     restart: on-failure
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
     container_name: backend
     command: denon start
     init: true
@@ -69,6 +70,12 @@ services:
       wic_network:
         aliases: 
           - mongodb_ip
+    healthcheck:
+      test: ["CMD-SHELL", "mongo --host mongodb_ip --eval 'db.getSiblingDB(\"$DB_NAME\").runCommand(\"ping\")'"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 30s
 
   jenkins:
     image: jenkins/jenkins:2.350-alpine
