@@ -42,8 +42,6 @@ services:
     volumes:
       - ./backend/mod.ts:/usr/app/mod.ts
       - ./backend/src:/usr/app/src
-    ports:
-      - '8000:8000'
     networks:
       wic_network:
         aliases: 
@@ -93,21 +91,24 @@ services:
         aliases:
           - jenkins_ip
 
-  nginx:
-    image: nginx:1.21.6-alpine
+  nginx_rproxy:
+    build: 
+      context: ./nginx
     restart: always
-    container_name: nginx
+    container_name: nginx_rproxy
+    tty: true
     depends_on:
-      - frontend
+      - backend
     volumes:
-      - ./nginx:/etc/nginx/
+      #- ./nginx/log:/var/log/nginx/error.log
+      - ./nginx/log:/var/log/syslog
     ports:
-      - '4000:80'
+      - '81:80'
       - '443:443'
     networks:
       wic_network:
         aliases:
-          - nginx_ip
+          - nginx_rproxy_ip
   
 volumes:
   mongodb: {}

@@ -10,4 +10,6 @@ COPY deps.ts denon.yml ./
 
 RUN denon cache
 
+EXPOSE 8000
+
 
