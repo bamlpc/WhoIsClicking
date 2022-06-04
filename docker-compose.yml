@@ -59,11 +59,9 @@ services:
       MONGO_INITDB_DATABASE: $DB_NAME
       MONGO_INITDB_USERNAME: $MONGODB_USER
       MONGO_INITDB_PASSWORD: $MONGODB_PASS
-      #MONGO_NON_ROOT_USERNAME: $MONGODB_USER
-      #MONGO_NON_ROOT_PASSWORD: $MONGODB_PASS
     volumes:
       - ./mongodb/data:/data/db
-      - ./mongodb/data/log:/var/log/mongodb/
+      - ./mongodb/log:/var/log/mongodb/
       - ./mongodb/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
     ports:
       - '27017:27017'
@@ -74,7 +72,7 @@ services:
 
   jenkins:
     image: jenkins/jenkins:2.350-alpine
-    restart: always
+    #restart: unless-stopped
     container_name: jenkins
     depends_on:
       - backend
