@@ -69,7 +69,7 @@ services:
       - frontend
       - mongodb
     volumes:
-      - ./jenkins/home:/var/jenkins_home
+      - ./jenkins/jenkins_home:/var/jenkins_home
     ports:
       - '8080:8080'
       - '50000:50000'
@@ -95,7 +95,17 @@ services:
       wic_network:
         aliases:
           - nginx_rproxy_ip
-  
+
+  tomcat:
+    build:
+      context: ./tomcat
+    ports:
+      - '8080:8080'
+    restart: always
+    networks:
+      pipe_network:
+        aliases:
+          - tomcat_ip
 volumes:
   mongodb: {}
   jenkins: {}

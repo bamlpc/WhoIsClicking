@@ -31,10 +31,11 @@ frontend/yarn-debug.log*
 frontend/yarn-error.log*
 
 ############################  JENKINS ##################################
-jenkins/home/*
+jenkins/jenkins_home/*
 
 ############################  MONGODB ##################################
 mongodb/data/*
 
 ############################  NGINX ##################################
 
+nginx/logs/*
