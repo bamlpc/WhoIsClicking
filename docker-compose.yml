@@ -9,11 +9,8 @@ services:
     restart: on-failure
     depends_on:
       - backend
-    command: npm start
     stdin_open: true
     tty: true
-    volumes:
-      - ./frontend/src:/usr/app/src
     ports:
       - '3000:3000'
     networks:
@@ -29,7 +26,6 @@ services:
       mongodb:
         condition: service_healthy
     container_name: backend
-    command: denon start
     init: true
     environment:
       - URL=${URL}
@@ -39,9 +35,6 @@ services:
       - MONGODB_USER=${MONGODB_USER}
       - MONGODB_PASS=${MONGODB_PASS}
       - BACKEND_VERSION=${BACKEND_VERSION}
-    volumes:
-      - ./backend/mod.ts:/usr/app/mod.ts
-      - ./backend/src:/usr/app/src
     networks:
       wic_network:
         aliases: 
@@ -99,8 +92,6 @@ services:
     tty: true
     depends_on:
       - backend
-    volumes:
-      - ./nginx/log/:/var/log/syslog
     ports:
       - '81:80'
       - '443:443'
