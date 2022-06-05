@@ -59,7 +59,7 @@ services:
       wic_network:
         aliases: 
           - mongodb_ip
-          
+
   jenkins:
     image: jenkins/jenkins:2.350-alpine
     #restart: unless-stopped
@@ -98,8 +98,6 @@ volumes:
   mongodb: {}
   jenkins: {}
   nginx: {}
-  frontend: {}
-  backend: {}
 
 networks:
   wic_network:
