@@ -89,6 +89,8 @@ services:
     ports:
       - '81:80'
       - '443:443'
+    volumes:
+      - ./log/:/var/log/syslog
     networks:
       wic_network:
         aliases:
