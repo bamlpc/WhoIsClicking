@@ -6,8 +6,13 @@ WORKDIR /usr/app
 
 COPY ./config ./config
 
-COPY deps.ts denon.yml ./
+COPY deps.ts denon.yml mod.ts ./
 
 RUN denon cache
 
+COPY ./src ./src
+
+EXPOSE 8000
+
+CMD [ "denon", "start" ]
 
