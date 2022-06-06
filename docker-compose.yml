@@ -60,23 +60,6 @@ services:
         aliases: 
           - mongodb_ip
 
-  jenkins:
-    image: jenkins/jenkins:2.350-alpine
-    #restart: unless-stopped
-    container_name: jenkins
-    depends_on:
-      - backend
-      - frontend
-      - mongodb
-    volumes:
-      - ./jenkins/home:/var/jenkins_home
-    ports:
-      - '8080:8080'
-      - '50000:50000'
-    networks:
-      pipe_network:
-        aliases:
-          - jenkins_ip
 
   nginx_rproxy:
     build: 
@@ -89,24 +72,20 @@ services:
     ports:
       - '81:80'
       - '443:443'
+    volumes:
+      - ./log/:/var/log/syslog
     networks:
       wic_network:
         aliases:
           - nginx_rproxy_ip
-  
+
 volumes:
   mongodb: {}
   jenkins: {}
-  nginx: {}
 
 networks:
   wic_network:
     name: wic_net
-    driver: bridge
-    ipam:               #ip address management
-      driver: default
-  pipe_network:
-    name: pipe_net
     driver: bridge
     ipam:               #ip address management
       driver: default
