@@ -3,7 +3,7 @@ import log from 'log';
 
 import { Link } from "../model/link.ts";
 
-export async function generateLinks() {
+export async function generateLinks(ctx : any) {
   const newLink = {
     probe: getRandomString(50),
     review: getRandomString(50),
@@ -12,9 +12,17 @@ export async function generateLinks() {
   try {
     await Link.create(newLink.probe, newLink.review, newLink.action);
     log.info(newLink);
-    return JSON.stringify(newLink);
+    const response = {
+      success: true,
+      newLink
+    };
+    ctx.response.body = response;
   } catch (error) {
     log.error(error);
+    ctx.response.body = { 
+      success: false,
+      error
+    };
   }
 
 }
