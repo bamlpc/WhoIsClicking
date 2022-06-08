@@ -73,7 +73,7 @@ services:
       - '81:80'
       - '443:443'
     volumes:
-      - .nginx/log/:/var/log/syslog
+      - ./nginx/log/:/var/log/syslog
     networks:
       wic_network:
         aliases:
