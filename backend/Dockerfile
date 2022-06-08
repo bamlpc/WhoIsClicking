@@ -15,4 +15,3 @@ COPY ./src ./src
 EXPOSE 8000
 
 CMD [ "denon", "start" ]
-
