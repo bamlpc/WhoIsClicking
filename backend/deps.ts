@@ -4,8 +4,13 @@
 export * as log from "std/log/mod.ts";
 
 //Third party modules bellow
-export { Application, Router, isHttpError, Status } from "third/oak@v10.5.1/mod.ts";
-export type {Middleware } from "third/oak@v10.5.1/mod.ts";
+export {
+  Application,
+  isHttpError,
+  Router,
+  Status,
+} from "third/oak@v10.5.1/mod.ts";
+export type { Middleware } from "third/oak@v10.5.1/mod.ts";
 export { Bson, MongoClient } from "third/mongo@v0.29.4/mod.ts";
 export {
   firstMessages,

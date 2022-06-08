@@ -17,7 +17,7 @@ app.use(notFoundMiddleware);
 
 const URL = (Deno.env.get("URL"));
 const PORT = Deno.env.get("PORT");
-const VERSION = Deno.env.get("BACKEND_VERSION");  
+const VERSION = Deno.env.get("BACKEND_VERSION");
 
 log.info(`Running backend_${VERSION} on ${URL}:${PORT}...`);
 

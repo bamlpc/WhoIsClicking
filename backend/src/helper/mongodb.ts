@@ -8,7 +8,10 @@ const MONGO_URL = Deno.env.get("MONGODB_URL");
 
 //const MONGO_CONNECTION =  `mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.adchc.mongodb.net/?authMechanism=SCRAM-SHA-1`;
 const MONGO_CONNECTION =
-  `mongodb+svr://${DB_USER}:${DB_PASS}@${MONGO_URL}/?directConnection=true&authSource=${DB_NAME}&appName=mongosh+1.4.2`;
+  `mongodb+srv://deno:xVit62OXenMhktpN@cluster0.adchc.mongodb.net/?authMechanism=SCRAM-SHA-1`;
+/*
+const MONGO_CONNECTION =
+  `mongodb+svr://${DB_USER}:${DB_PASS}@${MONGO_URL}/?directConnection=true&authSource=${DB_NAME}&appName=mongosh+1.4.2`;*/
 
 await client.connect(MONGO_CONNECTION);
 const mongoDatabase = client.database(DB_NAME);

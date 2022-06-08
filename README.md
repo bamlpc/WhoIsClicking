@@ -35,6 +35,10 @@ OR
 
 ### Deno Code Formatter
 `deno fmt src`
+`deno fmt src`
+
+### Deno Lint
+`deno lint`
 
 ### Restart Project
 `docker compose down`
