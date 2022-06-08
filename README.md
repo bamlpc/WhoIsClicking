@@ -32,3 +32,6 @@ OR
 
 ### Update Deno Lock File and Cache
 `denon cache`
+
+### Deno Code Formatter
+`deno fmt src`
