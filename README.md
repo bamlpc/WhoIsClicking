@@ -35,3 +35,12 @@ OR
 
 ### Deno Code Formatter
 `deno fmt src`
+
+### Restart Project
+`docker compose down`
+`docker vulume prune`
+
+## Project Workflow
+{img}
+
+## Backend structure
