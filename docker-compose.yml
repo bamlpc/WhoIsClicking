@@ -7,10 +7,12 @@ services:
       context: ./frontend
     container_name: frontend
     restart: on-failure
-#    depends_on:
-#      - nginx_rproxy
+    depends_on:
+      - nginx_rproxy
     stdin_open: true
     tty: true
+    volumes:
+      - ./frontend/src:/usr/app/src
     ports:
       - '3000:3000'
     networks:
@@ -85,6 +87,7 @@ services:
 volumes:
   mongodb: {}
   jenkins: {}
+  frontend: {}
 
 networks:
   wic_network:
