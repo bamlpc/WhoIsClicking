@@ -7,14 +7,14 @@ services:
       context: ./frontend
     container_name: frontend
     restart: on-failure
-    depends_on:
-      - backend
+#    depends_on:
+#      - nginx_rproxy
     stdin_open: true
     tty: true
     ports:
       - '3000:3000'
     networks:
-      wic_network:
+      wic_frontend:
         aliases: 
           - frontend_ip
 
@@ -78,6 +78,9 @@ services:
       wic_network:
         aliases:
           - nginx_rproxy_ip
+      wic_frontend:
+        aliases:
+          - nginx_rproxy_ip
 
 volumes:
   mongodb: {}
@@ -89,3 +92,8 @@ networks:
     driver: bridge
     ipam:               #ip address management
       driver: default
+  wic_frontend:
+      name: wic_frontend
+      driver: bridge
+      ipam:               #ip address management
+        driver: default
