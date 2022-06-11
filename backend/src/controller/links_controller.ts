@@ -15,7 +15,7 @@ export async function generateLinks(ctx: any) {
       success: true,
       newLink,
     };
-    ctx.response.body = response;
+    ctx.response.body = JSON.stringify(response);
   } catch (error) {
     log.error(error);
     ctx.response.body = {
@@ -23,8 +23,7 @@ export async function generateLinks(ctx: any) {
       error,
     };
   }
-  log.info('Generated links');
-  ctx.response.body = JSON.stringify(newLink);
+  log.warning('Generated links');
 }
 
 function getRandomString(s: number) {
