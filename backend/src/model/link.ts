@@ -1,10 +1,9 @@
-import mongoDatabase from '../helper/mongodb.ts';
-import log from 'log';
+import mongoDatabase from "../helper/mongodb.ts";
+import log from "log";
 
 const links = mongoDatabase.collection("links");
 
 export class Link {
-
   static async create(probe: string, review: string, action: string) {
     try {
       const result = await links.insertOne({
@@ -17,5 +16,4 @@ export class Link {
       log.error(error);
     }
   }
-
 }

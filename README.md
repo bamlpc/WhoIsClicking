@@ -32,3 +32,19 @@ OR
 
 ### Update Deno Lock File and Cache
 `denon cache`
+
+### Deno Code Formatter
+`deno fmt src`
+`deno fmt src`
+
+### Deno Lint
+`deno lint`
+
+### Restart Project
+`docker compose down`
+`docker vulume prune`
+
+## Project Workflow
+{img}
+
+## Backend structure

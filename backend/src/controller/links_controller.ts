@@ -1,30 +1,28 @@
-import { Application, Router } from "deps";
-import log from 'log';
+import log from "log";
 
 import { Link } from "../model/link.ts";
 
-export async function generateLinks(ctx : any) {
+export async function generateLinks(ctx: any) {
   const newLink = {
     probe: getRandomString(50),
     review: getRandomString(50),
-    action: ''
+    action: "",
   };
   try {
     await Link.create(newLink.probe, newLink.review, newLink.action);
     log.info(newLink);
     const response = {
       success: true,
-      newLink
+      newLink,
     };
     ctx.response.body = response;
   } catch (error) {
     log.error(error);
-    ctx.response.body = { 
+    ctx.response.body = {
       success: false,
-      error
+      error,
     };
   }
-
 }
 
 function getRandomString(s: number) {
@@ -39,4 +37,3 @@ function getRandomString(s: number) {
   }
   return ret;
 }
-
