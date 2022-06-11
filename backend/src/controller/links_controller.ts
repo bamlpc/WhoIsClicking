@@ -23,6 +23,8 @@ export async function generateLinks(ctx: any) {
       error,
     };
   }
+  log.info('Generated links');
+  ctx.response.body = JSON.stringify(newLink);
 }
 
 function getRandomString(s: number) {

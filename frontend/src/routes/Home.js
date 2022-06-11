@@ -23,7 +23,7 @@ function Create_Link() {
   API_call();
       }
 function API_call() {
-      links = fetch('http://localhost:81/') || "Not working";
+      links = fetch('http://localhost:81/generate') || "Not working";
 
     };
 
