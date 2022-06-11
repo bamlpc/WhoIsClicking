@@ -8,13 +8,15 @@ services:
     container_name: frontend
     restart: on-failure
     depends_on:
-      - backend
+      - nginx_rproxy
     stdin_open: true
     tty: true
+    volumes:
+      - ./frontend/src:/usr/app/src
     ports:
       - '3000:3000'
     networks:
-      wic_network:
+      wic_frontend:
         aliases: 
           - frontend_ip
 
@@ -73,15 +75,19 @@ services:
       - '81:80'
       - '443:443'
     volumes:
-      - .nginx/log/:/var/log/syslog
+      - ./nginx/log/:/var/log/syslog
     networks:
       wic_network:
+        aliases:
+          - nginx_rproxy_ip
+      wic_frontend:
         aliases:
           - nginx_rproxy_ip
 
 volumes:
   mongodb: {}
   jenkins: {}
+  frontend: {}
 
 networks:
   wic_network:
@@ -89,3 +95,8 @@ networks:
     driver: bridge
     ipam:               #ip address management
       driver: default
+  wic_frontend:
+      name: wic_frontend
+      driver: bridge
+      ipam:               #ip address management
+        driver: default
