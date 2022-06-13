@@ -2,7 +2,7 @@ $schema: https://deno.land/x/denon@2.5.0/schema.json
 
 scripts:
   start:
-    cmd: deno run mod.ts 
+    cmd: deno run --cached-only mod.ts 
     desc: run my mod.ts file
     importMap: config/import_map.json
     lock: config/lock.json
