@@ -7,8 +7,8 @@ const DB_PASS = Deno.env.get("MONGODB_PASS");
 const MONGO_URL = Deno.env.get("MONGODB_URL");
 
 const MONGO_CONNECTION =
-  `mongodb+svr://${DB_USER}:${DB_PASS}@${MONGO_URL}/?directConnection=true&authSource=${DB_NAME}&appName=mongosh+1.4.2`;
-
+//  `mongodb+svr://${DB_USER}:${DB_PASS}@${MONGO_URL}/?directConnection=true&authSource=${DB_NAME}&appName=mongosh+1.4.2`;
+`mongodb://${DB_USER}:${DB_PASS}@${MONGO_URL}/${DB_NAME}`;
 await client.connect(MONGO_CONNECTION);
 const mongoDatabase = client.database(DB_NAME);
 

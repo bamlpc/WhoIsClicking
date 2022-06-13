@@ -81,10 +81,31 @@ services:
       wic_frontend:
         aliases:
           - nginx_rproxy_ip
+ # st-agent:
+ #   image: sematext/agent:latest
+ #   environment:
+ #     - INFRA_TOKEN=0e8a5a78-ce62-46d0-823a-e2e9b4f95df9
+ #     - SERVER_BASE_URL=https://spm-receiver.sematext.com
+ #     - LOGS_RECEIVER_URL=https://logsene-receiver.sematext.com
+ #     - EVENT_RECEIVER_URL=https://event-receiver.sematext.com
+ #     - COMMAND_SERVER_URL=https://command.sematext.com
+ #   cap_add:
+ #     - SYS_ADMIN
+ #   restart: always
+ #   volumes:
+ #     - /st-agent/:/hostfs:ro
+ #     - /st-agent/etc/passwd:/etc/passwd:ro
+ #     - /st-agent/etc/group:/etc/group:ro
+ #     - /st-agent/var/run/:/var/run
+ #     - /st-agent/sys/kernel/debug:/sys/kernel/debug
+ #     - /st-agent/sys:/host/sys:ro
+ #     - /st-agent/dev:/hostfs/dev:ro
+ #     - /st-agent/var/run/docker.sock:/var/run/docker.sock:ro
 
 volumes:
   mongodb: {}
   jenkins: {}
+#  st-agent: {}
 
 networks:
   wic_network:

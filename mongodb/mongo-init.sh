@@ -9,8 +9,7 @@ mongosh -- "$MONGO_INITDB_DATABASE" <<EOF
     db.createUser({
         user: "$MONGO_INITDB_USERNAME", 
         pwd: "$MONGO_INITDB_PASSWORD", 
-        roles: [{role: "dbAdmin", db: "$MONGO_INITDB_DATABASE"}]});
-    db.createCollection('users');
+        roles: [{role: "readWrite", db: "$MONGO_INITDB_DATABASE"}]});
 EOF
 echo '                                                        '
 echo '                                                        '

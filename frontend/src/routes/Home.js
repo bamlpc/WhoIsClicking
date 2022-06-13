@@ -1,8 +1,7 @@
-import React from 'react';
+import { React, useState, useEffect} from 'react';
 import '../App.css';
 import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
-
 
 const Button = styled.button `
   background-color: #3d5afe;
@@ -17,20 +16,27 @@ const Button = styled.button `
   &:hover {
     background-color: #304ffe;`
 
-let links;
-function Create_Link() {
-  alert('Educational propose only');
-  API_call();
-      }
-function API_call() {
-      links = fetch('http://localhost:81/generate') || "Not working";
-
-    };
-
 export const Home = () => {
 
+  const [showLinks, setBlogs] = useState(null);
+  const [isPending, setIsPending] = useState(true);
   let navigate = useNavigate();
 
+  function Create_Link() {
+    alert('Educational propose only');
+      setTimeout( () => {   
+      fetch('http://localhost:81/generate', { mode: 'no-cors'})
+        .then(response => {
+            if(!response.ok) {
+                  throw Error('Fail to get links');
+            }
+          console.log(response);  
+          return response.json()})
+        .then(data => { showLinks(data); setIsPending(false); })
+        .catch(error => { console.log(error); });
+  
+        }, 1000);
+      }
   return (
     <div className="App">
       <header className="App-header">
