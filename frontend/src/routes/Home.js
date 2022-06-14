@@ -32,7 +32,7 @@ export const Home = () => {
             }
           console.log(response);  
           return response.json()})
-        .then(data => { showLinks(data); setIsPending(false); })
+        .then(data => { showLinks(data); setIsPending(false); }) //this is just an idea for setup a loading screen
         .catch(error => { console.log(error); });
   
         }, 1000);
