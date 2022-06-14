@@ -1,7 +1,6 @@
-from typing import Union
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
 from pydantic import BaseModel
+from typing import Union
 import qrcode
 import os
 
