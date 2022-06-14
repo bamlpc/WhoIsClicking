@@ -8,7 +8,8 @@ log
 ############################  BACKEND ##################################
 
 backend/logs.txt
-nft/qrs/*
+nft/qrs/*.png
+
 ############################  FRONTEND ##################################
 # dependencies
 frontend/node_modules

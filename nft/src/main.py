@@ -20,7 +20,7 @@ async def create_qr_code(json_qr_data: dict):
     qr.make(fit=True)
     img = qr.make_image(fill='black', back_color='white')
     os.chdir(f"{os.getcwd()}/qrs")
-    img.save(f'qrcode_{hunter}', 'PNG')
+    img.save(f'qrcode_{hunter}.png')
 
 app = FastAPI()
 
