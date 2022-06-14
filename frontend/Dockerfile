@@ -9,4 +9,6 @@ RUN npm install
 COPY ./src ./src
 COPY ./public ./public
 
-CMD [ "npm", "start" ]
+CMD COLOR=1 npm start | cat
+
+#CMD [ "npm", "start" ]

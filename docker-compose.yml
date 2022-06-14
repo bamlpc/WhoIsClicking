@@ -36,9 +36,22 @@ services:
       - MONGODB_PASS=${MONGODB_PASS}
       - BACKEND_VERSION=${BACKEND_VERSION}
     networks:
-      wic_network:
+      wic_backend:
         aliases: 
           - backend_ip
+  nft:
+    build:
+      context: ./nft
+    restart: on-failure
+    depends_on:
+      - backend
+    container_name: nft
+    volumes:
+      - ./nft/qrs:/app/qrs
+    networks:
+      wic_backend:
+        aliases: 
+          - nft_ip
 
   mongodb:
     build:
@@ -56,7 +69,7 @@ services:
       - ./mongodb/log:/var/log/mongodb/
       - ./mongodb/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
     networks:
-      wic_network:
+      wic_backend:
         aliases: 
           - mongodb_ip
 
@@ -75,7 +88,7 @@ services:
     volumes:
       - ./nginx/log/:/var/log/syslog
     networks:
-      wic_network:
+      wic_backend:
         aliases:
           - nginx_rproxy_ip
       wic_frontend:
@@ -105,10 +118,11 @@ services:
 volumes:
   mongodb: {}
   jenkins: {}
+  nft: {}
 #  st-agent: {}
 
 networks:
-  wic_network:
+  wic_backend:
     name: wic_net
     driver: bridge
     ipam:               #ip address management
