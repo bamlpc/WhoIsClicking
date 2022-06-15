@@ -2,7 +2,6 @@ FROM python:3.9-slim as base
 
 COPY ./requirements.txt /app/requirements.txt
 
-
 WORKDIR /app
 
 RUN pip install --upgrade -r requirements.txt 

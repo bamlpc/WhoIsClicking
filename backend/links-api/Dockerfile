@@ -6,8 +6,6 @@ EXPOSE 8000
 
 WORKDIR /usr/app
 
-#USER deno
-
 COPY ./config ./config
 
 COPY deps.ts denon.yml mod.ts ./
@@ -15,5 +13,7 @@ COPY deps.ts denon.yml mod.ts ./
 RUN denon cache
 
 COPY ./src ./src
+
+#USER deno
 
 CMD [ "denon", "start" ]
