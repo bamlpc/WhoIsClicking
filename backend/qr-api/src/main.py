@@ -5,12 +5,12 @@ import qrcode
 import os
 
 class Item(BaseModel):
-    probe: str
-    review: str
+    hunter: str
+    prey: str
     action: Union[str, None] = None
 
 async def create_qr_code(json_qr_data: dict):
-    hunter = json_qr_data["probe"]
+    hunter = json_qr_data["hunter"]
     qr = qrcode.QRCode(
         version=1,
         box_size=10,
@@ -28,6 +28,6 @@ app = FastAPI()
 @app.post("/qr")
 async def create_item(item: Item):
     await create_qr_code(item.dict())
-    print('Created QR code for: ' + item.probe)
+    print('Created QR code for: ' + item.hunter)
 
     return item

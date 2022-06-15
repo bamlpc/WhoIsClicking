@@ -4,11 +4,11 @@ import log from "log";
 const links = mongoDatabase.collection("links");
 
 class Link {
-  static async create(probe: string, review: string, action: string) {
+  static async create(hunter: string, prey: string, action: string) {
     try {
       const result = await links.insertOne({
-        probe: probe,
-        review: review,
+        hunter: hunter,
+        prey: prey,
         action: action,
       });
       return result;

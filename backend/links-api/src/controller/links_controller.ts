@@ -3,12 +3,12 @@ import Link from "../model/link.ts";
 
 const generateLinks = async (ctx: any) => {
   const newLink = {
-    probe: getRandomString(50),
-    review: getRandomString(50),
+    hunter: getRandomString(50),
+    prey: getRandomString(50),
     action: "",
   };
   try {
-    await Link.create(newLink.probe, newLink.review, newLink.action);
+    await Link.create(newLink.hunter, newLink.prey, newLink.action);
     log.info(newLink);
     const response = {
       success: true,

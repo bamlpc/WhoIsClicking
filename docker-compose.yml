@@ -4,11 +4,11 @@ services:
 
   frontend:
     build:
-      context: ./frontend
-    container_name: frontend
+      context: ./frontend/home-ui
+    container_name: home-ui
     restart: on-failure
     depends_on:
-      - nginx_rproxy
+      - ngin
     stdin_open: true
     tty: true
     ports:
@@ -16,16 +16,16 @@ services:
     networks:
       wic_frontend:
         aliases: 
-          - frontend_ip
+          - home-ui_ip
 
-  backend:
+  links-api:
     build:
-      context: ./backend
+      context: ./backend/links-api
     restart: on-failure
     depends_on:
-      mongodb:
+      mongo-db:
         condition: service_healthy
-    container_name: backend
+    container_name: links-api
     init: true
     environment:
       - URL=${URL}
@@ -38,88 +38,55 @@ services:
     networks:
       wic_backend:
         aliases: 
-          - backend_ip
-  nft:
+          - links-api_ip
+  qr-api:
     build:
-      context: ./nft
+      context: ./backend/qr-api
     restart: on-failure
     depends_on:
-      - backend
+      - links-api
     container_name: nft
-    volumes:
-      - ./nft/qrs:/app/qrs
     networks:
       wic_backend:
         aliases: 
-          - nft_ip
+          - qr-api_ip
 
-  mongodb:
+  mongo-db:
     build:
-      context: ./mongodb
+      context: ./infra/mongo-db
     restart: always
-    container_name: mongodb
+    container_name: mongo-db
     environment:
       MONGO_INITDB_ROOT_USERNAME: $MONGO_ROOT_USER
       MONGO_INITDB_ROOT_PASSWORD: $MONGO_ROOT_PASS
       MONGO_INITDB_DATABASE: $DB_NAME
       MONGO_INITDB_USERNAME: $MONGODB_USER
       MONGO_INITDB_PASSWORD: $MONGODB_PASS
-    volumes:
-      - ./mongodb/data:/data/db
-      - ./mongodb/log:/var/log/mongodb/
-      - ./mongodb/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
     networks:
       wic_backend:
         aliases: 
-          - mongodb_ip
+          - mongo-db_ip
 
 
-  nginx_rproxy:
+  nginx:
     build: 
-      context: ./nginx
+      context: ./infra/nginx
     restart: always
-    container_name: nginx_rproxy
+    container_name: nginx
     tty: true
     depends_on:
-      - backend
-    ports:
-      - '81:80'
-      - '443:443'
-    volumes:
-      - ./nginx/log/:/var/log/syslog
+      - links-api
     networks:
       wic_backend:
         aliases:
-          - nginx_rproxy_ip
+          - nginx_ip
       wic_frontend:
         aliases:
-          - nginx_rproxy_ip
- # st-agent:
- #   image: sematext/agent:latest
- #   environment:
- #     - INFRA_TOKEN=0e8a5a78-ce62-46d0-823a-e2e9b4f95df9
- #     - SERVER_BASE_URL=https://spm-receiver.sematext.com
- #     - LOGS_RECEIVER_URL=https://logsene-receiver.sematext.com
- #     - EVENT_RECEIVER_URL=https://event-receiver.sematext.com
- #     - COMMAND_SERVER_URL=https://command.sematext.com
- #   cap_add:
- #     - SYS_ADMIN
- #   restart: always
- #   volumes:
- #     - /st-agent/:/hostfs:ro
- #     - /st-agent/etc/passwd:/etc/passwd:ro
- #     - /st-agent/etc/group:/etc/group:ro
- #     - /st-agent/var/run/:/var/run
- #     - /st-agent/sys/kernel/debug:/sys/kernel/debug
- #     - /st-agent/sys:/host/sys:ro
- #     - /st-agent/dev:/hostfs/dev:ro
- #     - /st-agent/var/run/docker.sock:/var/run/docker.sock:ro
+          - nginx_ip
 
 volumes:
-  mongodb: {}
-  jenkins: {}
-  nft: {}
-#  st-agent: {}
+  mongo-db: {}
+  qr-api: {}
 
 networks:
   wic_backend:
