@@ -28,9 +28,9 @@ services:
     container_name: links-api
     init: true
     environment:
-      - URL=${URL}
-      - PORT=${PORT}
+      - LINKS_URL=${LINKS_URL}
       - DB_NAME=${DB_NAME}
+      - QR_URL=${QR_URL}
       - MONGODB_URL=${MONGODB_URL}
       - MONGODB_USER=${MONGODB_USER}
       - MONGODB_PASS=${MONGODB_PASS}
@@ -84,9 +84,7 @@ services:
         aliases:
           - nginx_ip
 
-volumes:
-  mongo-db: {}
-  qr-api: {}
+volumes: {}
 
 networks:
   wic_backend:

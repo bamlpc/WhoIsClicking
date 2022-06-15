@@ -15,10 +15,8 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 app.use(notFoundMiddleware);
 
-const URL = (Deno.env.get("URL"));
-const PORT = Deno.env.get("PORT");
-const VERSION = Deno.env.get("BACKEND_VERSION");
+const LINKS_API_URL = Deno.env.get("LINKS_URL");
 
-log.info(`Running backend_${VERSION} on ${URL}:${PORT}...`);
+log.info(`Running LINKS-API on ${LINKS_API_URL}...`);
 
 await app.listen({ port: 8000 });

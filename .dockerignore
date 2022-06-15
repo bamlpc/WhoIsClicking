@@ -1,5 +1,0 @@
-#back end
-backend/logs.*
-
-#front end
-frontend/node_modules

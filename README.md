@@ -47,4 +47,15 @@ OR
 ## Project Workflow
 {img}
 
-## Backend structure
+## Project Structure
+Whoisclicking
+	.env
+	docker-compose.yml
+	frontend:
+		home-ui:
+	backend:
+		links-api:
+		qr-api:
+	infra:
+		mongo-db:
+		nginx:

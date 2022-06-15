@@ -1,6 +1,8 @@
 import log from "log";
 import Link from "../model/link.ts";
 
+const QR_URL = Deno.env.get("QR_URL")!;
+
 const generateLinks = async (ctx: any) => {
   const newLink = {
     hunter: getRandomString(50),
@@ -23,7 +25,7 @@ const generateLinks = async (ctx: any) => {
     };
   } finally {
     try {
-      await fetch("http://nft_ip:80/qr", {
+      await fetch( QR_URL , {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
