@@ -1,8 +1,11 @@
 ############################  WHOISCLICKING ##################################
-.env
-.vscode
-denon.yml
-docker-compose.override.yml
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+/.env
+/denon.yml
+/docker-compose.override.yml
 
 ############################  BACKEND ##################################
 

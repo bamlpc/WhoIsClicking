@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "ms-azuretools.vscode-docker",
+        "PKief.material-icon-theme",
+        "denoland.vscode-deno"
+    ]
+}

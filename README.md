@@ -49,13 +49,13 @@ OR
 
 ## Project Structure
 Whoisclicking
-	.env
-	docker-compose.yml
-	frontend:
-		home-ui:
-	backend:
-		links-api:
-		qr-api:
-	infra:
-		mongo-db:
-		nginx:
+---.env
+---docker-compose.yml
+---frontend:
+-------home-ui:
+---backend:
+-------links-api:
+-------qr-api:
+---infra:
+-------mongo-db:
+-------nginx:
