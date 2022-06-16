@@ -4,93 +4,90 @@ services:
 
   frontend:
     build:
-      context: ./frontend
-    container_name: frontend
+      context: ./frontend/home-ui
+    container_name: home-ui
     restart: on-failure
     depends_on:
-      - nginx_rproxy
+      - ngin
     stdin_open: true
     tty: true
-    volumes:
-      - ./frontend/src:/usr/app/src
     ports:
       - '3000:3000'
     networks:
       wic_frontend:
         aliases: 
-          - frontend_ip
+          - home-ui_ip
 
-  backend:
+  links-api:
     build:
-      context: ./backend
+      context: ./backend/links-api
     restart: on-failure
     depends_on:
-      mongodb:
+      mongo-db:
         condition: service_healthy
-    container_name: backend
+    container_name: links-api
     init: true
     environment:
-      - URL=${URL}
-      - PORT=${PORT}
+      - LINKS_URL=${LINKS_URL}
       - DB_NAME=${DB_NAME}
+      - QR_URL=${QR_URL}
       - MONGODB_URL=${MONGODB_URL}
       - MONGODB_USER=${MONGODB_USER}
       - MONGODB_PASS=${MONGODB_PASS}
       - BACKEND_VERSION=${BACKEND_VERSION}
     networks:
-      wic_network:
+      wic_backend:
         aliases: 
-          - backend_ip
-
-  mongodb:
+          - links-api_ip
+  qr-api:
     build:
-      context: ./mongodb
+      context: ./backend/qr-api
+    restart: on-failure
+    depends_on:
+      - links-api
+    container_name: nft
+    networks:
+      wic_backend:
+        aliases: 
+          - qr-api_ip
+
+  mongo-db:
+    build:
+      context: ./infra/mongo-db
     restart: always
-    container_name: mongodb
+    container_name: mongo-db
     environment:
       MONGO_INITDB_ROOT_USERNAME: $MONGO_ROOT_USER
       MONGO_INITDB_ROOT_PASSWORD: $MONGO_ROOT_PASS
       MONGO_INITDB_DATABASE: $DB_NAME
       MONGO_INITDB_USERNAME: $MONGODB_USER
       MONGO_INITDB_PASSWORD: $MONGODB_PASS
-    volumes:
-      - ./mongodb/data:/data/db
-      - ./mongodb/log:/var/log/mongodb/
-      - ./mongodb/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
     networks:
-      wic_network:
+      wic_backend:
         aliases: 
-          - mongodb_ip
+          - mongo-db_ip
 
 
-  nginx_rproxy:
+  nginx:
     build: 
-      context: ./nginx
+      context: ./infra/nginx
     restart: always
-    container_name: nginx_rproxy
+    container_name: nginx
     tty: true
     depends_on:
-      - backend
-    ports:
-      - '81:80'
-      - '443:443'
-    volumes:
-      - ./nginx/log/:/var/log/syslog
+      - links-api
     networks:
-      wic_network:
+      wic_backend:
         aliases:
-          - nginx_rproxy_ip
+          - nginx_ip
       wic_frontend:
         aliases:
-          - nginx_rproxy_ip
+          - nginx_ip
 
-volumes:
-  mongodb: {}
-  jenkins: {}
-  frontend: {}
+volumes: {}
 
 networks:
-  wic_network:
+  wic_backend:
     name: wic_net
     driver: bridge
     ipam:               #ip address management
