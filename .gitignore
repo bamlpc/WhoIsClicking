@@ -1,43 +1,42 @@
 ############################  WHOISCLICKING ##################################
-.env
-.vscode
-denon.yml
-logs.txt
-log
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+/.env
+/denon.yml
+/docker-compose.override.yml
 
 ############################  BACKEND ##################################
 
-backend/logs.txt
+backend/links-api/logs.txt
+backend/qr-api/qrs/*.png
 
 ############################  FRONTEND ##################################
 # dependencies
-frontend/node_modules
-frontend/.pnp
-frontend/.pnp.js
+frontend/home-ui/node_modules
+frontend/home-ui/.pnp
+frontend/home-ui/.pnp.js
 
 # testing
-frontend//coverage
+frontend/home-ui/coverage
 
 # production
-frontend//build
+frontend/home-ui/build
 
 # misc
-frontend/.DS_Store
-frontend/.env.local
-frontend/.env.development.local
-frontend/.env.test.local
-frontend/.env.production.local
-frontend/npm-debug.log*
-frontend/yarn-debug.log*
-frontend/yarn-error.log*
+frontend/home-ui/.DS_Store
+frontend/home-ui/.env.local
+frontend/home-ui/.env.development.local
+frontend/home-ui/.env.test.local
+frontend/home-ui/.env.production.local
+frontend/home-ui/npm-debug.log*
+frontend/home-ui/yarn-debug.log*
+frontend/home-ui/yarn-error.log*
 
-############################  JENKINS ##################################
-jenkins/jenkins_home/*
 
-############################  MONGODB ##################################
-mongodb/data/*
-mongodb/log/*
+############################  INFRA ##################################
+infra/mongo-db/data/*
+infra/mongo-db/log/*
 
-############################  NGINX ##################################
-
-nginx/logs/*
+infra/nginx/logs/*
