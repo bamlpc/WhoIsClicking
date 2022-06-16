@@ -2,13 +2,15 @@ version: '3.7'
 
 services:
 
-  frontend:
+  home-ui:
+    container_name: home-ui
     build:
       context: ./frontend/home-ui
-    container_name: home-ui
     restart: on-failure
     depends_on:
-      - ngin
+      nginx:
+        condition: service_healthy
+    stop_signal: SIGKILL
     stdin_open: true
     tty: true
     ports:
@@ -19,13 +21,13 @@ services:
           - home-ui_ip
 
   links-api:
+    container_name: links-api
     build:
       context: ./backend/links-api
     restart: on-failure
     depends_on:
       mongo-db:
         condition: service_healthy
-    container_name: links-api
     init: true
     environment:
       - LINKS_URL=${LINKS_URL}
@@ -40,22 +42,23 @@ services:
         aliases: 
           - links-api_ip
   qr-api:
+    container_name: qr-api
     build:
       context: ./backend/qr-api
     restart: on-failure
     depends_on:
-      - links-api
-    container_name: nft
+      links-api:
+        condition: service_healthy
     networks:
       wic_backend:
         aliases: 
           - qr-api_ip
 
   mongo-db:
+    container_name: mongo-db
     build:
       context: ./infra/mongo-db
     restart: always
-    container_name: mongo-db
     environment:
       MONGO_INITDB_ROOT_USERNAME: $MONGO_ROOT_USER
       MONGO_INITDB_ROOT_PASSWORD: $MONGO_ROOT_PASS
@@ -69,13 +72,14 @@ services:
 
 
   nginx:
+    container_name: nginx
     build: 
       context: ./infra/nginx
     restart: always
-    container_name: nginx
     tty: true
     depends_on:
-      - links-api
+      links-api:
+        condition: service_healthy
     networks:
       wic_backend:
         aliases:
