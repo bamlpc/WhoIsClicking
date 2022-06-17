@@ -12,6 +12,8 @@ services:
         condition: service_healthy
     stop_signal: SIGKILL
     stdin_open: true
+    environment:
+      HOME_UI_URL: $HOME_UI_URL
     tty: true
     ports:
       - '3000:3000'
@@ -30,13 +32,13 @@ services:
         condition: service_healthy
     init: true
     environment:
-      - LINKS_URL=${LINKS_URL}
-      - DB_NAME=${DB_NAME}
-      - QR_URL=${QR_URL}
-      - MONGODB_URL=${MONGODB_URL}
-      - MONGODB_USER=${MONGODB_USER}
-      - MONGODB_PASS=${MONGODB_PASS}
-      - BACKEND_VERSION=${BACKEND_VERSION}
+      LINKS_URL: $LINKS_URL
+      DB_NAME: $DB_NAME
+      QR_URL: $QR_URL
+      MONGODB_URL: $MONGODB_URL
+      MONGODB_USER: $MONGODB_USER
+      MONGODB_PASS: $MONGODB_PASS
+      BACKEND_VERSION: $BACKEND_VERSION
     networks:
       wic_backend:
         aliases: 
