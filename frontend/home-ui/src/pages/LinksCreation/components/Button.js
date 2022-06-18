@@ -11,4 +11,7 @@ box-shadow: 0 2px 2px 0 #263238;
 cursor: pointer;
 transition: ease background-color 0.25s;
 &:hover {
-  background-color: #304ffe;`
+  transition: all 0.2s ease-in-out;
+  background: #304ffe;
+  color: #18ffff;
+}`

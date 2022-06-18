@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora&display=swap');
+
+* {
+  font-family: 'Sora', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+}
+
+.regular-style {
+  font-size: 20px;
+  border: 2.5px solid black;
+  color: rgb(0, 0, 0);
+  background: white;
+  width: 100%;
+  height: 50px;
+  border-radius: 25px;
+  padding: 0 10px 0 20px;
+  box-sizing: border-box;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: 'Sora', sans-serif;
+  outline: none;
+}
+
+.input-error {
+  font-size: 20px;
+  border: 2.5px solid red;
+  color: red;
+  background: white;
+  width: 100%;
+  height: 50px;
+  border-radius: 25px;
+  padding: 0 10px 0 20px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: 'Sora', sans-serif;
+  outline: none;
+}
+
+.input-error::placeholder {
+  color: red;
+  font-size: 18px;
+  font-family: 'Sora', sans-serif;
+  text-align: center;
+}
+
+.label-error {
+  font-size: 20px;
+  color: red;
+  background: (224, 204, 204);
+  font-family: 'Sora', sans-serif;
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.label-alert {
+  font-size: 20px;
+  color: red;
+  background: (224, 204, 204);
+  font-family: 'Sora', sans-serif;
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
