@@ -13,13 +13,13 @@ scripts:
     - read
     - write
   cache:
-    cmd: deno cache --lock-write deps.ts
+    cmd: deno cache --lock-write
     desc: update lockfile cache
     importMap: config/import_map.json
     lock: config/lock.json
     watch: false
   debug:
-    cmd: deno run --inspect-brk deps.ts
+    cmd: deno run --inspect-brk mod.ts
     desc: run debug tool
     importMap: config/import_map.json
     watch: false

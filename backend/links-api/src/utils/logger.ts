@@ -9,25 +9,13 @@ await log.setup({
     console: new log.handlers.ConsoleHandler("DEBUG", { //Log messages with level ≥DEBUG would be sent to console
       formatter: `{datetime} {levelName} {msg}`, //Define the format of the log message
     }),
-    file: new log.handlers.RotatingFileHandler("WARNING", { //Log messages with level WARNING would be sent to rotating files with
-      filename: "./logs.txt",
-      maxBytes: 1000000,
-      maxBackupCount: 50,
-      formatter: (rec) =>
-        JSON.stringify({
-          region: rec.loggerName,
-          ts: rec.datetime,
-          level: rec.levelName,
-          data: rec.msg,
-        }),
-    }),
   },
 
   //assing handlers to loggers
   loggers: {
     default: {
       level: "DEBUG",
-      handlers: ["console", "file"],
+      handlers: ["console"],
     },
     /*client: {
       level: "WARNING",
