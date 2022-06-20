@@ -24,3 +24,5 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=30s --retries=3 \
   CMD deno run --allow-net --allow-env ./src/helper/healthCheck.ts
 
 CMD [ "denon", "start" ]
+
+

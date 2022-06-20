@@ -23,6 +23,16 @@ scripts:
     desc: run debug tool
     importMap: config/import_map.json
     watch: false
+  compile:
+    cmd: deno compile --unstable --cached-only --output links-api --target x86_64-unknown-linux-gnu mod.ts
+    importMap: config/import_map.json
+    lock: config/lock.json
+    allow:
+      - net
+      - read
+      - env
+      - write
+    watch: false
 
 logger:
   fullscreen: true
