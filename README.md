@@ -23,17 +23,17 @@ To run each one of the enviroments we use:
 If you want to dive deep into this: https://docs.docker.com/compose/extends/
 
 ## Project Structure
-Whoisclicking
----.env
----docker-compose.{FILES}.yml
----frontend:
--------home-ui:
----backend:
--------links-api:
--------qr-api:
----infra:
--------mongo-db:
--------nginx:
+* Whoisclicking
+    * .env
+    * docker-compose.{FILES}.yml
+    * frontend:
+        * home-ui:
+    * backend:
+        * links-api:
+        * qr-api:
+    * infra:
+        * mongo-db:
+        * nginx:
 
 
 &nbsp;
