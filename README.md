@@ -22,6 +22,21 @@ To run each one of the enviroments we use:
 
 If you want to dive deep into this: https://docs.docker.com/compose/extends/
 
+## Project Structure
+Whoisclicking
+---.env
+---docker-compose.{FILES}.yml
+---frontend:
+-------home-ui:
+---backend:
+-------links-api:
+-------qr-api:
+---infra:
+-------mongo-db:
+-------nginx:
+
+
+&nbsp;
 
 # Initialization
 
@@ -69,7 +84,7 @@ In development we map all applications to localhost, this is just to make develo
     nginx:  [http://localhost:81]
     mongo-db: [http://localhost:82]
 
-
+&nbsp;
 ---
 
 ## Usefull Commands
@@ -92,16 +107,3 @@ In development we map all applications to localhost, this is just to make develo
 ### Restart Project
 `docker compose down`
 `docker vulume prune`
-
-## Project Structure
-Whoisclicking
----.env
----docker-compose.{FILES}.yml
----frontend:
--------home-ui:
----backend:
--------links-api:
--------qr-api:
----infra:
--------mongo-db:
--------nginx:
