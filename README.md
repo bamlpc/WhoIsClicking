@@ -75,14 +75,14 @@ TODO: add diagram of network with ips
 ## Network in dev
 In development we map all applications to localhost, this is just to make development easy:
 
-* Backend: [http://localhost:8000]
-    links-api: [http://localhost:8000]
-    qr-api: [http://localhost:8001]
+* Backend: 
+    * links-api: [http://localhost:8000]
+    * qr-api: [http://localhost:8001]
 * Frontend: 
-    home-ui: [http://localhost:3000]
+    * home-ui: [http://localhost:3000]
 * Infra:
-    nginx:  [http://localhost:81]
-    mongo-db: [http://localhost:82]
+    * nginx:  [http://localhost:81]
+    * mongo-db: [http://localhost:82]
 
 &nbsp;
 ---
