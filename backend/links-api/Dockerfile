@@ -16,9 +16,9 @@ COPY ./src ./src
 
 RUN denon cache mod.ts
 
-RUN chown -R deno:deno /deno-dir/links-api
+#RUN chown -R deno:deno /deno-dir/links-api
 
-USER deno
+#USER deno
 
 HEALTHCHECK --interval=30s --timeout=30s --start-period=30s --retries=3 \
   CMD deno run --allow-net --allow-env ./src/helper/healthCheck.ts

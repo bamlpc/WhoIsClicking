@@ -14,7 +14,13 @@
     "react-scripts": "^5.0.1",
     "styled-components": "^5.1.1",
     "web-vitals": "^2.1.4",
-    "react-icons": "~4.4.0"
+    "react-icons": "~4.4.0",
+    "flag-icon-css": "^3.5.0",
+    "i18next": "^19.9.0",
+    "i18next-browser-languagedetector": "^6.0.1",
+    "i18next-http-backend": "^1.1.1",
+    "js-cookie": "^2.2.1",
+    "react-i18next": "^11.8.8"
   },
   "scripts": {
     "start": "react-scripts start",

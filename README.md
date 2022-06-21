@@ -10,13 +10,13 @@ Who is clicking is a simple yet powerful set of tools aimed to identify a person
 
 # Pre-requisites 
 
-This project is fully dockerize, you need docker to have docker install in your own enviroment.
-Here is the offical page https://docs.docker.com/engine/install/
+This project is fully dockerized, you need docker to have docker installed in your environment.
+Here is the official page https://docs.docker.com/engine/install/
 
 # Project layout
-This project has 3 enviroments, development, test and production. Each one of these has its own docker files asociated.
+This project has 3 environments, development, test and production. Each one of these has its docker files associated.
 
-To run each one of the enviroments we use:
+To run each one of the environments we use:
 
 `docker-compose -f docker-compose.yml -f docker-compose.{enviroment}.yml up -d`
 
@@ -40,37 +40,38 @@ If you want to dive deep into this: https://docs.docker.com/compose/extends/
 
 # Initialization
 
-First we need to do its to setup the enviroment variables. Rename the `.env.example` to `.env` and setup your own id's and passwords.
+First, we need to do it's to set up the environment variables. Rename the `.env.example` to `.env` and set up your own IDs and passwords.
 If you just want to fast test it with the default values:
 
-linux: `mv .env.example .env`
-powershell: `Rename-Item -Path ".env.example" -NewName ".env"` 
+ * Linux: `mv .env.example .env`
+ * PowerShell: `Rename-Item -Path ".env.example" -NewName ".env"` 
 
 Now if this is the first time building the project you could just
 `docker-compose up`
-This will automatically apply `-f docker-compose.override.yml` that is the development enviroment.
-Keep in mind that the dev env will make volumes for the databse, so if you changes some .env value its probably a good moment to cleanup the data. For this you could:
-powershell: 
+This will automatically apply `-f docker-compose.override.yml` that is the development environment.
+Keep in mind that the dev env will make volumes for the database, so if you change some .env value it's probably a good moment to cleanup the data. For this you could:
+
+ * powershell: 
     `docker-compose down`
     `docker system prune --all -f`
     `Remove-Item -recurse -force backend\qr-api\qrs, infra\mongo-db\data, infra\mongo-db\log, infra\nginx\log`
     `docker-compose up`
-linux:
+ * linux:
     `docker-compose down`
     `docker system prune --all -f`
     TODO: linux command backend\qr-api\qrs, infra\mongo-db\data, infra\mongo-db\log, infra\nginx\log
     `docker-compose up`
 
-`docker-compose up --build` the first time, and just `docker compose up` after we have our images builded.
+`docker-compose up --build` the first time, and just `docker-compose up` after we have our images built.
 
 &nbsp;
 
 # Networking
-This project is desing to use docker pivate networks, in production you wont be able to access the backend unless you hit nginx fist.
+This project is designed to use docker private networks, in production you won't be able to access the backend unless you hit nginx fist.
 
 ## Network structure:
 
-TODO: add diagram of network with ips
+TODO: add a diagram of the network with ips
 
 ## Network in dev
 In development we map all applications to localhost, this is just to make development easy:
@@ -103,7 +104,3 @@ In development we map all applications to localhost, this is just to make develo
 
 ### Deno Lint
 `deno lint`
-
-### Restart Project
-`docker compose down`
-`docker vulume prune`

@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+
+  #home-ui:
+  #  container_name: home-ui
+  #  build:
+  #    context: ./frontend/home-ui
+  #    dockerfile: Dockerfile.production
+
+  links-api:
+    container_name: links-api
+    build:
+      context: ./backend/links-api
+      dockerfile: Dockerfile.production
+  #qr-api:
+  #  container_name: qr-api
+  #  build:
+  #    context: ./backend/qr-api
+  #    dockerfile: Dockerfile.production
+
+  #mongo-db:
+  #  container_name: mongo-db
+  #  build:
+  #    context: ./infra/mongo-db
+  #    dockerfile: Dockerfile.production
+
+  #nginx:
+  #  container_name: nginx
+  #  build: 
+  #    context: ./infra/nginx
+  #    dockerfile: Dockerfile.production
+
+volumes: {}
+
+networks: {}
+
+

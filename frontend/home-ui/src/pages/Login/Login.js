@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import './Login.css';
-import Input from './components/Input/Input';
-import Button from './components/Button/Button';
+import Input from '../../commons/InputField/Input.js'
+import Button from '../../commons/Button/Button.js'
 
 export const Login = (props) => {
 
@@ -61,7 +61,7 @@ export const Login = (props) => {
              navigate('/hunter:id') 
             :
             <div className='login-container'>
-            { hasError && <label className='label-alert'> Incorrect login information </label>}
+            <div>{ hasError && <label className='label-alert'> Incorrect login information </label>}</div>
             <Input  
               attribute={ {
                 id: 'hunterlink', 
@@ -75,14 +75,17 @@ export const Login = (props) => {
                 id: 'password', 
                 name: 'password', 
                 placeholder: 'password', 
-                type: 'text' }} 
+                type: 'password' }} 
                 handleChange={handleChange}
+                toogle={true}
                 param={passwordError}
               /> 
 
-              { passwordError && <label className='label-error'> Password is required </label> }
-              
-              <Button onClick={handleSubmit}>Login</Button>     
+              <div>{ passwordError ? <label className='label-error'> Password is required </label> : "" }</div>
+              <div><Button onClick={handleSubmit}
+              type="purple"
+              buttonSize="--loginPage"
+              >Login</Button></div>     
           </div>
           }
         </header>
