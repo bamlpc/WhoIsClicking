@@ -8,4 +8,9 @@ RUN mkdir /etc/nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY proxy.conf /etc/nginx/conf.d/
 
+EXPOSE 80
+
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl --fail http://nginx_ip || exit 1
+
 CMD ["nginx", "-g", "daemon off;"]

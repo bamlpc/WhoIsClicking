@@ -2,7 +2,7 @@
   "name": "wic_frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:81",
+  "proxy": "http://nginx_ip:80",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
@@ -14,7 +14,13 @@
     "react-scripts": "^5.0.1",
     "styled-components": "^5.1.1",
     "web-vitals": "^2.1.4",
-    "react-copy-to-clipboard": "^5.1.0"
+    "react-icons": "~4.4.0",
+    "flag-icon-css": "^3.5.0",
+    "i18next": "^19.9.0",
+    "i18next-browser-languagedetector": "^6.0.1",
+    "i18next-http-backend": "^1.1.1",
+    "js-cookie": "^2.2.1",
+    "react-i18next": "^11.8.8"
   },
   "scripts": {
     "start": "react-scripts start",

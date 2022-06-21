@@ -1,7 +1,7 @@
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
-const Hunter = (props) => {
-    const url= "http://localhost:3000/hunter/" + props;
+const Hunter = ( { hunter } ) => {
+    const url= "http://localhost:3000/hunter/" + hunter;
     return (
         <div>
             <h2>This is the Hunter link:</h2>
@@ -14,8 +14,8 @@ const Hunter = (props) => {
     )    
 }
 
-const Prey = (props) => {
-    const url= "http://localhost:3000/prey/" + props;
+const Prey = ( { prey } ) => {
+    const url= "http://localhost:3000/prey/" + prey;
     return (
         <div>
             <h2>This is the Prey link:</h2>

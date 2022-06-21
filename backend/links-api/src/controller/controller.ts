@@ -48,4 +48,12 @@ const post = async (context: any) => {
   context.response.body = JSON.stringify(response);
 };
 
-export { get, post };
+const healthCheck = (context: any) => {
+  const response = {
+    success: true
+  };
+  context.response.body = response;
+  
+}
+
+export { get, post, healthCheck };

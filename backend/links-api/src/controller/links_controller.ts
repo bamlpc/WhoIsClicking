@@ -32,7 +32,6 @@ const generateLinks = async (ctx: any) => {
         },
         body: JSON.stringify(newLink),
       });
-      log.warning("Generated links");
       const response = {
         success: true,
         newLink,
