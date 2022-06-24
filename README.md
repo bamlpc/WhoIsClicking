@@ -10,17 +10,23 @@ Who is clicking is a simple yet powerful set of tools aimed to identify a person
 
 # Pre-requisites 
 
-This project is fully dockerized, you need docker to have docker installed in your environment.
-Here is the official page https://docs.docker.com/engine/install/
+This project is fully dockerized, you need docker installed in your environment in order to use it.
+
+Here is the official page: https://docs.docker.com/engine/install/
+
+&nbsp;
 
 # Project layout
-This project has 3 environments, development, test and production. Each one of these has its docker files associated.
+This project has 3 environments: 
+- Development 
+- Test 
+- Production
 
-To run each one of the environments we use:
+Each enviroment has its own docker files associated and in order to run any of them you should use:
 
 `docker-compose -f docker-compose.yml -f docker-compose.{enviroment}.yml up -d`
 
-If you want to dive deep into this: https://docs.docker.com/compose/extends/
+More information about docker compose and enviroments: https://docs.docker.com/compose/extends/
 
 ## Project Structure
 * Whoisclicking
@@ -40,41 +46,34 @@ If you want to dive deep into this: https://docs.docker.com/compose/extends/
 
 # Initialization
 
-First, we need to do it's to set up the environment variables. Rename the `.env.example` to `.env` and set up your own IDs and passwords.
-If you just want to fast test it with the default values:
-
- * Linux: `mv .env.example .env`
+1. Rename the `.env.example` to `.env` and set up your own IDs and passwords.
+ * Linux / Mac: `mv .env.example .env`
  * PowerShell: `Rename-Item -Path ".env.example" -NewName ".env"` 
 
-Now if this is the first time building the project you could just
-`docker-compose up`
+2. Build the project: `docker-compose up`
+
 This will automatically apply `-f docker-compose.override.yml` that is the development environment.
-Keep in mind that the dev env will make volumes for the database, so if you change some .env value it's probably a good moment to cleanup the data. For this you could:
 
- * powershell: 
-    `docker-compose down`
-    `docker system prune --all -f`
-    `Remove-Item -recurse -force backend\qr-api\qrs, infra\mongo-db\data, infra\mongo-db\log, infra\nginx\log`
-    `docker-compose up`
- * linux:
-    `docker-compose down`
-    `docker system prune --all -f`
-    TODO: linux command backend\qr-api\qrs, infra\mongo-db\data, infra\mongo-db\log, infra\nginx\log
-    `docker-compose up`
+## Caveats
+Keep in mind that the development enviroment will make volumes for the database, so if you change something inside .env you must cleanup the data. 
 
-`docker-compose up --build` the first time, and just `docker-compose up` after we have our images built.
+Restart the project:
+1. `docker-compose down`
+2. `docker system prune --all -f`
+3. `rm -rf backend\qr-api\qrs, infra\mongo-db\data, infra\mongo-db\log, infra\nginx\log`
+4. `docker-compose up`
 
 &nbsp;
 
 # Networking
-This project is designed to use docker private networks, in production you won't be able to access the backend unless you hit nginx fist.
+This project is designed to use docker private networks, in production you won't be able to access the backend unless you hit nginx first.
 
 ## Network structure:
 
 TODO: add a diagram of the network with ips
 
 ## Network in dev
-In development we map all applications to localhost, this is just to make development easy:
+In development env we map all applications to localhost to make the process easier:
 
 * Backend: 
     * links-api: [http://localhost:8000]
@@ -87,20 +86,3 @@ In development we map all applications to localhost, this is just to make develo
 
 &nbsp;
 ---
-
-## Usefull Commands
-
-### Deno Debugging
-`denon debug`
-
-[chrome://inspect](chrome://inspect)
-
-### Update Deno Lock File and Cache
-`denon cache`
-
-### Deno Code Formatter
-`deno fmt src`
-`deno fmt src`
-
-### Deno Lint
-`deno lint`
