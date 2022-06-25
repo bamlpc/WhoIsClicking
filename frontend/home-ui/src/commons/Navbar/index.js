@@ -6,9 +6,11 @@ import {
   NavMenu,
   NavBtn,
   NavBtnLink
-} from './NavbarElements';
+} from './components/NavbarElements';
+import Drop from './components/Dropdown.js'
 
 const Navbar = () => {
+
   return (
     <>
       <Nav>
@@ -18,17 +20,19 @@ const Navbar = () => {
         </NavLink>
         <Bars />
         <NavMenu>
-          <NavLink to='/linkscreation' activeStyle>
+          <NavLink to='/linkscreation'  activeStyle>
             Links generator
           </NavLink>
-          <NavLink to='/about' activeStyle>
+          <NavLink to='/webscrapper'    activeStyle>
+            Web Scrapper
+          </NavLink>
+          <NavLink to='/about'          activeStyle>
             About
           </NavLink>
-          {/* Second Nav */}
-          {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
         </NavMenu>
         <NavBtn>
           <NavBtnLink to='/login'>Login</NavBtnLink>
+          <Drop />
         </NavBtn>
       </Nav>
     </>

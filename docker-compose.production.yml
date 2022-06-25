@@ -2,12 +2,6 @@ version: '3.7'
 
 services:
 
-  #home-ui:
-  #  container_name: home-ui
-  #  build:
-  #    context: ./frontend/home-ui
-  #    dockerfile: Dockerfile.production
-
   links-api:
     container_name: links-api
     build:
@@ -25,11 +19,11 @@ services:
   #    context: ./infra/mongo-db
   #    dockerfile: Dockerfile.production
 
-  #nginx:
-  #  container_name: nginx
-  #  build: 
-  #    context: ./infra/nginx
-  #    dockerfile: Dockerfile.production
+  nginx:
+    container_name: nginx
+    build: 
+      context: ./infra/nginx
+      dockerfile: Dockerfile.production
 
 volumes: {}
 

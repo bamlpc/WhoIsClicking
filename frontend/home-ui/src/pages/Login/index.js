@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import './Login.css';
 import Input from '../../commons/InputField/Input.js'
 import Button from '../../commons/Button/Button.js'
 
-export const Login = (props) => {
+const Login = (props) => {
 
   const navigate = useNavigate();
   const [ user, setUser ] = useState('');
@@ -91,4 +90,6 @@ export const Login = (props) => {
         </header>
       </div>
     );
-  }
+}
+
+export default Login;

@@ -1,7 +1,6 @@
 import React from 'react';
-import './Hunter.css';
 
-export const Hunter = () => {
+const Hunter = () => {
     return (
       <div className="App">
         <header className="App-header">
@@ -9,4 +8,6 @@ export const Hunter = () => {
         </header>
       </div>
     );
-  }
+}
+
+export default Hunter
