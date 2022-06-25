@@ -6,7 +6,7 @@ FROM nginx:1.22.0-alpine-perl
 RUN rm -rf /etc/nginx
 RUN mkdir /etc/nginx
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY proxy.conf /etc/nginx/conf.d/
+COPY proxy.development.conf /etc/nginx/conf.d/proxy.conf
 
 EXPOSE 80
 

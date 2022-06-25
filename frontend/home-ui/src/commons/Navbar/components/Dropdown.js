@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import cookies from 'js-cookie'
 import classNames from 'classnames'
-import App from './App.js'
+
 
 const languages = [
   {
@@ -15,6 +15,21 @@ const languages = [
     code: 'en',
     name: 'English',
     country_code: 'gb',
+  },
+  {
+    code: 'es',
+    name: 'Español',
+    country_code: 'es',
+  },
+  {
+    code: 'de',
+    name: 'Deutsch',
+    country_code: 'de',
+  },
+  {
+    code: 'it',
+    name: 'Italiano',
+    country_code: 'it',
   },
   {
     code: 'ar',
@@ -37,14 +52,10 @@ const GlobeIcon = ({ width = 24, height = 24 }) => (
   </svg>
 )
 
-function Language() {
+export default function App() {
   const currentLanguageCode = cookies.get('i18next') || 'en'
   const currentLanguage = languages.find((l) => l.code === currentLanguageCode)
   const { t } = useTranslation()
-
-  const releaseDate = new Date('2021-03-07')
-  const timeDifference = new Date() - releaseDate
-  const number_of_days = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
 
   useEffect(() => {
     console.log('Setting page stuff')
@@ -53,8 +64,8 @@ function Language() {
   }, [currentLanguage, t])
 
   return (
-    <div className="container">
-      <div className="language-select">
+    <div className="container" background-color="#3d5afe">
+      <div className="language-select" >
         <div className="d-flex justify-content-end align-items-center language-select-root">
           <div className="dropdown">
             <button
@@ -95,11 +106,6 @@ function Language() {
           </div>
         </div>
       </div>
-      <div className="d-flex flex-column align-items-start">
-        <App></App>
-      </div>
     </div>
   )
 }
-
-export default Language;

@@ -1,14 +1,41 @@
 import { React, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import '../../App.css';
 import CreateLinks from './components/CreateLinks.js';
 import Button from '../../commons/Button/Button.js'
 import Input from '../../commons/InputField/Input.js'
+import '../../App.css';
 
-export const LinksCreation = () => {
+const LinksCreation = () => {
 
   const navigate = useNavigate();
+  const [ password, setPassword ] = useState('');
+  const [ passwordError, setPasswordError ] = useState(false);
 
+  function handleChange(password, value) {
+    if ( value.length < 6 ) {
+          setPasswordError(true)
+          
+        } else { 
+            setPasswordError(false)
+            setPassword(value)
+    }
+      
+  }
+
+  function handleSubmit() {
+    if(password.length > 0) {
+      if(!passwordError){
+        CreateLinks(password)
+        navigate('/generated', {replace: true}/*{stage:{newLinks}}*/)
+      } else
+        {
+         //todo a flash on error message
+      }}
+    else {
+      setPasswordError(true)
+    }  
+  }
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -25,16 +52,14 @@ export const LinksCreation = () => {
             name: 'password', 
             placeholder: 'Enter your desired password', 
             type: 'password' }} 
-            //handleChange={handleChange}
+            handleChange={handleChange}
             toogle={true}
-            //param={passwordError}
+            param={passwordError}
           />
         </div>
+        <div>{ passwordError ? <label className='label-error'> Password needs to be at least 6 digits long </label> : "" }</div>
         <div className="app">
-         <Button onClick={ () => {
-            CreateLinks()
-            navigate('/generated')
-          }}
+         <Button onClick={handleSubmit}
           type="purple"
           buttonSize="--linksGenerator"
           > Create Link </Button>
@@ -43,3 +68,5 @@ export const LinksCreation = () => {
     </div>
   );
 }
+
+export default LinksCreation;
