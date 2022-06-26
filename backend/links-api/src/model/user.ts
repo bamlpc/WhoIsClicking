@@ -3,7 +3,7 @@ import log from "log";
 
 const users = mongoDatabase.collection("users");
 
-// creating account and storing it in "users" collection 
+// creating account and storing it in 'users' collection 
 
 class User {
   static async create(username: string, hashedPassword: string, salt: string) {

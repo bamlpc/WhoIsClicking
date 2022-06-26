@@ -1,35 +1,51 @@
-import { bcrypt } from "deps"
 import { Login } from "../model/models.ts";
-
+import { bcrypt } from "deps";
+import isRegister from "../helper/isUserRegister.ts";
 
 
 const login = async ( ctx: any ) => {
 
+// Extracting user's register information
     const data = ctx.request.body();
     const userInput = <Login> await data.value;
 
-    
-    if (!userInput.username) { //TODO: HERE WE CHECK IF THE EMAIL IS REGISTER
-        new Error
-        ctx.response.body = {
-            success: false, 
-            status: 401,
-            message: "Invalid username"
-    }} else if (!userInput.password){ //TODO: HERE SHOULD BE WHERE WE CHECK FOR PASSWORD MATCH
-        new Error
-        ctx.response.body = {
-            success: false, 
-            status: 401,
-            message: "Incorrect password"
-    }}
-    else {
-        ctx.response.body = { //IF THE EMAIL IS REGISTER AND THE PASSWORD IS CORRECT, THEN:
-            succes: true,
-            status: 200,
-            message: "succesfully loged in",
-            //TODO: JWT review to refresh
+    try {
+
+// Fetching mongoDB to check if the email is register
+        const databaseInformation = await isRegister(userInput.username);
+        
+        if (databaseInformation === undefined) { 
+            throw "Invalid E-mail"    
         }
+
+// Checking the password
+
+        const store = JSON.parse(JSON.stringify(databaseInformation))   
+        const compared = await bcrypt.compare(userInput.password, store.hashedPassword)
+
+        if (!compared){
+            throw "Incorrect password"
+        }
+
+// With the right email an password:
+        else {
+            const response = { 
+                succes: true,
+                status: 200,
+                message: "succesfully loged in",
+                //TODO: JWT review to refresh
+            }
+            ctx.response.body = JSON.stringify(response);
+        }
+    } catch (error) {
+        const response = {
+            success: false, 
+            status: 401,
+            error
+        }
+        ctx.response.body = JSON.stringify(response);
     }
+    
     
     
 }

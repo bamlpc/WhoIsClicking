@@ -1,23 +1,28 @@
 import mongoDatabase from "../helper/mongodb.ts";
 import log from "log";
-import { Login } from "../model/models.ts";
 
 const users = mongoDatabase.collection("users");
 
-//this function looks for an email in the users collection
+//This function looks for an email in the users collection
 
 const isRegiter = async (username: string) => {
+
+//The message that we get when the user is no register in mongoDB is not been interpreted as an error by Deno
+//it just doesnt execute the instruction, so we define:
+    let userData = undefined;
+
+//Now if mongo doesn't return anything, we are cover
+
     try {
 
-    const userData = await users.findOne({ username: {$in: [username]} }); // cant access any props of the DB response
-    const stringify = JSON.stringify(userData);                            // cant directly parse it, first stringify
-    const parse = JSON.parse(stringify);                                   // now parse the string and the props are reachable IDKWhy
-    
-    return parse;
+    userData = await users.findOne({ username: {$in: [username]} }); 
+
+    return userData;
 
     } catch (error) {
+
         log.error(error)
-        return false
+        error
     }
 }
 
