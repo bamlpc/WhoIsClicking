@@ -21,20 +21,26 @@ const createUser = async (ctx: any) => {
         ctx.response.body = JSON.stringify(response);
     }
 // calling the function that hashes the password
-    const [username , hashedPassword, salt] = await processedUserData( userInput );
+    const [username , hashedPassword, salt, isValid] = await processedUserData( userInput );
 // attempting to create the account
     try {
-       await User.create(username, hashedPassword, salt);
-       const response = {
-        succes: true,
-        body: {username, hashedPassword, salt}
-       };
-       ctx.response.body = JSON.stringify(response);
+        if (isValid === "true") {
+            await User.create(username, hashedPassword, salt);
+            const response = {
+            succes: true,
+            body: {username, hashedPassword, salt}
+            };
+            ctx.response.body = JSON.stringify(response);
+        }
+        else {
+            throw new Error // pensando si agregar o no una descripcion del error.
+        }
     } catch (error) {
         log.error(error);
         ctx.response.body = {
             success: false,
             error,
+            Error
         };
     }
     
