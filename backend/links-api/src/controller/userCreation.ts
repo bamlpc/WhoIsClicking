@@ -12,13 +12,21 @@ const createUser = async (ctx: any) => {
 
 // Fetching mongoDB to check if the email is been used
     const tryUsername = await isRegister(userInput.username)
-    const checking = JSON.parse(JSON.stringify(tryUsername)).username
+    console.warn(tryUsername)
+   
 
     try {
 
-         if ( userInput.username === checking ) { 
+//This block checks if the email is available
+         if ( tryUsername == undefined ) { 
+            console.log(userInput.password)
+         }
+         else {
+         const checking = JSON.parse(JSON.stringify(tryUsername)).username;
+         if (userInput.username === checking ) { 
             throw "We already have an account register with that E-mail address"
          }
+        }
      
 // Checking if the email and password have the right format    
 
