@@ -12,7 +12,6 @@ const generateLinks = async (ctx: any) => {
   };
   try {
     await Link.create(newLink.hunter, newLink.prey, newLink.action);
-    log.info(newLink);
     const response = {
       success: true,
       newLink,

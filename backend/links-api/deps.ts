@@ -24,5 +24,6 @@ export {
   isBool,
   nullable
 } from "third/validasaur@v0.15.0/mod.ts";
-export * as bcrypt from "third/bcrypt@v0.4.0/mod.ts";
+export * as bcrypt from "third/bcrypt@v0.4.0/mod.ts"; //need to pinpoint the exact functions that we are using.
 export * as bcryptWorker from "third/bcrypt@v0.4.0/src/worker.ts";
+import * as djwt from "third/djwt@v2.7/mod.ts";

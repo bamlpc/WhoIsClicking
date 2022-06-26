@@ -19,7 +19,7 @@ const createUser = async (ctx: any) => {
 
 //This block checks if the email is available
          if ( tryUsername == undefined ) { 
-            console.log(userInput.password)
+            console.log("creating user")
          }
          else {
          const checking = JSON.parse(JSON.stringify(tryUsername)).username;
@@ -30,14 +30,14 @@ const createUser = async (ctx: any) => {
      
 // Checking if the email and password have the right format    
 
-        const [username , hashedPassword, salt, isValid] = await processedUserData( userInput );
+        const [username , hashedPassword, isValid] = await processedUserData( userInput );
         
 // Creating account
          if (isValid === "true") {
-            await User.create(username, hashedPassword, salt);
+            await User.create(username, hashedPassword);
             const response = {
             succes: true,
-            body: {username, hashedPassword, salt}
+            body: {username, hashedPassword}
             };
             ctx.response.body = JSON.stringify(response);
         }

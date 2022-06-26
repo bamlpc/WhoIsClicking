@@ -6,12 +6,11 @@ const users = mongoDatabase.collection("users");
 // creating account and storing it in 'users' collection 
 
 class User {
-  static async create(username: string, hashedPassword: string, salt: string) {
+  static async create(username: string, hashedPassword: string) {
     try {
       const result = await users.insertOne({
         username: username,
         hashedPassword: hashedPassword,
-        salt: salt
       });
 
       return result;

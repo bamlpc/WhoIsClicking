@@ -20,7 +20,7 @@ const processedUserData = async (userInformation: Login) => {
     const salt: string = await bcrypt.genSalt();
     const hashedPassword: string = await bcrypt.hash(password, salt)
 
-        return [username, hashedPassword, salt, isValid]
+        return [username, hashedPassword, isValid]
 }
 
 export default processedUserData;
