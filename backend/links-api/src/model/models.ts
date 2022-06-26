@@ -1,4 +1,3 @@
-//MODELO DE USO DE VALIDASAUR PARA NO TENER QUE BUSCAR EN BIBLIOGRAFIA
 import {
   isEmail,
   isString,
@@ -9,6 +8,7 @@ import {
   required,
 } from "deps";
 
+// creating interface and Schema to check and validate types of the login information
 interface Login{
   username: string;
   password: string;
@@ -20,6 +20,8 @@ const loginSchema = {
 }
 
 
+
+//just an example of the interfaces and schemas to makeit easier to remember
 interface ITodo {
   name: string;
   tittle: string;
