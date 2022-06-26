@@ -6,7 +6,7 @@
 
 ## Update Deno Lock File and Cache
 1. `cd links-api`
-2. `denon cache`
+2. `denon cache deps.ts`
 
 ## Deno Code Formatter
 1. `cd links-api`

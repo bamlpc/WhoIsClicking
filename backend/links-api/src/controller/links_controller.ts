@@ -1,5 +1,6 @@
 import log from "log";
 import Link from "../model/link.ts";
+//agregar parametro opcional a la creacion de links, el campo es EMAIL
 
 const QR_URL = Deno.env.get("QR_URL")!;
 

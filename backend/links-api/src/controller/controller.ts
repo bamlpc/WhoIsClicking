@@ -1,7 +1,7 @@
 //TODO: fix the types
 //import mongoDatabase from '../helper/mongodb.ts'
 import { validateTodo } from "../utils/validation.ts";
-import { ITodo } from "../model/todoModel.ts";
+import { ITodo } from "../model/models.ts";
 import log from "log";
 
 const get = (context: any) => {

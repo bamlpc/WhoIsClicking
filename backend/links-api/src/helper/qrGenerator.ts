@@ -1,0 +1,1 @@
+//recibe la orden de crear el qr despues de que se registró el link en la base de datos.

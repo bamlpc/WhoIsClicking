@@ -1,12 +1,24 @@
 //MODELO DE USO DE VALIDASAUR PARA NO TENER QUE BUSCAR EN BIBLIOGRAFIA
 import {
-  isBool,
-  isDate,
+  isEmail,
   isString,
-  lengthBetween,
+  isDate,
+  isBool,
   nullable,
+  lengthBetween,
   required,
 } from "deps";
+
+interface Login{
+  username: string;
+  password: string;
+}
+
+const loginSchema = {
+  username: [ required, isEmail, lengthBetween(7, 100) ],
+  password: [ required, isString, lengthBetween(6, 100) ]
+}
+
 
 interface ITodo {
   name: string;
@@ -30,5 +42,6 @@ const todoSchema = {
   updated_at: [isDate, nullable],
 };
 
-export { todoSchema };
-export type { ITodo };
+
+export { loginSchema, todoSchema };
+export type { Login, ITodo };

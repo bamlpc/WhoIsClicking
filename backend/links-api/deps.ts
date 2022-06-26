@@ -15,11 +15,14 @@ export { Bson, MongoClient } from "third/mongo@v0.29.4/mod.ts";
 export {
   firstMessages,
   flattenMessages,
-  isBool,
-  isDate,
+  isEmail,
   isString,
   lengthBetween,
-  nullable,
   required,
   validate,
+  isDate,
+  isBool,
+  nullable
 } from "third/validasaur@v0.15.0/mod.ts";
+export * as bcrypt from "third/bcrypt@v0.4.0/mod.ts";
+export * as bcryptWorker from "third/bcrypt@v0.4.0/src/worker.ts";
