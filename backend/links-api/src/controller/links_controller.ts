@@ -1,10 +1,8 @@
 import log from "log";
 import Link from "../model/link.ts";
-//agregar parametro opcional a la creacion de links, el campo es EMAIL
+import { RouterContext } from "deps"
 
-const QR_URL = Deno.env.get("QR_URL")!;
-
-const generateLinks = async (ctx: any) => {
+const generateLinks = async ( {response}: RouterContext<"/generate">) => {
   const newLink = {
     hunter: getRandomString(50),
     prey: getRandomString(50),
@@ -12,38 +10,17 @@ const generateLinks = async (ctx: any) => {
   };
   try {
     await Link.create(newLink.hunter, newLink.prey, newLink.action);
-    const response = {
+    const _response = {
       success: true,
       newLink,
     };
-    ctx.response.body = JSON.stringify(response);
+    response.body = JSON.stringify(_response);
   } catch (error) {
     log.error(error);
-    ctx.response.body = {
+    response.body = {
       success: false,
       error,
     };
-  } finally {
-    try {
-      await fetch( QR_URL , {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newLink),
-      });
-      const response = {
-        success: true,
-        newLink,
-      };
-      ctx.response.body = JSON.stringify(response);
-    } catch (error) {
-      log.error(error);
-      ctx.response.body = {
-        success: false,
-        error,
-      };
-    }
   }
 };
 

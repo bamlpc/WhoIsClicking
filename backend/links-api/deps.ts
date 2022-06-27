@@ -10,7 +10,7 @@ export {
   Router,
   Status,
 } from "third/oak@v10.5.1/mod.ts";
-export type { Middleware } from "third/oak@v10.5.1/mod.ts";
+export type { Middleware, RouterContext, RouterMiddleware, Cookies } from "third/oak@v10.5.1/mod.ts";
 export { Bson, MongoClient } from "third/mongo@v0.29.4/mod.ts";
 export {
   firstMessages,
@@ -26,4 +26,8 @@ export {
 } from "third/validasaur@v0.15.0/mod.ts";
 export * as bcrypt from "third/bcrypt@v0.4.0/mod.ts"; //need to pinpoint the exact functions that we are using.
 export * as bcryptWorker from "third/bcrypt@v0.4.0/src/worker.ts";
-import * as djwt from "third/djwt@v2.7/mod.ts";
+export * as djwt from "third/djwt@v2.7/mod.ts";
+export {qrcode} from "third/qrcode@v2.0.0/mod.ts";
+export {oakCors} from "third/cors@v1.2.2/mod.ts";
+export {ServiceCollection, Service} from "third/di@v0.1.1/mod.ts";
+

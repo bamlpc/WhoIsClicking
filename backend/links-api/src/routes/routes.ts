@@ -1,20 +1,23 @@
 import { Router } from "deps";
-import { get as getTodo, post as postTodo, healthCheck } from "../controller/controller.ts";
+import AuthController from "../controller/auth_controller.ts"
 import generateLinks from "../controller/links_controller.ts";
-import createUser from "../controller/userCreation.ts"
-import login from "../controller/login.ts"
+import healthCheck from "../controller/healthcheck_controller.ts";
+import qrGen from "../controller/qrGenerator_controller.ts"
+import LoginValidation from "../validations/login_validation.ts";
+import RegisterValidation from "../validations/register_validation.ts";
+import authMiddleware from "../middlewares/authMiddleware.ts"
+import JwtService from "../services/jwt_service.ts"
 
 const router = new Router();
+const authController = new AuthController(new JwtService());
 
-router.get("/", getTodo);
-router.post("/", postTodo);
-
-router.get("/healthcheck", healthCheck);
-
-router.get("/generate", generateLinks);
-
-router.post("/register", createUser);
-
-router.post("/login", login);
+router
+    .get("/healthcheck", healthCheck)
+    .get("/generate", generateLinks)
+    .post("/register",RegisterValidation , ctx => authController.createUser(ctx))
+    .post("/login",LoginValidation , ctx => authController.login(ctx))
+//    .get("/user",authMiddleware, ctx => authController.user(ctx))
+    .post("/logout",authMiddleware, ctx => authController.logout(ctx))
+    .post("/qrgenerator", qrGen)
 
 export default router;
