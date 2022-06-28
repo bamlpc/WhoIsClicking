@@ -1,11 +1,10 @@
-import { RouterContext } from "deps"
+import { RouterContext } from "deps";
 
-const healthCheck = ( {response}: RouterContext<"/healthcheck">) => {
+const healthCheck = ({ response }: RouterContext<"/healthcheck">) => {
   const _response = {
-    success: true
+    success: true,
   };
   response.body = _response;
-  
-}
+};
 
 export default healthCheck;

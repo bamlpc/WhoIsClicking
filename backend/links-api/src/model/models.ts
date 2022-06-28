@@ -1,25 +1,23 @@
 import {
+  isBool,
+  isDate,
   isEmail,
   isString,
-  isDate,
-  isBool,
-  nullable,
   lengthBetween,
+  nullable,
   required,
 } from "deps";
 
 // creating interface and Schema to check and validate types of the login information
-interface Login{
+interface Login {
   username: string;
   password: string;
 }
 
 const loginSchema = {
-  username: [ required, isEmail, lengthBetween(7, 100) ],
-  password: [ required, isString, lengthBetween(6, 100) ]
-}
-
-
+  username: [required, isEmail, lengthBetween(7, 100)],
+  password: [required, isString, lengthBetween(6, 100)],
+};
 
 //just an example of the interfaces and schemas to makeit easier to remember
 interface ITodo {
@@ -44,6 +42,5 @@ const todoSchema = {
   updated_at: [isDate, nullable],
 };
 
-
 export { loginSchema, todoSchema };
-export type { Login, ITodo };
+export type { ITodo, Login };

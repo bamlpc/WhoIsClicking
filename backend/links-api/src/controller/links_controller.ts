@@ -1,8 +1,8 @@
 import log from "log";
 import Link from "../model/link.ts";
-import { RouterContext } from "deps"
+import { RouterContext } from "deps";
 
-const generateLinks = async ( {response}: RouterContext<"/generate">) => {
+const generateLinks = async ({ response }: RouterContext<"/generate">) => {
   const newLink = {
     hunter: getRandomString(50),
     prey: getRandomString(50),

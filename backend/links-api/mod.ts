@@ -1,24 +1,23 @@
 import { Application, oakCors } from "deps";
-import router from "./src/routes/routes.ts";
+import { api, user } from "./src/routes/routes.ts";
 import log from "log";
 import loggerMiddleware from "./src/middlewares/logger.ts";
 import errorMiddleware from "./src/middlewares/error.ts";
 import notFoundMiddleware from "./src/middlewares/notFound.ts";
 import timingMiddleware from "./src/middlewares/timing.ts";
 
-
 const app = new Application();
 
 app.use(oakCors({
-    credentials: true,
-    origin: /^.+localhost:(3000)$/,
-}))
+  credentials: true,
+  origin: /^.+localhost:(3000)$/,
+}));
 
 app.use(loggerMiddleware);
 app.use(timingMiddleware);
 app.use(errorMiddleware);
-app.use(router.routes());
-app.use(router.allowedMethods());
+app.use(api.routes(), api.allowedMethods());
+app.use(user.routes(), user.allowedMethods());
 app.use(notFoundMiddleware);
 
 const LINKS_API_URL = Deno.env.get("LINKS_URL");
