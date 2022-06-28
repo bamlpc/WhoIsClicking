@@ -28,7 +28,7 @@ api
   .post("/login", LoginValidation, (ctx) => authController.login(ctx));
 user
   .post("/logout", authMiddleware, (ctx) => authController.logout(ctx))
-  .get("/generate", generateLinks)
-  .post("/qrgenerator", qrGen);
+  .get("/generate", authMiddleware, generateLinks)
+  .post("/qrgenerator", authMiddleware, qrGen);
 
 export { api, user };

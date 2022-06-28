@@ -1,12 +1,11 @@
-import { RouterContext } from "deps";
+import { Context } from "deps";
 import JwtService from "../services/jwt_service.ts";
 
 const authMiddleware = async (
-  { response, cookies }: RouterContext<"/logout">,
+  { response, cookies }: Context,
   next: Function,
 ) => {
   try {
-    /*"/user" |*/ "/user/logout";
     const jwtService = new JwtService();
 
     const payload = await jwtService.verify(cookies);

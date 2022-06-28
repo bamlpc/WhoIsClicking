@@ -15,6 +15,7 @@ export type {
   Middleware,
   RouterContext,
   RouterMiddleware,
+  Context
 } from "third/oak@v10.5.1/mod.ts";
 export { Bson, MongoClient } from "third/mongo@v0.29.4/mod.ts";
 export {
