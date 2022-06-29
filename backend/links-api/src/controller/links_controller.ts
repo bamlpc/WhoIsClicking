@@ -1,6 +1,6 @@
 import log from "log";
-import Link from "../model/link.ts";
 import { RouterContext } from "deps";
+import mongoService from "../services/mongodb_services.ts"
 
 const generateLinks = async ({ response }: RouterContext<"/generate">) => {
   const newLink = {
@@ -9,7 +9,7 @@ const generateLinks = async ({ response }: RouterContext<"/generate">) => {
     action: "",
   };
   try {
-    await Link.create(newLink.hunter, newLink.prey, newLink.action);
+    await mongoService.createLinks(newLink.hunter, newLink.prey, newLink.action);
     const _response = {
       success: true,
       newLink,

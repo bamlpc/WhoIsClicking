@@ -1,11 +1,9 @@
 import { Login } from "../model/models.ts";
 import processedUserData from "../helper/userGenerator.ts";
-import User from "../model/user.ts";
 import log from "log";
-import isRegister from "../helper/isUserRegister.ts";
 import JwtService from "../services/jwt_service.ts";
-import { bcrypt, Inject, RouterContext, Service } from "deps";
-import serviceCollection from "../services/services.ts";
+import { bcrypt, Inject, RouterContext, Service, Bson } from "deps";
+import mongoService from "../services/mongodb_services.ts";
 
 //@Service()
 class AuthController {
@@ -21,8 +19,7 @@ class AuthController {
     const userInput = <Login> await data.value;
 
     // Fetching mongoDB to check if the email is been used
-    const tryUsername = await isRegister(userInput.username);
-    console.warn(tryUsername);
+    const tryUsername = await mongoService.findUser("email", userInput.username);
 
     try {
       //This block checks if the email is available
@@ -41,7 +38,7 @@ class AuthController {
 
       // Creating account
 
-      await User.create(username, hashedPassword);
+      await mongoService.createUser(username, hashedPassword);
       const _response = {
         succes: true,
         body: { username, hashedPassword },
@@ -64,7 +61,7 @@ class AuthController {
 
     try {
       // Fetching mongoDB to check if the email is register
-      const databaseInformation = await isRegister(userInput.username);
+      const databaseInformation = await mongoService.findUser("email", userInput.username);
 
       if (databaseInformation === undefined) {
         throw "Invalid E-mail";
@@ -104,7 +101,7 @@ class AuthController {
   async user({ response, cookies }: RouterContext<"/user">) {
     const { _id }: any = await this.jwtService.verify(cookies);
 
-    const databaseInformation = await isRegister(_id);
+    const databaseInformation = await mongoService.findUser("id", _id);
 
     const user = JSON.parse(JSON.stringify(databaseInformation));
 
