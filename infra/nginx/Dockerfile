@@ -7,12 +7,10 @@ RUN rm -rf /etc/nginx
 RUN mkdir /etc/nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY proxy.development.conf /etc/nginx/conf.d/proxy.conf
-COPY healthcheck.sh /bin/healthcheck.sh
 
 EXPOSE 80
 
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD /bin/healthcheck.sh
-    #CMD curl --fail http://nginx_ip || exit 1
+HEALTHCHECK --interval=5s --timeout=5s --start-period=5s --retries=3 \
+    CMD curl --fail http://nginx_ip:80/health || exit 1
 
 CMD ["nginx", "-g", "daemon off;"]

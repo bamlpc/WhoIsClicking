@@ -20,7 +20,15 @@ class JwtService {
   async create(id: number) {
     const payload = {
       id: id,
-      exp: djwt.getNumericDate(120), // 2 min expiration time
+      exp: djwt.getNumericDate(30 * 60), // 30 min expiration time
+    };
+    return await djwt.create({ alg: "HS512", typ: "JWT" }, payload, key);
+  }
+
+  async temporal(jwt: string) {
+    const payload = {
+      jwt: jwt,
+      exp: djwt.getNumericDate(2 * 60), // 2 min expiration time
     };
     return await djwt.create({ alg: "HS512", typ: "JWT" }, payload, key);
   }

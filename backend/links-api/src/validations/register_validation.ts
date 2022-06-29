@@ -15,14 +15,6 @@ const RegisterValidation = async (
     response.body = errors;
     return;
   }
-  //TODO:need to check for unique email
-  // a function that reach mongo with the email
-  /*if(!emailCheck){
-        response.status = 400;
-        response.body = "Invalid e-mail";
-        return;
-    }
-    */
   await next();
 };
 

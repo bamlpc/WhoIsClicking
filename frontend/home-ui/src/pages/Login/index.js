@@ -1,66 +1,84 @@
-import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import Input from '../../commons/InputField/Input.js'
-import Button from '../../commons/Button/Button.js'
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import AuthContext from "../../context/AuthProvider.js";
+import { useNavigate, useLocation } from "react-router-dom";
+import Input from '../../commons/InputField/Input.js';
+import Button from '../../commons/Button/Button.js';
+import axios from "../../api/axios.js";
+
+const LOGIN_URL = "/login";
 
 const Login = (props) => {
 
+  const { setAuth } = useContext(AuthContext);
+
+  const userRef = useRef();
+  const errorRef = useRef();
+
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const [ user, setUser ] = useState('');
   const [ password, setPassword ] = useState('');
-  const [ passwordError, setPasswordError ] = useState(false);
+  const [ errMsg, setErrMsg ] = useState('');
   const [ isLoggedIn, setIsLoggedIn ] = useState(false);
-  const [ hasError, setHasError ] = useState(false);
 
   function handleChange(name, value) {
     if (name === 'username') {
       setUser(value)
-      hasError(false);
     } else {
-        if ( value.length < 6 ) {
-          setPasswordError(true)
-          hasError(false);
-        } else { 
-            setPasswordError(false)
-            setPassword(value)
-            hasError(false);
-          }
+      setPassword(value)
       }
   }
+  
+  useEffect(() => {
+    setErrMsg('');
+}, [user, password])
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  function ifMatch(param) {
-    if (param.user.length > 0 && param.password.length > 0) {
-      if (param.user === 'test' && param.password === '123456') {
-        const { user, password } = param;
-        let ac = { user, password };
-        let account = JSON.stringify(ac);
-        localStorage.setItem('account', account);
-        setIsLoggedIn(true);
-      } else {
+    try {
+      const response = await axios.post(LOGIN_URL,
+        JSON.stringify({username: user, password: password}),
+        {
+          headers: { 'Content-Type': 'application/json'},
+          withCredentials: true
+        }
+      );
+      //is redirecting 
+      console.log(JSON.stringify(response?.data));
+      const roles = response?.data?.roles;
+      const accessToken = response?.data?.accessToken;
+      setAuth({ user, password, roles, accessToken});
+      setUser('');
+      setPassword('');
+      navigate(from, { replace: true });
+    } catch (error) {
+      if (!error?.response) {
+        setErrMsg('No Server Response');
         setIsLoggedIn(false);
-        setHasError(true);
+      } else if (error.response?.status === 400) {
+        setErrMsg('Missing Username or Password');
+        setIsLoggedIn(false);
+      } else if (error.response?.status === 401) {
+        setErrMsg('Invalid Username or Password');
+        setIsLoggedIn(false);
+      } else {
+        setErrMsg('Login Failed');
+        setIsLoggedIn(false);
       }
-    } else {
-      setIsLoggedIn(false);
-      setHasError(true);
     }
   }
 
-  function handleSubmit() {
-    let account = { user, password }
-    console.log('account: ', account)
-    if(account) {
-      ifMatch(account)
-    }
-  }
     return (
       <div className="App">
         <header className="App-header">
           { isLoggedIn ?
-             navigate('/hunter:id') 
+             navigate('/') 
             :
             <div className='login-container'>
-            <div>{ hasError && <label className='label-alert'> Incorrect login information </label>}</div>
+            <p ref={errorRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
             <Input  
               attribute={ {
                 id: 'hunterlink', 
@@ -77,10 +95,7 @@ const Login = (props) => {
                 type: 'password' }} 
                 handleChange={handleChange}
                 toogle={true}
-                param={passwordError}
               /> 
-
-              <div>{ passwordError ? <label className='label-error'> Password is required </label> : "" }</div>
               <div><Button onClick={handleSubmit}
               type="purple"
               buttonSize="--loginPage"

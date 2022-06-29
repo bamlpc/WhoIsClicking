@@ -9,6 +9,7 @@ class MongoService {
     const result = await usersCollection.insertOne({
         username: username,
         hashedPassword: hashedPassword,
+        roles: 79, //79 user, 33 admin
         hunter: hunter,
       });
 
@@ -72,6 +73,4 @@ class MongoService {
 
 }
 
-const mongoService = new MongoService
-
-export default mongoService;
+export default MongoService;

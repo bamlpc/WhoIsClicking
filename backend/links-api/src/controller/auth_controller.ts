@@ -3,13 +3,14 @@ import processedUserData from "../helper/userGenerator.ts";
 import log from "log";
 import JwtService from "../services/jwt_service.ts";
 import { bcrypt, Inject, RouterContext, Service, Bson } from "deps";
-import mongoService from "../services/mongodb_services.ts";
+import MongoService from "../services/mongodb_services.ts";
 
 //@Service()
 class AuthController {
   constructor(
     //private mongoService: MongoService
     // @Inject()
+    private mongoService: MongoService,
     private jwtService: JwtService,
   ) {}
 
@@ -19,7 +20,7 @@ class AuthController {
     const userInput = <Login> await data.value;
 
     // Fetching mongoDB to check if the email is been used
-    const tryUsername = await mongoService.findUser("email", userInput.username);
+    const tryUsername = await this.mongoService.findUser("email", userInput.username);
 
     try {
       //This block checks if the email is available
@@ -38,7 +39,7 @@ class AuthController {
 
       // Creating account
 
-      await mongoService.createUser(username, hashedPassword, "toBeCreated");
+      await this.mongoService.createUser(username, hashedPassword, "toBeCreated");
       const _response = {
         succes: true,
         body: { username, hashedPassword },
@@ -61,7 +62,7 @@ class AuthController {
 
     try {
       // Fetching mongoDB to check if the email is register
-      const databaseInformation = await mongoService.findUser("email", userInput.username);
+      const databaseInformation = await this.mongoService.findUser("email", userInput.username);
 
       if (databaseInformation === undefined) {
         throw "Invalid E-mail";
@@ -80,10 +81,11 @@ class AuthController {
       } // With the right email an password:
       else {
         const jwt = await this.jwtService.create(store._id);
+        const temporal = await this.jwtService.temporal(jwt);
         const _response = {
           succes: true,
           status: 200,
-          message: "succesfully loged in",
+          message: { "roles": store.roles, "accessToken": temporal},
         };
         cookies.set("jwt", jwt, { httpOnly: true });
         response.body = JSON.stringify(_response);
@@ -101,7 +103,7 @@ class AuthController {
   async user({ response, cookies }: RouterContext<"/user">) {
     const { _id }: any = await this.jwtService.verify(cookies);
 
-    const databaseInformation = await mongoService.findUser("id", _id);
+    const databaseInformation = await this.mongoService.findUser("id", _id);
 
     const user = JSON.parse(JSON.stringify(databaseInformation));
 

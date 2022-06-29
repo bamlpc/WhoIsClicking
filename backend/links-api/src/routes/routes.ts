@@ -9,6 +9,7 @@ import RegisterValidation from "../validations/register_validation.ts";
 import authMiddleware from "../middlewares/authMiddleware.ts";
 import hasLinks from "../middlewares/hasLinks.ts"
 import JwtService from "../services/jwt_service.ts";
+import tokenRefresh from "../controller/refresh_controller.ts"
 //import serviceCollection from "../services/services.ts"
 
 const api = new Router();
@@ -28,6 +29,7 @@ api
     (ctx) => authController.createUser(ctx),
   )
   .post("/login", LoginValidation, (ctx) => authController.login(ctx));
+  .get("/refresh", authMiddleware, tokenRefresh)
 user
   .post("/logout", authMiddleware, (ctx) => authController.logout(ctx))
   .get("/generate", authMiddleware,hasLinks, generateLinks)

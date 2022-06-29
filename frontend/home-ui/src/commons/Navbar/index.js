@@ -8,8 +8,11 @@ import {
   NavBtnLink
 } from './components/NavbarElements';
 import Drop from './components/Dropdown.js'
+import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
+
+  const { setAuth } = useAuth();
 
   return (
     <>
@@ -31,7 +34,10 @@ const Navbar = () => {
           </NavLink>
         </NavMenu>
         <NavBtn>
+          {/*autenticate?
           <NavBtnLink to='/login'>Login</NavBtnLink>
+          <NavBtnLink to='/register'>Signin</NavBtnLink>
+  :<NavBtnLink to='/logout'>Logout</NavBtnLink>*/}
           <Drop />
         </NavBtn>
       </Nav>
