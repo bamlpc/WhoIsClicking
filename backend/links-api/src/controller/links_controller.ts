@@ -1,15 +1,23 @@
 import log from "log";
 import { RouterContext } from "deps";
 import mongoService from "../services/mongodb_services.ts"
+import JwtService from "../services/jwt_service.ts"
 
-const generateLinks = async ({ response }: RouterContext<"/generate">) => {
+const generateLinks = async ({ response, cookies }: RouterContext<"/generate">) => {
   const newLink = {
     hunter: getRandomString(50),
     prey: getRandomString(50),
     action: "",
   };
+
+const jwtService = new JwtService();
+const { _id }: any = await jwtService.verify(cookies);
+//const databaseInformation = await mongoService.findUser("id", _id);
+
   try {
     await mongoService.createLinks(newLink.hunter, newLink.prey, newLink.action);
+    // TODO: asociar el link hunter a la cuenta que llamó la acción con _id
+    await mongoService.associateHunter(newLink.hunter, _id)
     const _response = {
       success: true,
       newLink,

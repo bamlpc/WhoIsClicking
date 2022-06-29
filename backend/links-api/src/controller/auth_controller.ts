@@ -38,7 +38,7 @@ class AuthController {
 
       // Creating account
 
-      await mongoService.createUser(username, hashedPassword);
+      await mongoService.createUser(username, hashedPassword, "toBeCreated");
       const _response = {
         succes: true,
         body: { username, hashedPassword },

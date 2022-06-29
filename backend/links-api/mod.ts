@@ -10,7 +10,7 @@ const app = new Application();
 
 app.use(oakCors({
   credentials: true,
-  origin: /^.+localhost:(3000)$/,
+  origin: [/^.+localhost:(3000)$/, /^.+nginx_ip:80$/],
 }));
 
 app.use(loggerMiddleware);

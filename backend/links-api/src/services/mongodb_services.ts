@@ -4,16 +4,16 @@ import {} from "../model/mongoSchema.ts"
 
 class MongoService {
 
-   async createUser(username: string, hashedPassword: string) {
+  async createUser(username: string, hashedPassword: string, hunter: string) {
     const usersCollection = mongoDatabase.collection("users")
     const result = await usersCollection.insertOne({
         username: username,
         hashedPassword: hashedPassword,
-        hunter: ""
+        hunter: hunter,
       });
 
       return result;
-    }
+  }
 
     //TODO: We neeed a "CREATE" function to store the {praylink, stolen_data}
     
@@ -28,7 +28,7 @@ class MongoService {
   }
 
    // THIS SHOULD BE FINDING USERS EITHER BY EMAIL OR ID
-   async findUser(type: string, username?: string, _id?: Bson.ObjectId) {
+  async findUser(type: string, username?: string, _id?: Bson.ObjectId) {
     const usersCollection = mongoDatabase.collection("users")
     let userData = undefined;
     if (type === "id") {
@@ -45,12 +45,21 @@ class MongoService {
           } catch (error) {
             error;
         } 
-    }}
+    }
+  }
+
+  async associateHunter (hunter: string, _id: Bson.ObjectId) {
+    const usersCollection = mongoDatabase.collection("users")
+    await usersCollection.updateOne(
+      { _id:  _id },
+      { $set: { hunter: hunter } },
+    );
+  }
 
     //TODO: We need to create update methods for changing password, to link a hunter ID into an account
-   async update() {}
+  async update() {}
    
-   async delete() {}
+  async delete() {}
    /*TODO:
     Need to create a new collection called "preys". In there we'll store {praylink, stolen_data}. When we want to gather 
     the information we use the hunter link to find the prey link and then we aggregate the preys with:
