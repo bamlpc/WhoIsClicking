@@ -1,50 +1,38 @@
 import log from "log";
-import Link from "../model/link.ts";
+import { RouterContext } from "deps";
+import {/*serviceCollection,*/ JwtService, MongoService} from "../services/services.ts"
 
-const QR_URL = Deno.env.get("QR_URL")!;
-
-const generateLinks = async (ctx: any) => {
+const generateLinks = async ({ response, cookies }: RouterContext<"/generate">) => {
   const newLink = {
     hunter: getRandomString(50),
     prey: getRandomString(50),
     action: "",
   };
+
+  //const mongoService = serviceCollection.get(MongoService);
+  //const jwtService = serviceCollection.get(JwtService);
+
+  const mongoService = new MongoService();
+  const jwtService = new JwtService();
+
+  const { _id }: any = await jwtService.verify(cookies);
+  //const databaseInformation = await mongoService.findUser("id", _id);
+
   try {
-    await Link.create(newLink.hunter, newLink.prey, newLink.action);
-    log.info(newLink);
-    const response = {
+    await mongoService.createLinks(newLink.hunter, newLink.prey, newLink.action);
+    // TODO: asociar el link hunter a la cuenta que llamó la acción con _id
+    await mongoService.associateHunter(newLink.hunter, _id)
+    const _response = {
       success: true,
       newLink,
     };
-    ctx.response.body = JSON.stringify(response);
+    response.body = JSON.stringify(_response);
   } catch (error) {
     log.error(error);
-    ctx.response.body = {
+    response.body = {
       success: false,
       error,
     };
-  } finally {
-    try {
-      await fetch( QR_URL , {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newLink),
-      });
-      log.warning("Generated links");
-      const response = {
-        success: true,
-        newLink,
-      };
-      ctx.response.body = JSON.stringify(response);
-    } catch (error) {
-      log.error(error);
-      ctx.response.body = {
-        success: false,
-        error,
-      };
-    }
   }
 };
 

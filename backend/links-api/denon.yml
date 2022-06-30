@@ -2,10 +2,11 @@ $schema: https://deno.land/x/denon@2.5.0/schema.json
 
 scripts:
   start:
-    cmd: deno run --cached-only mod.ts 
+    cmd: deno run --cached-only  mod.ts 
     desc: run my mod.ts file
     importMap: config/import_map.json
     lock: config/lock.json
+    tsconfig: config/tsconfig.json
     watch: true
     allow:
     - net
@@ -13,15 +14,26 @@ scripts:
     - read
     - write
   cache:
-    cmd: deno cache --lock-write deps.ts
+    cmd: deno cache --lock-write
     desc: update lockfile cache
     importMap: config/import_map.json
     lock: config/lock.json
+    tsconfig: config/tsconfig.json
     watch: false
   debug:
-    cmd: deno run --inspect-brk deps.ts
+    cmd: deno run --inspect-brk mod.ts
     desc: run debug tool
     importMap: config/import_map.json
+    watch: false
+  compile:
+    cmd: deno compile --unstable --cached-only --output links-api-bin --target x86_64-unknown-linux-gnu mod.ts
+    importMap: config/import_map.json
+    lock: config/lock.json
+    allow:
+      - net
+      - read
+      - env
+      - write
     watch: false
 
 logger:

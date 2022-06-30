@@ -1,6 +1,6 @@
-Root user, admin users and DBnames are define in the .env file, its recommende to personalize it. They'll be autatically use by the mongo-init.sh script in the first build
+Root user, admin users and DBnames are defined in the .env file, it's recommended to personalize it. They'll be automatically used by the mongo-init.sh script in the first build
 
-mongo-init.sh will only be executed if there is no data in the databse.
+mongo-init.sh will only be executed if there is no data in the database.
 If you wish to change the root users/pass, the backend user/pass or the database name DURING the build stage you will need to manually empty the 
 "mongodb/data" folder.
 use:
@@ -11,5 +11,17 @@ use:
     -linux/mac: "rm -rf ./mongodb/data"
 
 
-This database is configure to run in an internal network, you can only access it from the backend_net
+This database is configured to run in an internal network, you can only access it from the backend_net.
+
+If you want to manually check the database outputs:
+1-open a shell.
+2-`mongosh`
+3-`use {DB_NAME}`
+4-`db.auth({MONGODB_USER}},{MONGODB_PASS})`
+now you could inspect for example:
+* `show dbs` this will show all your databases.
+* `show collections` this will show all the collections in the database that you are logged in.
+* `db.{YOUR_COLLECTION_NAME_HERE}.find()` this will show all the elements in the collection.
+* `db.runCommand({usersInfo: {user: {MONGODB_USER}, db: {DB_NAME}}, showPrivileges: true})` this will show all the privileges of the user.
+  
 
