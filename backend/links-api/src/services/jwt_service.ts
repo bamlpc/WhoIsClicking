@@ -1,5 +1,5 @@
 import { Cookies, djwt, Service, Inject } from "deps";
-import {serviceCollection} from "./services.ts";
+//import {serviceCollection} from "./services.ts";
 
 const _key = await crypto.subtle.generateKey(
   { name: "HMAC", hash: "SHA-512" },
@@ -7,7 +7,7 @@ const _key = await crypto.subtle.generateKey(
   ["sign", "verify"],
 )
 
-@Service()
+//@Service()
 class JwtService {
    
   async create(id: number) {
@@ -33,6 +33,6 @@ class JwtService {
   }
 }
 
-serviceCollection.addTransient(JwtService)
+//serviceCollection.addTransient(JwtService)
 
 export default JwtService;

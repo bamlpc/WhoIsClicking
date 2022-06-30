@@ -1,13 +1,13 @@
 import mongoDatabase from "../helper/mongodb.ts"
 import { Bson, Service } from "deps";
 import {} from "../model/mongoSchema.ts"
-import {serviceCollection} from "./services.ts";
+//import {serviceCollection} from "./services.ts";
 import {UserSchema, LinkSchema} from "../model/mongoSchema.ts"
 
 const usersCollection = mongoDatabase.collection<UserSchema>("users")
 const linksCollection = mongoDatabase.collection<LinkSchema>("links")
 
-@Service()
+//@Service()
 class MongoService {
 
   constructor(
@@ -81,6 +81,6 @@ class MongoService {
 
 }
 
-serviceCollection.addTransient(MongoService)
+//serviceCollection.addTransient(MongoService)
 
 export default MongoService;

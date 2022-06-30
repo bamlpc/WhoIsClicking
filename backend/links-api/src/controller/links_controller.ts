@@ -1,6 +1,6 @@
 import log from "log";
 import { RouterContext } from "deps";
-import {serviceCollection, JwtService, MongoService} from "../services/services.ts"
+import {/*serviceCollection,*/ JwtService, MongoService} from "../services/services.ts"
 
 const generateLinks = async ({ response, cookies }: RouterContext<"/generate">) => {
   const newLink = {

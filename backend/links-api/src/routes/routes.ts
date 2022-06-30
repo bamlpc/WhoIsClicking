@@ -8,7 +8,7 @@ import RegisterValidation from "../validations/register_validation.ts";
 import authMiddleware from "../middlewares/authMiddleware.ts";
 import hasLinks from "../middlewares/hasLinks.ts"
 import tokenRefresh from "../controller/refresh_controller.ts"
-import {serviceCollection, AuthController, MongoService,JwtService} from "../services/services.ts"
+import {/*serviceCollection,*/ AuthController/*, MongoService,JwtService*/} from "../services/services.ts"
 
 const api = new Router();
 const user = new Router();
@@ -17,7 +17,7 @@ api.prefix("/api");
 user.prefix("/api/user");
 
 //const authController = serviceCollection.get(AuthController)
-const authController = new AuthController(new JwtService(), new MongoService());
+const authController = new AuthController(/*new JwtService(), new MongoService()*/);
 
 api
   .get("/healthcheck", healthCheck)
