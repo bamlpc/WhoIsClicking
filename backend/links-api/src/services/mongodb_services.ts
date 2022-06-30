@@ -1,12 +1,23 @@
 import mongoDatabase from "../helper/mongodb.ts"
-import { Bson } from "deps";
+import { Bson, Service } from "deps";
 import {} from "../model/mongoSchema.ts"
+import {serviceCollection} from "./services.ts";
+import {UserSchema, LinkSchema} from "../model/mongoSchema.ts"
 
+const usersCollection = mongoDatabase.collection<UserSchema>("users")
+const linksCollection = mongoDatabase.collection<LinkSchema>("links")
+
+@Service()
 class MongoService {
 
+  constructor(
+    private userCollection = usersCollection,
+    private linkCollection = linksCollection
+  ){}
+
   async createUser(username: string, hashedPassword: string, hunter: string) {
-    const usersCollection = mongoDatabase.collection("users")
-    const result = await usersCollection.insertOne({
+    
+    const result = await this.userCollection.insertOne({
         username: username,
         hashedPassword: hashedPassword,
         roles: 79, //79 user, 33 admin
@@ -19,8 +30,7 @@ class MongoService {
     //TODO: We neeed a "CREATE" function to store the {praylink, stolen_data}
     
   async createLinks(hunter: string, prey: string, action: string) {
-    const linksCollection = mongoDatabase.collection("links")
-    const result = await linksCollection.insertOne({
+    const result = await this.linkCollection.insertOne({
         hunter: hunter,
         prey: prey,
         action: action,
@@ -29,19 +39,18 @@ class MongoService {
   }
 
    // THIS SHOULD BE FINDING USERS EITHER BY EMAIL OR ID
-  async findUser(type: string, username?: string, _id?: Bson.ObjectId) {
-    const usersCollection = mongoDatabase.collection("users")
+  async findUser(type: string, username = "", _id?: Bson.ObjectId) {
     let userData = undefined;
     if (type === "id") {
         try {
-            userData = await usersCollection.findOne({ _id: _id });
+            userData = await this.userCollection.findOne({ _id: _id });
             return userData;
           } catch (error) {
             error;
           }
     }else if (type === "email") {
         try {
-            userData = await usersCollection.findOne({ username: { $in: [username] } });
+            userData = await this.userCollection.findOne({ username: { $in: [username] } });
             return userData;
           } catch (error) {
             error;
@@ -50,8 +59,7 @@ class MongoService {
   }
 
   async associateHunter (hunter: string, _id: Bson.ObjectId) {
-    const usersCollection = mongoDatabase.collection("users")
-    await usersCollection.updateOne(
+    await this.userCollection.updateOne(
       { _id:  _id },
       { $set: { hunter: hunter } },
     );
@@ -72,5 +80,7 @@ class MongoService {
    */
 
 }
+
+serviceCollection.addTransient(MongoService)
 
 export default MongoService;

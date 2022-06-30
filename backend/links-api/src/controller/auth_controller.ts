@@ -1,17 +1,16 @@
 import { Login } from "../model/models.ts";
 import processedUserData from "../helper/userGenerator.ts";
 import log from "log";
-import JwtService from "../services/jwt_service.ts";
 import { bcrypt, Inject, RouterContext, Service, Bson } from "deps";
-import MongoService from "../services/mongodb_services.ts";
+import {serviceCollection, JwtService, MongoService} from "../services/services.ts"
 
-//@Service()
+@Service()
 class AuthController {
   constructor(
-    //private mongoService: MongoService
-    // @Inject()
-    private mongoService: MongoService,
+    @Inject<JwtService>()
     private jwtService: JwtService,
+    @Inject<MongoService>()
+    private mongoService: MongoService,
   ) {}
 
   async createUser({ request, response }: RouterContext<"/register">) {
@@ -119,6 +118,6 @@ class AuthController {
   }
 }
 
-//serviceCollection.addTransient(AuthController)
+serviceCollection.addTransient(AuthController)
 
 export default AuthController;

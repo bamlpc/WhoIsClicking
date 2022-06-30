@@ -1,9 +1,10 @@
 import {RouterContext} from "deps";
-import JwtService from "../services/jwt_service.ts";
+import {serviceCollection, JwtService} from "../services/services.ts"
 
 const tokenRefresh = async ({response, cookies}:RouterContext<"/refresh">) => {
 
     try {
+        //const jwtService = serviceCollection.get(JwtService);
         const jwtService = new JwtService();
     
         const payload = await jwtService.verify(cookies);

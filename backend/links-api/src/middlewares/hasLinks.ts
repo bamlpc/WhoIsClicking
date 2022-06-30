@@ -1,13 +1,14 @@
 import { Context } from "deps";
-import JwtService from "../services/jwt_service.ts";
-import MongoService from "../services/mongodb_services.ts"
+import {serviceCollection, JwtService, MongoService} from "../services/services.ts"
 
 const hasLinks = async (
   { response, cookies }: Context,
   next: Function,
 ) => {
+    //const jwtService = serviceCollection.get(JwtService);
+    //const mongoService = serviceCollection.get(MongoService);
     const jwtService = new JwtService();
-    const mongoService = new MongoService();
+    const mongoService = new MongoService()
 
     const { _id }: any = await jwtService.verify(cookies);
     const databaseInformation = await mongoService.findUser("id", _id);

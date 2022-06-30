@@ -154,6 +154,8 @@
   "https://deno.land/x/qrcode@v2.0.0/mod.ts": "3e693e8190d5fb4c6ab68a14a1a9473c325d5244fd83240b49cdecdf5fc18a1b",
   "https://deno.land/x/qrcode@v2.0.0/qrcode.d.ts": "a61fcfcecafbcfdff4d6623e82cc817cfd955b354015d39dc004dcc9dff660f5",
   "https://deno.land/x/qrcode@v2.0.0/qrcode.js": "138f870978e21843f48d8b0855b69de6ebf430c3ab9f57c3fa2746d6fba45bf1",
+  "https://deno.land/x/reflect_metadata@v0.1.12/Reflect.ts": "eced7b7e642853c6fb9a209f96ddd1932ab1e0fc3c514705c87d56169c8fe260",
+  "https://deno.land/x/reflect_metadata@v0.1.12/mod.ts": "8b5e3b20f1e604c118df433e84a409b1d5116e885001047134cc42ecf84fa2cd",
   "https://deno.land/x/validasaur@v0.15.0/mod.ts": "0753bce6aa757a1dbc59592ad54e36cba97cd6588e777183cc5cee35b37261a8",
   "https://deno.land/x/validasaur@v0.15.0/src/interfaces.ts": "81f30c34b563f08b384b39fc91a2eef2a81c5c3445e380a1229ea92f400bd410",
   "https://deno.land/x/validasaur@v0.15.0/src/messages.ts": "00b32752737e973e9b6dd4a90ec0a066fe5af48a592c348ce05da093be90869b",

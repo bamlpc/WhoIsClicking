@@ -1,11 +1,13 @@
 import { Context } from "deps";
-import JwtService from "../services/jwt_service.ts";
+import {serviceCollection , JwtService} from "../services/services.ts";
+
 
 const authMiddleware = async (
   { response, cookies }: Context,
   next: Function,
 ) => {
   try {
+    //const jwtService = serviceCollection.get(JwtService);
     const jwtService = new JwtService();
 
     const payload = await jwtService.verify(cookies);

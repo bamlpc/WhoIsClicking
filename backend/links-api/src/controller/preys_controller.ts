@@ -1,9 +1,10 @@
 import { RouterContext } from "deps";
-import MongoService from "../services/mongodb_services.ts"
-import JwtService from "../services/jwt_service.ts"
+import {serviceCollection, JwtService, MongoService} from "../services/services.ts"
 
 const preys = async ({ response, cookies }: RouterContext<"/preys">) => {
 
+    //const mongoService = serviceCollection.get(MongoService);
+    //const jwtService = serviceCollection.get(JwtService);
     const mongoService = new MongoService();
     const jwtService = new JwtService();
 

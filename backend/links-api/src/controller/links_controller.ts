@@ -1,7 +1,6 @@
 import log from "log";
 import { RouterContext } from "deps";
-import MongoService from "../services/mongodb_services.ts"
-import JwtService from "../services/jwt_service.ts"
+import {serviceCollection, JwtService, MongoService} from "../services/services.ts"
 
 const generateLinks = async ({ response, cookies }: RouterContext<"/generate">) => {
   const newLink = {
@@ -10,8 +9,12 @@ const generateLinks = async ({ response, cookies }: RouterContext<"/generate">) 
     action: "",
   };
 
+  //const mongoService = serviceCollection.get(MongoService);
+  //const jwtService = serviceCollection.get(JwtService);
+
   const mongoService = new MongoService();
   const jwtService = new JwtService();
+
   const { _id }: any = await jwtService.verify(cookies);
   //const databaseInformation = await mongoService.findUser("id", _id);
 
