@@ -29,6 +29,7 @@ api
   .post("/login", LoginValidation, (ctx) => authController.login(ctx))
   .get("/refresh", authMiddleware, tokenRefresh)
 user
+//.get("/",...)
   .post("/logout", authMiddleware, (ctx) => authController.logout(ctx))
   .get("/generate", authMiddleware,hasLinks, generateLinks)
   .post("/qrgenerator", authMiddleware, qrGen)

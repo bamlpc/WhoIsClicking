@@ -9,51 +9,45 @@ import Login from './pages/Login/index.js';
 import Register from './pages/Register/index.js';
 import About from './pages/About/index.js';
 import Navbar from './commons/Navbar/index.js';
-import FooterContainer from './commons/Footer/index.js'
+import {FooterContainer as Footer} from './commons/Footer/index.js';
+import Layout from './pages/Layout.js';
 import './App.css';
 
 import Unauthorized from './components/Unauthorized';
 import RequireAuth from './components/RequireAuth';
 import Missing from './components/Missing';
 
-const ROLES = {
-  'User': 79,
-  'Admin': 33
-}
+const ROLES = [33, 79]
+
 
 function App () {
 
     return (
       <>
           <Navbar />
-          <div className="App">
             <Routes>
-              {/* public routes */}
-              <Route path='/'               exact element={<Home />}         /> 
-              <Route path='/about'          exact element={<About />}        /> 
-              <Route path='/register'       exact element={<Register />}     /> 
-              <Route path='/login'          exact element={<Login />}        /> 
-              <Route path="unauthorized"    exact element={<Unauthorized />} />
+              {/*to give format to every route*/}
+              <Route path='/' element={<Layout />}> 
+                {/* public routes */}
+                <Route path='/'               exact element={<Home />}          /> 
+                <Route path='about'           exact element={<About />}         /> 
+                <Route path='register'        exact element={<Register />}      /> 
+                <Route path='login'           exact element={<Login />}         /> 
+                <Route path="unauthorized"    exact element={<Unauthorized />}  />
 
-              {/* Users only */}
-              <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-                <Route path='/linkscreation'  exact element={<LinksCreation />}/> 
-              </Route>
-              <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-                <Route path='/webscrapper'    exact element={<WebScrapper />}  /> 
-              </Route>
-              <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-                <Route path='/generated'      exact element={<Generated />}    /> 
-              </Route>
-              <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-                <Route path='/hunter:id'      exact element={<Hunter />}       />
-              </Route>
+                {/* Users only */}
+                <Route element={<RequireAuth allowedRoles={[ROLES]} />}>
+                  <Route path='linkscreation'  exact element={<LinksCreation />}/> 
+                  <Route path='webscrapper'    exact element={<WebScrapper />}  /> 
+                  <Route path='generated'      exact element={<Generated />}    /> 
+                  <Route path='hunter'         exact element={<Hunter />}       />
+                </Route>
 
-              {/* catch all */}
-              <Route path="*" element={<Missing />} />
+                {/* catch all */}
+                <Route path='*' element={<Missing />} />
+              </Route>
             </Routes>
-          </div>
-          <FooterContainer />
+          <Footer />
       
       </>
     );

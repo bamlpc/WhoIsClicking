@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 1000px;
+    max-width: 100vh;
     margin: 0 auto;
     /* background: red; */
 `
@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: left;
+  text-align: center;
   margin-left: 60px;
 `;
 

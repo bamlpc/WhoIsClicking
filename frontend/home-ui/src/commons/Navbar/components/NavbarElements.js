@@ -1,20 +1,152 @@
-import { FaBars } from 'react-icons/fa';
-import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { NavLink as Link } from 'react-router-dom';
 
-export const Nav = styled.nav`
+//NAVEGATION BAR CONTAINER
+export const NavbarContainer = styled.nav`
+  width: 100%;
+  height: ${(props) => (props.extendNavbar ? "100vh" : "5rem")};
   background: linear-gradient(180deg, rgba(0,0,0,1) 0%, #282c34 100%);;
-  height: 80px;
   display: flex;
-  justify-content: space-between;
-  padding: 0.5rem calc((110vw - 110rem) / 2);
-  z-index: 10;
+  flex-direction: column;
+  color: white;
 
-  /* Third Nav */
-  /* justify-content: flex-start; */
+  @media (min-width: 768px) {
+    height: 5rem;
+  }
+
+  
+`;
+//WEBPAGE LOGO PLACEHOLDER
+export const Logo = styled.div`
+  flex: 15%;
+  display: flex;
+  justify-content: space-evenly;
+  align-self: center;
+  padding-right: 3rem;
+`;
+//NAVEGATIOS LINK PLACEHOLDER
+export const Pages = styled.div`
+  flex: 60%;
+  display: flex;
+  justify-content: flex-end;
+  align-self: center;
+  padding-right: 3rem;
+`;
+//LOGIN, LOGOUT, SIGNIN PLACEHOLDER
+export const Buttons = styled.div`
+  flex: 20%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 3rem;
+  padding-right: 0.25rem;
 `;
 
-export const NavLink = styled(Link)`
+//CHANGE LANGUEAGE BUTTON PLACEHOLDER
+export const Language = styled.div`
+  flex: 5%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 0rem;
+  padding-top: 1.25rem;
+`;
+
+//THIS IS THE CONTAINER FOR: LOGO, LINKS, BUTTONS, LANGUAGE
+export const NavbarHorizontalContainer = styled.div`
+  width: 100%;
+  height: 5rem;
+  display: flex;
+`;
+
+//THIS IS THE CONTAINER FOR ALL THE LINKS
+export const NavbarLinkContainer = styled.div`
+  display: flex;
+`;
+
+//LINKS COMPONENT
+export const NavbarLink = styled(Link)`
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    color: #18ffff;
+  }
+  &.active {
+    color: #ff1744;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+//LOGIN, LOGOUT AND SIGNIN BUTTON
+export const LinksButton = styled.button`
+  width: 4.4rem;
+  height: 3.2rem;
+  background-color: #3d5afe;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0.125rem 0.125rem 0 #263238;
+  transition: all 0.2s ease-in-out;
+  border-radius: 1rem;
+  outline-width: 1rem;
+  align-self: center;
+  margin-left: 0.75rem;
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    color: #18ffff;
+    background: #304ffe;
+  }
+  &.active {
+    background: #ff1744;
+  }
+`;
+
+//DROPDOWN MENU BUTTON USE IN SMALL SCREENS
+export const DropdownMenu = styled.button`
+  width: 4.4rem;
+  height: 3.2rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-right: -3.5rem;
+  margin-top: -1.25rem;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    color: #18ffff;
+  }
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+`;
+
+//DROPDOWN BAR FOR SMALL SCREENS
+export const NavbarVerticalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+//LINKS COMPONENT FOR THE DROPDOWN BAR
+export const NavbarLinkExtended = styled(Link)`
   color: #fff;
   display: flex;
   align-items: center;
@@ -23,74 +155,12 @@ export const NavLink = styled(Link)`
   height: 100%;
   cursor: pointer;
 
-  &.active {
-    color: #15cdfc;
-  }
-`;
-
-export const Bars = styled(FaBars)`
-  display: none;
-  color: #fff;
-
-  @media screen and (max-width: 768px) {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(-100%, 75%);
-    font-size: 1.8rem;
-    cursor: pointer;
-  }
-`;
-
-export const NavMenu = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: -24px;
-
-  /* Second Nav */
-  /* margin-right: 24px; */
-
-  /* Third Nav */
-  /* width: 100vw;
-  white-space: nowrap; */
-
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-`;
-
-export const NavBtn = styled.nav`
-  display: flex;
-  align-items: center;
-  margin-right: -5rem;
-
-  /* Third Nav */
-  /* justify-content: flex-end;
-  width: 100vw; */
-
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-`;
-
-export const NavBtnLink = styled(Link)`
-  border-radius: 0.25rem;
-  background: #3d5afe;
-  padding: 10px 22px;
-  color: #fff;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-
-  /* Second Nav */
-  margin-left: 24px;
-
   &:hover {
     transition: all 0.2s ease-in-out;
-    background: #304ffe;
     color: #18ffff;
+  }
+
+  &.active {
+    color: #ff1744;
   }
 `;
