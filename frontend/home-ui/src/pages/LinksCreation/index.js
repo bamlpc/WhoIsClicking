@@ -1,15 +1,20 @@
 import { React, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next'
+
+import '../../App.css';
 import CreateLinks from './components/CreateLinks.js';
 import Button from '../../commons/Button/Button.js'
 import Input from '../../commons/InputField/Input.js'
-import '../../App.css';
 
 const LinksCreation = () => {
 
   const navigate = useNavigate();
   const [ password, setPassword ] = useState('');
   const [ passwordError, setPasswordError ] = useState(false);
+
+  //language manager
+  const { t } = useTranslation()
 
   function handleChange(password, value) {
     if ( value.length < 6 ) {

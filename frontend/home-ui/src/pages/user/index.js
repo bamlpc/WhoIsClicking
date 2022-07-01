@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import { useTranslation } from 'react-i18next'
+
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import useAuth from '../../hooks/useAuth.js'
 
-const Users = () => {
+const User = () => {
+
+    //language manager
+    const { t } = useTranslation()
+
     const [users, setUsers] = useState();
     const axiosPrivate = useAxiosPrivate(); //to ensure we are using access tokens
     const navigate = useNavigate();         
@@ -41,4 +47,4 @@ const Users = () => {
     );
 };
 
-export default Users;
+export default User;

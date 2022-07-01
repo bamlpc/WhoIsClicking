@@ -1,5 +1,14 @@
 {
     "app_title": "Título",
     "language": "Lenguaje",
-    "welcome_message": "Bienvenido"
+    "welcome_message": "Bienvenido",
+
+    "home_page": "Página de inicio",
+    "about_page": "Acerca de",
+    "thanksto_page": "Gracias a",
+    "createlinks_page": "Crear Links",
+
+    "login_button": "Iniciar Sesión",
+    "logout_button": "Cerrar Sesión",
+    "register_button": "Crear Cuenta"
   }

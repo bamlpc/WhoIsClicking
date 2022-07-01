@@ -1,8 +1,12 @@
 import { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next'
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import axios from '../../api/axios';
-import { Link } from "react-router-dom";
+import Input from '../../commons/InputField/Input.js';
+import Button from '../../commons/Button/Button.js';
 
 //RFC 5322 Format to validate email, http://emailregex.com
 const USER_REGEX = new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])");
@@ -10,6 +14,10 @@ const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 const REGISTER_URL = '/register';
 
 const Register = () => {
+
+    //language manager
+    const { t } = useTranslation()
+
     const userRef = useRef(); //set focus on the user field on load
     const errRef = useRef(); //set focus on error, help with assistant technologies
 

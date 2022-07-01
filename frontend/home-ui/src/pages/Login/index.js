@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import AuthContext from "../../context/AuthProvider.js";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from 'react-i18next'
+
+import AuthContext from "../../context/AuthProvider.js";
 import Input from '../../commons/InputField/Input.js';
 import Button from '../../commons/Button/Button.js';
 import axios from "../../api/axios.js";
@@ -8,6 +10,9 @@ import axios from "../../api/axios.js";
 const LOGIN_URL = "/login";
 
 const Login = () => {
+
+  //language manager
+  const { t } = useTranslation()
 
   //needed to store the successful login
   const { setAuth } = useContext(AuthContext);

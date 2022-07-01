@@ -1,5 +1,19 @@
 {
     "app_title": "Title",
     "language": "Language",
-    "welcome_message": "Welcome"
+    "welcome_message": "Welcome",
+
+    "home_page": "Home",
+    "about_page": "About",
+    "about_project_page": "Tool",
+    "about_us_page": "Us",
+    "thanksto_page": "Thanks to",
+    "createlinks_page": "Create Links",
+    "user_page": "User",
+    "guest_page": "Guest",
+    "contact_us_page": "Contact",
+
+    "login_button": "Login",
+    "logout_button": "Logout",
+    "register_button": "Signin"
   }
