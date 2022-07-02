@@ -6,6 +6,7 @@ import Home from './pages/Home/index.js';
 import Generated from './pages/Generated/index.js';
 import Hunter from './pages/Hunter/index.js';
 import LinksCreation from './pages/LinksCreation/index.js';
+import QrGeneration from './pages/QrGeneration/index.js'
 import Contact from './pages/Contact/index.js'
 import Login from './pages/Login/index.js';
 import Register from './pages/Register/index.js';
@@ -16,7 +17,7 @@ import Thanks from './pages/About/Thanks/index.js';
 import User from './pages/User/index.js'
 import Guest from './pages/User/Guest/index.js'
 import Navbar from './commons/Navbar/index.js';
-import {FooterContainer as Footer} from './commons/Footer/index.js';
+import Footer from './commons/Footer/index.js';
 import Layout from './pages/Layout.js';
 import Unauthorized from './components/Unauthorized';
 import RequireAuth from './components/RequireAuth';
@@ -47,9 +48,10 @@ function App () {
 
                 {/* Users only */}
                 <Route element={<RequireAuth allowedRoles={[ROLES]} />}>
+                  <Route path='user'           exact element={<User />}         /> 
                   <Route path='linkscreation'  exact element={<LinksCreation />}/> 
                   <Route path='generated'      exact element={<Generated />}    /> 
-                  <Route path='user'           exact element={<User />}         /> 
+                  <Route path='qrgeneration'   exact element={<QrGeneration />} />
                   <Route path='hunter'         exact element={<Hunter />}       />
                 </Route>
 

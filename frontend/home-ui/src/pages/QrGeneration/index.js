@@ -1,22 +1,19 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next'
-import { TailSpin } from  'react-loader-spinner'
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
-const Guest = () => {
-  
+const QrGeneration = () => {
+
   //language manager
   const { t } = useTranslation()
-
+  
     return (
       <div className="App">
         <header className="App-header">
           <h1>{t('welcome_message')}</h1>
-          <h1>TODO: this should be the Guest page</h1>
-          <TailSpin color="#18ffff" height={80} width={80} />
+          <h1>TODO: this should create a QR code</h1>
         </header>
       </div>
     );
 }
 
-export default Guest;
+export default QrGeneration

@@ -1,28 +1,106 @@
-import React from 'react';
-import { Container, Wrapper, Row, Column, Link, Title} from './FooterStyles.js'
+import styled from 'styled-components';
+import {Github} from '@styled-icons/bootstrap/Github';
+import {Linkedin} from '@styled-icons/bootstrap/Linkedin';
 
-function Footer( {children, ...restProps} ) {
-    return <Container {...restProps}>{children}</Container>
-}
+//NAVEGATION BAR CONTAINER
+export const FooterContainer = styled.nav`
+  width: 100%;
+  height: 5rem;
+  background: linear-gradient(0deg, rgba(0,0,0,1) 0%, #282c34 100%);;
+  display: flex;
+  flex-direction: column;
+  color: white;
 
-Footer.Wrapper = function FooterWrapper({children, ...restProps}) {
-    return <Wrapper {...restProps}>{children}</Wrapper>
-}
+  @media screen and (min-width: 768px) {
+    height: 5rem;
+  }
 
-Footer.Row = function FooterRow({children, ...restProps}) {
-    return <Row {...restProps}>{children}</Row>
-}
+  
+`;
 
-Footer.Column = function FooterColumn({children, ...restProps}) {
-    return <Column {...restProps}>{children}</Column>
-}
+//HORIZONTAL CONTAINER
+export const FooterHorizontalContainer = styled.div`
+  width: 100%;
+  height: 5rem;
+  display: flex;
+`;
 
-Footer.Link = function FooterLink({children, ...restProps}) {
-    return <Link {...restProps}>{children}</Link>
-}
+//OTHER PROJECTS PLACEHOLDER
+export const ProjectsPlaceholder = styled.div`
+  flex: 40%;
+  display: flex;
+  justify-content: space-evenly;
+  align-self: center;
+  
+  @media (max-width: 565px) {
+    display: none;
+  }
+`;
 
-Footer.Title = function FooterTitle({children, ...restProps}) {
-    return <Title {...restProps}>{children}</Title>
-}
+//CONTACT US PLACEHOLDER
+export const ContactPlaceholder = styled.div`
+  flex: 60%;
+  display: flex;
+  justify-content: space-evenly;
+  align-self: center;
 
-export default Footer
+  @media (max-width: 1335px) {
+    display: none;
+  }
+`;
+
+//CONTACT SECTION TITLE
+
+export const ContactTitle = styled.p`
+  color: white;
+  height: 100%;
+  display: flex;
+  margin-right: -1.7rem;
+`;
+
+//PROJECT SECTION TITLE
+
+export const ProjectsTitle = styled.p`
+  color: white;
+  height: 100%;
+  display: flex;
+`;
+
+//CONTAINER FOR ALL THE LINKS
+export const FooterLinksContainer = styled.div`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  height: 100%;
+  margin-left: -3rem;
+  cursor: pointer;
+`;
+
+//LINKS COMPONENT
+export const FooterLink = styled.a`
+  display: flex;
+  margin-bottom: 0rem;
+  padding-left: 1rem;
+  transition: all 0.2s ease-in-out;
+  color: whitesmoke;
+  text-decoration:none;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    color: #18ffff;
+  }
+`;
+
+export const GithubIcon = styled(Github)`
+  color: white;
+  max-width: 2.5rem;
+  margin-left: -2rem;
+  margin-top: -1.1rem;
+`;
+
+export const LinkedinIcon = styled(Linkedin)`
+  color: white;
+  max-width: 2.5rem;
+  margin-left: -3.5rem;
+  margin-top: -1.1rem;
+`;

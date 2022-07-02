@@ -16,6 +16,7 @@ export const NavbarContainer = styled.nav`
 
   
 `;
+
 //WEBPAGE LOGO PLACEHOLDER
 export const Logo = styled.div`
   flex: 15%;
@@ -23,15 +24,39 @@ export const Logo = styled.div`
   justify-content: space-evenly;
   align-self: center;
   padding-right: 3rem;
+
+  @media (max-width: 805px) {
+    flex: 60%;
+    align-items: center;
+    padding-right: 0rem;
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 547px) {
+    flex: 60%;
+    align-items: center;
+    padding-right: 0rem;
+    justify-content: center;
+  }
+  @media (max-width: 374px) {
+    display: none;
+  }
+
 `;
-//NAVEGATIOS LINK PLACEHOLDER
+//NAVEGATION LINK PLACEHOLDER
 export const Pages = styled.div`
   flex: 60%;
   display: flex;
   justify-content: flex-end;
   align-self: center;
-  padding-right: 3rem;
+
+  @media (max-width: 805px) {
+    display:none;
+    flex: 0%
+  }
 `;
+
+
 //LOGIN, LOGOUT, SIGNIN PLACEHOLDER
 export const Buttons = styled.div`
   flex: 20%;
@@ -39,6 +64,11 @@ export const Buttons = styled.div`
   justify-content: flex-end;
   padding-right: 3rem;
   padding-right: 0.25rem;
+
+  @media (max-width: 547px) {
+    flex: 0%;
+    display: none;
+  }
 `;
 
 //CHANGE LANGUEAGE BUTTON PLACEHOLDER
@@ -48,6 +78,16 @@ export const Language = styled.div`
   justify-content: flex-end;
   padding-right: 0rem;
   padding-top: 1.25rem;
+
+  @media (max-width: 547px) {
+    flex: 20%;
+  }
+
+  @media (max-width: 374px) {
+    display: flex;
+    flex: 50%;
+    align-items: right;
+  }
 `;
 
 //LOGO LINK COMPONENT
@@ -81,6 +121,8 @@ export const NavbarHorizontalContainer = styled.div`
 //THIS IS THE CONTAINER FOR ALL THE LINKS
 export const NavbarLinkContainer = styled.div`
   display: flex;
+  position: absolute;
+  margin-top: -0.7rem;
 `;
 
 //LINKS COMPONENT
@@ -100,10 +142,6 @@ export const NavbarLink = styled(Link)`
   }
   &.active {
     color: #ff1744;
-  }
-
-  @media screen and (max-width: 768px) {
-    display: none;
   }
 `;
 
@@ -132,6 +170,8 @@ export const LinksButton = styled.button`
   }
 `;
 
+///////////////////////////////////////////////////////////////////////////////
+
 //DROPDOWN MENU BUTTON USE IN SMALL SCREENS
 export const DropdownMenu = styled.button`
   width: 4.4rem;
@@ -149,10 +189,6 @@ export const DropdownMenu = styled.button`
     transition: all 0.2s ease-in-out;
     color: #18ffff;
   }
-
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
 `;
 
 //DROPDOWN BAR FOR SMALL SCREENS
@@ -160,10 +196,6 @@ export const NavbarVerticalContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  @media (min-width: 768px) {
-    display: none;
-  }
 `;
 
 //LINKS COMPONENT FOR THE DROPDOWN BAR
@@ -183,5 +215,121 @@ export const NavbarLinkExtended = styled(Link)`
 
   &.active {
     color: #ff1744;
+  }
+`;
+////////////////////////////////////////////////////////////////////////////////
+
+//PAGE DROPDOWN BUTTON
+export const PageDropdownButton = styled.button`
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  background-color: pink;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    color: #18ffff;
+  }
+`;
+
+//PAGE VERTICAL CONTAINER
+export const PageVerticalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+//LINKS COMPONENT FOR PAGE DROP BAR
+export const PageLinkExtended = styled(Link)`
+  color: #fff;
+  display: block;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  padding-top: 0.45rem;
+  cursor: pointer;
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    color: #18ffff;
+  }
+
+  &.active {
+    color: #ff1744;
+  }
+`;
+
+export const PageLinkExtendedButton = styled(Link)`
+  color: #fff;
+  display: block;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    color: #18ffff;
+  }
+
+  &.active {
+    color: #ff1744;
+  }
+`;
+
+///////////////////////////////////////////////////////
+
+//MEDIUM PAGES DROPDOWN
+export const MediumPages = styled.div`
+  flex: 60%;
+  display: flex;
+  justify-content: flex-end;
+  align-self: center;
+  padding-right: 3rem;
+
+  @media (min-width: 806px) {
+    flex: 0%;
+    display:none;
+  }
+
+  @media (min-width: 547px) {
+    flex: 20%;
+    align-items: left;
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 546px) {
+    display: none;
+  }
+`;
+
+//REALLY SMALL PAGES DROPDOWN
+export const SmallPages = styled.div`
+  flex: 60%;
+  display: flex;
+  justify-content: flex-end;
+  align-self: center;
+  padding-right: 3rem;
+
+  @media (min-width: 547px) {
+    display:none
+  }
+
+  @media (max-width: 547px) {
+    flex: 20%;
+    padding-right: 0rem;
+    align-items: left;
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 374px) {
+    padding-right: 0rem;
+    flex: 50%;
+    align-items: left;
+    justify-content: flex-start;
   }
 `;
