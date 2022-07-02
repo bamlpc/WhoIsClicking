@@ -9,6 +9,8 @@ import {
   Buttons,
   Language,
   NavbarHorizontalContainer,
+  MediumNavbarVerticalContainer,
+  SmallNavbarVerticalContainer,
   NavbarVerticalContainer,
   NavbarLogoLink,
   NavbarLinkContainer,
@@ -44,11 +46,11 @@ const Navbar = () => {
   //This'll handle the buttons of the navigation bar
   const handleSubmit = async (path) => {
     navigate(path, { replace: true }); //need to further check this once the login is correctly working
-  }
+  } //TODO: need to close dropdonws after a click
 
   //This'll handle the About dropdown button
   const [extendedAbout, setExtendedAbout] = useState(false)
-  const [hoverAbout, setHoverAbout] = useState();
+  const [hoverAbout, setHoverAbout] = useState(false);
 
   const aboutHandleMouseIn = () => {
     setHoverAbout(true);
@@ -161,6 +163,7 @@ const Navbar = () => {
           </Language>
         {/* Our dropdown navigation button and bar */}
         </NavbarHorizontalContainer>
+        <MediumNavbarVerticalContainer>
           {
             MediumPageExtendNavbar && (
               <NavbarVerticalContainer>
@@ -171,6 +174,8 @@ const Navbar = () => {
               </NavbarVerticalContainer>
             )
           }
+        </MediumNavbarVerticalContainer>
+        <SmallNavbarVerticalContainer>
           {
             SmallPageExtendNavbar && (
               <NavbarVerticalContainer>
@@ -190,6 +195,7 @@ const Navbar = () => {
               </NavbarVerticalContainer>
             )
           }
+        </SmallNavbarVerticalContainer>
       </NavbarContainer>
     </>
   );

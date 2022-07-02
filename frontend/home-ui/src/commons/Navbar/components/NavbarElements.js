@@ -198,6 +198,33 @@ export const NavbarVerticalContainer = styled.div`
   align-items: center;
 `;
 
+//WRAPPER TO HANDLE AUTOMATIC CLOSURE IF THE MEDIUM SIZE SCREEN CHANGES TO LARGE
+export const MediumNavbarVerticalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: 806px) {
+    display:none;
+  }
+
+  @media (max-width: 546px) {
+    display: none;
+  }
+`;
+
+//WRAPPER TO HANDLE AUTOMATIC CLOSURE IF THE SMALL SIZE SCREEN CHANGES TO MEDIUM
+export const SmallNavbarVerticalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: 547px) {
+    display:none
+  }
+`;
+
+
 //LINKS COMPONENT FOR THE DROPDOWN BAR
 export const NavbarLinkExtended = styled(Link)`
   color: #fff;
@@ -226,8 +253,7 @@ export const PageDropdownButton = styled.button`
   color: white;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-
-  background-color: pink;
+  max-height: 3rem; //this will handle the gap between the buttom and the list that drops on hover
 
   &:hover {
     transition: all 0.2s ease-in-out;
@@ -241,6 +267,7 @@ export const PageVerticalContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+ // margin-top: -2.5rem; se me mueve todo si toco esto..
 `;
 
 //LINKS COMPONENT FOR PAGE DROP BAR
@@ -263,6 +290,7 @@ export const PageLinkExtended = styled(Link)`
   }
 `;
 
+//PAGE LINK EXTENDED BUTTON
 export const PageLinkExtendedButton = styled(Link)`
   color: #fff;
   display: block;

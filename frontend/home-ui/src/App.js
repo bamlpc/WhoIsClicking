@@ -7,7 +7,7 @@ import Generated from './pages/Generated/index.js';
 import Hunter from './pages/Hunter/index.js';
 import LinksCreation from './pages/LinksCreation/index.js';
 import QrGeneration from './pages/QrGeneration/index.js'
-import Contact from './pages/Contact/index.js'
+import Disclaimer from './pages/Disclaimer/index.js'
 import Login from './pages/Login/index.js';
 import Register from './pages/Register/index.js';
 import About from './pages/About/index.js';
@@ -40,7 +40,7 @@ function App () {
                 <Route path='aboutus'         exact element={<AboutUs />}       /> 
                 <Route path='aboutwic'        exact element={<AboutWic />}      /> 
                 <Route path='thanksto'        exact element={<Thanks />}        /> 
-                <Route path='contact'         exact element={<Contact />}       />
+                <Route path='Disclaimer'      exact element={<Disclaimer />}    />
                 <Route path='guest'           exact element={<Guest />}         />
                 <Route path='register'        exact element={<Register />}      /> 
                 <Route path='login'           exact element={<Login />}         /> 
