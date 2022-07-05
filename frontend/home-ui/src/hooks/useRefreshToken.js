@@ -2,7 +2,7 @@ import axios from '../api/axios.js';
 import useAuth from './useAuth.js';
 
 const useRefreshToken = () => {
-    const { setAuth } = useAuth(); //grab the old access Token
+    const { setAuth } = useAuth(); //to grab the old access Token
 
     const refresh = async () => {
         const response = await axios.get('/refresh', {

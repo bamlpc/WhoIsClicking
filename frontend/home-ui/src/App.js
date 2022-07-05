@@ -9,6 +9,7 @@ import LinksCreation from './pages/LinksCreation/index.js';
 import QrGeneration from './pages/QrGeneration/index.js'
 import Disclaimer from './pages/Disclaimer/index.js'
 import Login from './pages/Login/index.js';
+import Logout from './pages/Logout/index.js';
 import Register from './pages/Register/index.js';
 import About from './pages/About/index.js';
 import AboutUs from './pages/About/Us/index.js';
@@ -49,6 +50,7 @@ function App () {
                 {/* Users only */}
                 <Route element={<RequireAuth allowedRoles={[ROLES]} />}>
                   <Route path='user'           exact element={<User />}         /> 
+                  <Route path='logout'         exact element={<Logout />}       /> 
                   <Route path='linkscreation'  exact element={<LinksCreation />}/> 
                   <Route path='generated'      exact element={<Generated />}    /> 
                   <Route path='qrgeneration'   exact element={<QrGeneration />} />

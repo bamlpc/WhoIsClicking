@@ -47,6 +47,7 @@ const Login = () => {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //TODO: REMOVE THIS LOG
     console.log(JSON.stringify({username: user, password: password}))
     try {
       const response = await axios.post(LOGIN_URL,
