@@ -4,8 +4,9 @@ interface UserSchema {
     _id: Bson.ObjectId;
     username: string;
     hashedPassword: string;
-    roles: number
-    hunter: string
+    roles: number;
+    hunter: string;
+    refreshToken: string
 }
 
 interface LinkSchema {

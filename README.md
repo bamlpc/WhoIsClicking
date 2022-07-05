@@ -62,7 +62,7 @@ Restart the project:
 2. `docker system prune --all -f`
 3. remove all volumes:
    * Linux / Mac: `rm -rf backend\qr-api\qrs, infra\mongo-db\data, infra\mongo-db\log, infra\nginx\log`
-   * PowerShell: `Remove-Item -recurse -force backend\qr-api\qrs, infra\mongo-db\data, infra\mongo-db\log, infra\nginx\log`
+   * PowerShell: `Remove-Item -recurse -force infra\mongo-db\data, infra\mongo-db\log, infra\nginx\log`
 4. `docker-compose up`
 
 &nbsp;

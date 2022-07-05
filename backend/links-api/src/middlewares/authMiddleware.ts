@@ -3,14 +3,28 @@ import {/*serviceCollection ,*/ JwtService} from "../services/services.ts";
 
 
 const authMiddleware = async (
-  { response, cookies }: Context,
+  { request, response, state}: Context,
   next: Function,
 ) => {
+  
   try {
     //const jwtService = serviceCollection.get(JwtService);
     const jwtService = new JwtService();
 
-    const payload = await jwtService.verify(cookies);
+    const authHeader = request.headers.get("authorization")
+
+    if (!authHeader) {
+
+      response.status = 401;
+      response.body = {
+        message: "Unauthenticated",
+      };
+      
+      return;
+    }
+    
+    const accessToken = authHeader.split(' ')[1];
+    const payload = await jwtService.verifyAccess(accessToken);
 
     //  Checking for token expiration
     if (!payload) {
@@ -18,13 +32,20 @@ const authMiddleware = async (
       response.body = {
         message: "Unauthenticated",
       };
+      
       return;
     }
 
+    //Making User's id from accessToken available downstream
+    state.userId = payload;
+
     await next();
+    
+    // Cleanup
+    delete state.userId; 
 
     //  Checking for empty string
-  } catch (_error) {
+  } catch (_error) {;
     response.status = 401;
     response.body = {
       message: "Unauthenticated",

@@ -9,6 +9,7 @@ import authMiddleware from "../middlewares/authMiddleware.ts";
 import hasLinks from "../middlewares/hasLinks.ts"
 import tokenRefresh from "../controller/refresh_controller.ts"
 import {/*serviceCollection,*/ AuthController, MongoService,JwtService} from "../services/services.ts"
+import hasRefreshToken from "../middlewares/hasRefreshToken.ts";
 
 const api = new Router();
 const user = new Router();
@@ -27,10 +28,10 @@ api
     (ctx) => authController.createUser(ctx),
   )
   .post("/login", LoginValidation, (ctx) => authController.login(ctx))
-  .get("/refresh", authMiddleware, tokenRefresh)
-user
-//.get("/",...)
-  .post("/logout", authMiddleware, (ctx) => authController.logout(ctx))
+  user
+  //.get("/",...)
+  .get("/refresh",hasRefreshToken ,tokenRefresh)
+  .post("/logout",hasRefreshToken ,(ctx) => authController.logout(ctx))
   .get("/generate", authMiddleware,hasLinks, generateLinks)
   .post("/qrgenerator", authMiddleware, qrGen)
   .get("/preys", authMiddleware, preys)

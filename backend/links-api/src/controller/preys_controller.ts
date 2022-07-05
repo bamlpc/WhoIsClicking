@@ -1,16 +1,14 @@
 import { RouterContext } from "deps";
 import {/*serviceCollection,*/ JwtService, MongoService} from "../services/services.ts"
 
-const preys = async ({ response, cookies }: RouterContext<"/preys">) => {
+const preys = async ({ request, response, state}: RouterContext<"/preys">) => {
 
+    const payload = state.userId;
+  
     //const mongoService = serviceCollection.get(MongoService);
-    //const jwtService = serviceCollection.get(JwtService);
     const mongoService = new MongoService();
-    const jwtService = new JwtService();
 
-    const { _id }: any = await jwtService.verify(cookies);
-
-    const databaseInformation = await mongoService.findUser("id", _id);
+    const databaseInformation = await mongoService.findUser("id", payload.id);
 
     const hunter = JSON.parse(JSON.stringify(databaseInformation)).hunter;
 
@@ -22,7 +20,7 @@ const preys = async ({ response, cookies }: RouterContext<"/preys">) => {
   const _response = {
     success: true,
     message: {
-        "your id is:": _id,
+        "your id is:": payload.id,
         "your hunter link is:": hunter
     }
 

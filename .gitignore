@@ -17,6 +17,7 @@ backend/qr-api/qrs/*.png
 frontend/home-ui/node_modules
 frontend/home-ui/.pnp
 frontend/home-ui/.pnp.js
+frontend/home-ui/package-lock.json
 
 # testing
 frontend/home-ui/coverage
