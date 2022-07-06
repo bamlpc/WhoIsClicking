@@ -1,11 +1,11 @@
-import styled from 'styled-components';
 import { NavLink as Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 //NAVEGATION BAR CONTAINER
 export const NavbarContainer = styled.nav`
   width: 100%;
-  height: ${(props) => (props.extendNavbar ? "100vh" : "5rem")};
-  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, #282c34 100%);;
+  height: ${(props) => (props.extendNavbar ? '100vh' : '5rem')};
+  background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, #282c34 100%);
   display: flex;
   flex-direction: column;
   color: white;
@@ -13,8 +13,6 @@ export const NavbarContainer = styled.nav`
   @media (min-width: 768px) {
     height: 5rem;
   }
-
-  
 `;
 
 //WEBPAGE LOGO PLACEHOLDER
@@ -41,7 +39,6 @@ export const Logo = styled.div`
   @media (max-width: 374px) {
     display: none;
   }
-
 `;
 //NAVEGATION LINK PLACEHOLDER
 export const Pages = styled.div`
@@ -51,11 +48,10 @@ export const Pages = styled.div`
   align-self: center;
 
   @media (max-width: 805px) {
-    display:none;
-    flex: 0%
+    display: none;
+    flex: 0%;
   }
 `;
-
 
 //LOGIN, LOGOUT, SIGNIN PLACEHOLDER
 export const Buttons = styled.div`
@@ -205,7 +201,7 @@ export const MediumNavbarVerticalContainer = styled.div`
   align-items: center;
 
   @media (min-width: 806px) {
-    display:none;
+    display: none;
   }
 
   @media (max-width: 546px) {
@@ -220,10 +216,9 @@ export const SmallNavbarVerticalContainer = styled.div`
   align-items: center;
 
   @media (min-width: 547px) {
-    display:none
+    display: none;
   }
 `;
-
 
 //LINKS COMPONENT FOR THE DROPDOWN BAR
 export const NavbarLinkExtended = styled(Link)`
@@ -267,7 +262,7 @@ export const PageVerticalContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
- // margin-top: -2.5rem; se me mueve todo si toco esto..
+  // margin-top: -2.5rem; se me mueve todo si toco esto..
 `;
 
 //LINKS COMPONENT FOR PAGE DROP BAR
@@ -321,7 +316,7 @@ export const MediumPages = styled.div`
 
   @media (min-width: 806px) {
     flex: 0%;
-    display:none;
+    display: none;
   }
 
   @media (min-width: 547px) {
@@ -344,7 +339,7 @@ export const SmallPages = styled.div`
   padding-right: 3rem;
 
   @media (min-width: 547px) {
-    display:none
+    display: none;
   }
 
   @media (max-width: 547px) {

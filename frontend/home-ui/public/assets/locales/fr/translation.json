@@ -1,14 +1,14 @@
 {
-    "app_title": "Titre",
-    "language": "Langue",
-    "welcome_message": "Bienvenue",
+  "app_title": "Titre",
+  "language": "Langue",
+  "welcome_message": "Bienvenue",
 
-    "home_page": "Home",
-    "about_page": "About",
-    "thanksto_page": "Thanks to",
-    "createlinks_page": "Create Links",
+  "home_page": "Home",
+  "about_page": "About",
+  "thanksto_page": "Thanks to",
+  "createlinks_page": "Create Links",
 
-    "login_button": "Login",
-    "logout_button": "Logout",
-    "register_button": "Signin"
-  }
+  "login_button": "Login",
+  "logout_button": "Logout",
+  "register_button": "Signin"
+}

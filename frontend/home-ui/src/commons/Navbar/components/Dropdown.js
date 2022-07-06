@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import i18next from 'i18next'
-import cookies from 'js-cookie'
-import classNames from 'classnames'
+import classNames from 'classnames';
+import i18next from 'i18next';
+import cookies from 'js-cookie';
+import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 //awsome tutorial an author of the code
 //https://github.com/hidjou/classsed-react-localization
@@ -40,7 +40,7 @@ const languages = [
     dir: 'rtl',
     country_code: 'sa',
   },
-]
+];
 
 //Globe icon with dynamic (and default) width and height
 const GlobeIcon = ({ width = 24, height = 24 }) => (
@@ -52,7 +52,8 @@ const GlobeIcon = ({ width = 24, height = 24 }) => (
     className="bi bi-globe"
     viewBox="0 0 16 16"
   >
-    <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 
+    <path
+      d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 
             1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 
             6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 
             3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 
@@ -67,41 +68,37 @@ const GlobeIcon = ({ width = 24, height = 24 }) => (
             13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 
             2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 
             0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 
-            1.897 9.17 1.282 8.5 1.077V4h2.355z" />
+            1.897 9.17 1.282 8.5 1.077V4h2.355z"
+    />
   </svg>
-)
+);
 
 function DropdownLanguage() {
-
   //language manager
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   //Getting the current language or default to English
-  const currentLanguageCode = cookies.get('i18next') || 'en'
+  const currentLanguageCode = cookies.get('i18next') || 'en';
 
   //Getting the language from the language array
-  const currentLanguage = languages.find((l) => l.code === currentLanguageCode)
+  const currentLanguage = languages.find((l) => l.code === currentLanguageCode);
 
   //Change text direction depending on the language
   useEffect(() => {
-
     //Look for specific " dir: 'rtl'(right-to-left)" otherwise default to 'ltr' (left-to-right)
-    document.body.dir = currentLanguage.dir || 'ltr'
+    document.body.dir = currentLanguage.dir || 'ltr';
     //Changing the tittle to match the current language
-    document.title = t('app_title')
-
-  }, [currentLanguage, t])
+    document.title = t('app_title');
+  }, [currentLanguage, t]);
 
   return (
     <>
       {/*Container for the dropdown */}
       <div className="container" background-color="#3d5afe">
-        <div className="language-select" >
+        <div className="language-select">
           <div className="d-flex justify-content-end align-items-center language-select-root">
-            
             {/*Dropdown wrapper */}
             <div className="dropdown">
-
               {/*Button for the dropdown */}
               <button
                 className="btn btn-link dropdown-toggle"
@@ -122,7 +119,6 @@ function DropdownLanguage() {
 
                 {/*Loop through languages to show them as options */}
                 {languages.map(({ code, name, country_code }) => (
-
                   //List of the supported languages
                   <li key={country_code}>
                     <a
@@ -132,10 +128,9 @@ function DropdownLanguage() {
                         disabled: currentLanguageCode === code,
                       })}
                       onClick={() => {
-                        i18next.changeLanguage(code)
+                        i18next.changeLanguage(code);
                       }}
                     >
-
                       {/* Flag display */}
                       <span
                         className={`flag-icon flag-icon-${country_code} mx-2`}
@@ -156,7 +151,7 @@ function DropdownLanguage() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export default DropdownLanguage;

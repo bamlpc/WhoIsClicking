@@ -1,12 +1,12 @@
+import { Github } from '@styled-icons/bootstrap/Github';
+import { Linkedin } from '@styled-icons/bootstrap/Linkedin';
 import styled from 'styled-components';
-import {Github} from '@styled-icons/bootstrap/Github';
-import {Linkedin} from '@styled-icons/bootstrap/Linkedin';
 
 //NAVEGATION BAR CONTAINER
 export const FooterContainer = styled.nav`
   width: 100%;
   height: 5rem;
-  background: linear-gradient(0deg, rgba(0,0,0,1) 0%, #282c34 100%);;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, #282c34 100%);
   display: flex;
   flex-direction: column;
   color: white;
@@ -14,8 +14,6 @@ export const FooterContainer = styled.nav`
   @media screen and (min-width: 768px) {
     height: 5rem;
   }
-
-  
 `;
 
 //HORIZONTAL CONTAINER
@@ -31,7 +29,7 @@ export const ProjectsPlaceholder = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-self: center;
-  
+
   @media (max-width: 565px) {
     display: none;
   }
@@ -94,7 +92,7 @@ export const FooterLink = styled.a`
   padding-left: 1rem;
   transition: all 0.2s ease-in-out;
   color: whitesmoke;
-  text-decoration:none;
+  text-decoration: none;
 
   &:hover {
     transition: all 0.2s ease-in-out;

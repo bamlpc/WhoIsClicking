@@ -1,44 +1,51 @@
-import React from 'react'
+import React from 'react';
 
 import {
-    FooterContainer,
-    FooterHorizontalContainer,
-    ProjectsPlaceholder,
-    ContactPlaceholder,
-    ProjectsTitle,
-    ContactTitle,
-    ProjectLinksContainer,
-    ContactLinksContainer,
-    FooterLink,
-    GithubIcon,
-    LinkedinIcon,
+  ContactLinksContainer,
+  ContactPlaceholder,
+  ContactTitle,
+  FooterContainer,
+  FooterHorizontalContainer,
+  FooterLink,
+  GithubIcon,
+  LinkedinIcon,
+  ProjectLinksContainer,
+  ProjectsPlaceholder,
+  ProjectsTitle,
 } from './components/FooterElements.js';
 
-
 function Footer() {
-    return (
-        <FooterContainer>
-            <FooterHorizontalContainer>
-                <ProjectsPlaceholder>
-                    <GithubIcon></GithubIcon>
-                    <ProjectsTitle>Other Projects:</ProjectsTitle>
-                    <ProjectLinksContainer>
-                        <FooterLink href="https://github.com/BMogetta">Bruno Mogetta</FooterLink>
-                        <FooterLink href="https://github.com/lukeciatt">Luciano Ciattaglia</FooterLink>
-                    </ProjectLinksContainer>
-                </ProjectsPlaceholder>
-                <ContactPlaceholder>
-                    <LinkedinIcon></LinkedinIcon>
-                    <ContactTitle>Contact Information:</ContactTitle>
-                    <ContactLinksContainer>
-                        <FooterLink href="https://www.linkedin.com/in/bmogetta/">Bruno Mogetta</FooterLink>
-                        <FooterLink href="https://www.linkedin.com/in/lucianociattaglia/">Luciano Ciattaglia</FooterLink>
-                        <FooterLink href="https://www.linkedin.com/in/antonellaperazzoni/">Antonella Perazzoni</FooterLink>
-                    </ContactLinksContainer>
-                </ContactPlaceholder>
-            </FooterHorizontalContainer>
-        </FooterContainer>
-    )
+  return (
+    <FooterContainer>
+      <FooterHorizontalContainer>
+        <ProjectsPlaceholder>
+          <GithubIcon></GithubIcon>
+          <ProjectsTitle>Other Projects:</ProjectsTitle>
+          <ProjectLinksContainer>
+            <FooterLink href="https://github.com/BMogetta">Bruno Mogetta</FooterLink>
+            <FooterLink href="https://github.com/lukeciatt">
+              Luciano Ciattaglia
+            </FooterLink>
+          </ProjectLinksContainer>
+        </ProjectsPlaceholder>
+        <ContactPlaceholder>
+          <LinkedinIcon></LinkedinIcon>
+          <ContactTitle>Contact Information:</ContactTitle>
+          <ContactLinksContainer>
+            <FooterLink href="https://www.linkedin.com/in/bmogetta/">
+              Bruno Mogetta
+            </FooterLink>
+            <FooterLink href="https://www.linkedin.com/in/lucianociattaglia/">
+              Luciano Ciattaglia
+            </FooterLink>
+            <FooterLink href="https://www.linkedin.com/in/antonellaperazzoni/">
+              Antonella Perazzoni
+            </FooterLink>
+          </ContactLinksContainer>
+        </ContactPlaceholder>
+      </FooterHorizontalContainer>
+    </FooterContainer>
+  );
 }
 
 export default Footer;
