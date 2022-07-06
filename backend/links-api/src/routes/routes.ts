@@ -29,11 +29,11 @@ api
   )
   .post("/login", LoginValidation, (ctx) => authController.login(ctx))
   user
-  //.get("/",...)
-  .get("/refresh",hasRefreshToken ,tokenRefresh)
-  .post("/logout",hasRefreshToken ,(ctx) => authController.logout(ctx))
-  .get("/generate", authMiddleware,hasLinks, generateLinks)
-  .post("/qrgenerator", authMiddleware, qrGen)
-  .get("/preys", authMiddleware, preys)
+    //.get("/",...)
+    .get("/refresh",hasRefreshToken ,tokenRefresh)
+    .post("/logout",hasRefreshToken ,(ctx) => authController.logout(ctx))
+    .get("/generate", authMiddleware,hasLinks, generateLinks)
+    .post("/qrgenerator", authMiddleware, qrGen)
+    .get("/preys", authMiddleware, preys)
 
 export { api, user };

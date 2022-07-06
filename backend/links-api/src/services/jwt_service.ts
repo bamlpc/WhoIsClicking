@@ -31,7 +31,7 @@ class JwtService {
     };
     return await djwt.create({ alg: "HS512", typ: "JWT" }, payload, accessKey);
   }
-
+  
   async verifyAccess(header: string) {
       return await djwt.verify(header!, accessKey);
   }

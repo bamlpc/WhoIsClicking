@@ -23,7 +23,6 @@ const hasRefreshToken = async ( { response, cookies, state}: Context, next: Func
       state.userId = payload;
 
       await next();
-      
       // Cleanup
       delete state.userId;
     } catch (_error) {

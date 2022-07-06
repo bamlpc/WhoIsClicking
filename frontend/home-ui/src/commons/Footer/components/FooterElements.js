@@ -55,7 +55,8 @@ export const ContactTitle = styled.p`
   color: white;
   height: 100%;
   display: flex;
-  margin-right: -1.7rem;
+  //margin-right: -1.7rem;
+  margin-left: -6rem;
 `;
 
 //PROJECT SECTION TITLE
@@ -64,15 +65,25 @@ export const ProjectsTitle = styled.p`
   color: white;
   height: 100%;
   display: flex;
+  margin-left: -3rem;
 `;
 
-//CONTAINER FOR ALL THE LINKS
-export const FooterLinksContainer = styled.div`
+//CONTAINER FOR ALL THE GITHUB LINKS
+export const ProjectLinksContainer = styled.div`
   display: flex;
   align-items: center;
   text-decoration: none;
   height: 100%;
-  margin-left: -3rem;
+  margin-left: -5rem;
+  cursor: pointer;
+`;
+//CONTAINER FOR ALL THE LINKEDIN LINKS
+export const ContactLinksContainer = styled.div`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  height: 100%;
+  margin-left: -7.5rem;
   cursor: pointer;
 `;
 

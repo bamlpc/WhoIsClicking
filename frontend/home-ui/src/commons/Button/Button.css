@@ -31,3 +31,14 @@
     width: 100%;
     border-radius: 5rem;
 }
+
+.--loginPage {
+    padding: 1rem 2rem;
+    margin-top: 1.5rem;
+    width: 50%;
+    border-radius: 5rem;
+}
+.--loginPage:disabled {
+    background: #5c68a9;
+    color: #e1eeee;
+}

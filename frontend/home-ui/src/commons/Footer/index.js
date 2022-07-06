@@ -7,7 +7,8 @@ import {
     ContactPlaceholder,
     ProjectsTitle,
     ContactTitle,
-    FooterLinksContainer,
+    ProjectLinksContainer,
+    ContactLinksContainer,
     FooterLink,
     GithubIcon,
     LinkedinIcon,
@@ -19,21 +20,21 @@ function Footer() {
         <FooterContainer>
             <FooterHorizontalContainer>
                 <ProjectsPlaceholder>
-                    <ProjectsTitle>Other Projects</ProjectsTitle>
-                    <FooterLinksContainer>
+                    <GithubIcon></GithubIcon>
+                    <ProjectsTitle>Other Projects:</ProjectsTitle>
+                    <ProjectLinksContainer>
                         <FooterLink href="https://github.com/BMogetta">Bruno Mogetta</FooterLink>
                         <FooterLink href="https://github.com/lukeciatt">Luciano Ciattaglia</FooterLink>
-                    </FooterLinksContainer>
-                    <GithubIcon></GithubIcon>
+                    </ProjectLinksContainer>
                 </ProjectsPlaceholder>
                 <ContactPlaceholder>
-                    <ContactTitle>Contact Information</ContactTitle>
-                    <FooterLinksContainer>
+                    <LinkedinIcon></LinkedinIcon>
+                    <ContactTitle>Contact Information:</ContactTitle>
+                    <ContactLinksContainer>
                         <FooterLink href="https://www.linkedin.com/in/bmogetta/">Bruno Mogetta</FooterLink>
                         <FooterLink href="https://www.linkedin.com/in/lucianociattaglia/">Luciano Ciattaglia</FooterLink>
                         <FooterLink href="https://www.linkedin.com/in/antonellaperazzoni/">Antonella Perazzoni</FooterLink>
-                    </FooterLinksContainer>
-                    <LinkedinIcon></LinkedinIcon>
+                    </ContactLinksContainer>
                 </ContactPlaceholder>
             </FooterHorizontalContainer>
         </FooterContainer>

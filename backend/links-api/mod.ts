@@ -6,11 +6,11 @@ import errorMiddleware from "./src/middlewares/error.ts";
 import notFoundMiddleware from "./src/middlewares/notFound.ts";
 import timingMiddleware from "./src/middlewares/timing.ts";
 
-interface MyState {
-  userId: number;
+interface State {
+  userId: Object;
 }
 
-const app = new Application<MyState>();
+const app = new Application<State>();
 
 app.use(oakCors({
   credentials: true,

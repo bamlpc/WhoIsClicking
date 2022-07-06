@@ -11,7 +11,7 @@ const authMiddleware = async (
     //const jwtService = serviceCollection.get(JwtService);
     const jwtService = new JwtService();
 
-    const authHeader = request.headers.get("authorization")
+    const authHeader = request.headers.get("Authorization")
 
     if (!authHeader) {
 

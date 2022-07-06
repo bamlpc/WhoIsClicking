@@ -12,8 +12,8 @@ const useAxiosPrivate = () => {
 
         const requestIntercept = axiosPrivate.interceptors.request.use( //this handdle the inicial request
             config => {
-                if (!config.headers['authorization']) { //if Authorization doesn't exist we know this is not a retry/refresh
-                    config.headers['authorization'] = `Bearer ${auth?.accessToken}`; //this set up the Authorization
+                if (!config.headers['Authorization']) { //if Authorization doesn't exist we know this is not a retry/refresh
+                    config.headers['Authorization'] = `Bearer ${auth?.accessToken}`; //this set up the Authorization
                 }
                 return config;
             }, (error) => Promise.reject(error) //this will handle any error
@@ -27,7 +27,7 @@ const useAxiosPrivate = () => {
                 if (error?.response?.status === 403 && !prevRequest?.sent) {    //if request if forbidden due to expired token and sent doesn't exist
                     prevRequest.sent = true; //the sent property indicate if the function had try to refresh the token, we only want 1 try, not an infinite loop
                     const newAccessToken = await refresh();
-                    prevRequest.headers['authorization'] = `Bearer ${newAccessToken}`; //updating the token
+                    prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`; //updating the token
                     return axiosPrivate(prevRequest);
                 }
                 return Promise.reject(error); //this will handle any error
