@@ -1,5 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=The+Nautigal:wght@700&display=swap');
+:root {
+  --primay: white;
+  --bg-primay: #282c34;
+
+  --link: #18ffff;
+}
 
 * {
   font-family: 'Sora', sans-serif;
@@ -12,15 +16,33 @@
   text-align: center;
 }
 
+p {
+  margin: 20px 0px;
+}
+
+.header {
+  font-size: 3rem;
+}
+
+.body {
+  margin: 20px 0 10px;
+  font-size: 2rem;
+}
+
 .App-header {
   background-color: #282c34;
-  height: 100vh;
-  width: 100vw;
-  max-width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 3vmin;
-  color: white;
+  font-size: calc(10px + 2vmin);
+
+  background: var(--bg-primay);
+  color: var(--primay);
+}
+
+.App-link {
+  color: #61dafb;
+  color: var(--link);
 }

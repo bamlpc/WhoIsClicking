@@ -1,25 +1,34 @@
-# Getting Started with Create React App
+# Comfort React template:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a basic structure that I made because I was experimenting with react and I hate to create a whole react app from sratch every time.
 
-## Available Scripts
+[Vite](https://github.com/vitejs/vite), [React](https://reactjs.org/), [Typescript](https://www.typescriptlang.org/), [Eslint](https://eslint.org/), [Prettier](https://prettier.io/), [pnpm](https://pnpm.io).
 
-In the project directory, you can run:
+## Installation
 
-### `yarn dev`
+This template was made thinking in VSCode. 
+Install:
+  * [Vite plugin](https://marketplace.visualstudio.com/items?itemName=antfu.vite)
+  * [ESLint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+  * [Prettier plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Clone the repo and open VSCode
+If you want to manually install the dependecies run `pnpm install`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+If you want to use npm or yarn remember to change the scripts in package.json
 
-### `yarn build`
+## Start with dev
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+After the successful installation of the packages: `pnpm dev`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Steps in Vscode
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Install and enable Eslint and Prettier extension for vs code.
+2. Install packages.
+3. Enable formatOnSave of vs code
+
+## Basic scripts
+
+- dev: `pnpm dev`
+- build: `pnpm build`
+- lint: `pnpm lint`

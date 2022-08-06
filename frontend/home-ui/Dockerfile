@@ -1,14 +1,11 @@
 FROM node:16-alpine3.15
 
+RUN npm install --location=global pnpm
+
 WORKDIR /usr/app
 
-COPY package.json ./
+COPY . .
 
-RUN npm install
+RUN pnpm install
 
-COPY ./src ./src
-COPY ./public ./public
-
-#CMD COLOR=1 npm start | cat
-
-CMD [ "npm", "start" ]
+CMD [ "pnpm", "dev" ]
