@@ -1,6 +1,6 @@
 # Comfort React template:
 
-This is a basic structure that I made because I was experimenting with react and I hate to create a whole react app from sratch every time.
+This is a basic structure that I made because I was experimenting with react and I hate to create a whole react app from scratch every time.
 
 [Vite](https://github.com/vitejs/vite), [React](https://reactjs.org/), [Typescript](https://www.typescriptlang.org/), [Eslint](https://eslint.org/), [Prettier](https://prettier.io/), [pnpm](https://pnpm.io).
 

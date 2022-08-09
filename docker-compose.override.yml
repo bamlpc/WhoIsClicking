@@ -6,7 +6,11 @@ services:
     container_name: home-ui
     build:
       context: ./frontend/home-ui
+      dockerfile: Dockerfile
     restart: on-failure
+    volumes:
+      - ./frontend/home-ui/src:/src
+      - ./frontend/home-ui/public:/public
     depends_on:
       nginx:
         condition: service_healthy
@@ -41,5 +45,6 @@ services:
 volumes:
   mongo-data: {}
   nginx: {}
+  home-ui: {}
 
 networks: {}
