@@ -1,6 +1,5 @@
 import 'bootstrap/dist/js/bootstrap.js';
 import 'flag-icon-css/css/flag-icon.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
@@ -9,9 +8,9 @@ import { initReactI18next } from 'react-i18next';
 
 
 i18next
+  .use(initReactI18next)
   .use(HttpApi) //Utility that allows fetching language files
   .use(LanguageDetector) //Utility to automatically search for user language
-  .use(initReactI18next)
   .init({
     supportedLngs: ['en', 'ar', 'fr', 'es', 'it', 'de'], //Language array where we choose/match
     fallbackLng: 'en', //default language in case not supported one
@@ -28,3 +27,5 @@ i18next
       loadPath: '/assets/locales/{{lng}}/translation.json', //Path where it'll look for translations (This could be also a backend path)
     },
   });
+
+  export default i18next;

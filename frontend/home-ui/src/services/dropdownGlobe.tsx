@@ -1,8 +1,8 @@
-import classNames from 'classnames';
-import i18next from 'i18next';
-import cookies from 'js-cookie';
 import React, { useEffect } from 'react';
+import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
+import classNames from 'classnames';
+import Cookies from 'js-cookie';
 
 //awsome tutorial an author of the code
 //https://github.com/hidjou/classsed-react-localization
@@ -78,10 +78,10 @@ function DropdownLanguage() {
   const { t } = useTranslation();
 
   //Getting the current language or default to English
-  const currentLanguageCode = cookies.get('i18next') || 'en';
+  const currentLanguageCode = Cookies.get('i18next') || 'en';
 
   //Getting the language from the language array
-  const currentLanguage = languages.find((l) => l.code === currentLanguageCode);
+  const currentLanguage = languages.find((lang) => lang.code === currentLanguageCode)!;
 
   //Change text direction depending on the language
   useEffect(() => {
@@ -94,7 +94,7 @@ function DropdownLanguage() {
   return (
     <>
       {/*Container for the dropdown */}
-      <div className="container" background-color="#3d5afe">
+      <div className="container" background-color="#18ffff">
         <div className="language-select">
           <div className="d-flex justify-content-end align-items-center language-select-root">
             {/*Dropdown wrapper */}
@@ -139,7 +139,6 @@ function DropdownLanguage() {
                           opacity: currentLanguageCode === code ? 0.5 : 1,
                         }}
                       ></span>
-
                       {/*Name of the country in their own language! */}
                       {name}
                     </a>
