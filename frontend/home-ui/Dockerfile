@@ -12,4 +12,4 @@ COPY --chown=node:node ["package.json", "pnpm-lock.yaml", "./"]
 
 RUN pnpm install
 
-CMD [ "pnpm", "dev" ]
+CMD [ "pnpm", "dev", "--host" ]
