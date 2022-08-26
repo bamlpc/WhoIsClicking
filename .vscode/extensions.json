@@ -2,6 +2,17 @@
     "recommendations": [
         "ms-azuretools.vscode-docker",
         "PKief.material-icon-theme",
-        "denoland.vscode-deno"
+        "denoland.vscode-deno",
+        "Gruntfuggly.todo-tree",
+        "znck.grammarly",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "antfu.vite",
+        "aaron-bond.better-comments",
+        "eamodio.gitlens",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "redhat.vscode-yaml",
+        "lllllllqw.jsdoc",
+        "atlassian.atlascode",
     ]
 }

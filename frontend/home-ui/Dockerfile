@@ -1,14 +1,15 @@
 FROM node:16-alpine3.15
 
+RUN npm install -g pnpm
+
+USER node
+
 WORKDIR /usr/app
 
-COPY package.json ./
+COPY --chown=node:node ["index.html", "tsconfig.json", "tsconfig.node.json", "vite.config.ts", "./"]
 
-RUN npm install
+COPY --chown=node:node ["package.json", "pnpm-lock.yaml", "./"]
 
-COPY ./src ./src
-COPY ./public ./public
+RUN pnpm install
 
-#CMD COLOR=1 npm start | cat
-
-CMD [ "npm", "start" ]
+CMD [ "pnpm", "dev", "--host" ]

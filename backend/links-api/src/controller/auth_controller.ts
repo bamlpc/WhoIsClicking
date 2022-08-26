@@ -2,7 +2,7 @@ import { Login } from "../model/models.ts";
 import processedUserData from "../helper/userGenerator.ts";
 import log from "log";
 import JwtService from "../services/jwt_service.ts";
-import { bcrypt, RouterContext/*, Service, Inject*/} from "deps";
+import { bcrypt, RouterContext, ObjectId /*, Service, Inject*/} from "deps";
 import MongoService from "../services/mongodb_services.ts";
 
 //@Service()
@@ -11,7 +11,9 @@ class AuthController {
     private jwtService: JwtService,
     private mongoService: MongoService
   ) {}
+  
 
+  ////////////////////////////// CREATE ACCOUNT ////////////////////////////////////////////////////
   async createUser({ request, response }: RouterContext<"/register">) {
     // Extracting user's register information
     const data = request.body();
@@ -22,27 +24,27 @@ class AuthController {
 
     try {
       //This block checks if the email is available
-      if (tryUsername == undefined) {
-        console.log("creating user");
+      if (tryUsername === undefined) {
+        
+        // Checking if the email and password have the right format
+
+        const [username, hashedPassword] = await processedUserData(userInput);
+
+        // Creating account
+        const _id = new ObjectId()
+
+        await this.mongoService.createUser(_id, username, hashedPassword, "toBeCreated");
+        const _response = {
+          succes: true,
+        };
+
+        response.body = JSON.stringify(_response);
       } else {
         const checking = JSON.parse(JSON.stringify(tryUsername)).username;
         if (userInput.username === checking) {
           throw "We already have an account register with that E-mail address";
         }
       }
-
-      // Checking if the email and password have the right format
-
-      const [username, hashedPassword] = await processedUserData(userInput);
-
-      // Creating account
-
-      await this.mongoService.createUser(username, hashedPassword, "toBeCreated");
-      const _response = {
-        succes: true,
-        body: { username, hashedPassword },
-      };
-      response.body = JSON.stringify(_response);
     } catch (error) {
       log.error(error);
       response.body = {
@@ -53,6 +55,7 @@ class AuthController {
     }
   }
 
+  ////////////////////////////// LOGIN /////////////////////////////////////////////////////////////
   async login({ request, response, cookies }: RouterContext<"/login">) {
     // Extracting user's register information
     const data = request.body();
@@ -67,7 +70,6 @@ class AuthController {
       }
 
       // Checking the password
-
       const store = JSON.parse(JSON.stringify(databaseInformation));
       const compared = await bcrypt.compare(
         userInput.password,
@@ -78,14 +80,23 @@ class AuthController {
         throw "Incorrect password";
       } // With the right email an password:
       else {
-        const jwt = await this.jwtService.create(store._id);
-        const temporal = await this.jwtService.temporal(jwt);
+        //creating jwt tokens
+        const refreshToken = await this.jwtService.refreshToken( store._id );
+        const accessToken = await this.jwtService.accessToken( store._id );
+        
+        //saving refreshToken on mongo
+        await this.mongoService.associateRefreshToken(refreshToken, store._id )
+        
+        //sending refreshToken as http only cookie
+        cookies.set("jwt", refreshToken, { httpOnly: true });
+        
+        //sending access token in json
         const _response = {
           succes: true,
           status: 200,
-          message: { "roles": store.roles, "accessToken": temporal},
+          message: { "roles": store.roles,"hunter": store.hunter , "accessToken": accessToken},
         };
-        cookies.set("jwt", jwt, { httpOnly: true });
+
         response.body = JSON.stringify(_response);
       }
     } catch (error) {
@@ -99,18 +110,25 @@ class AuthController {
   }
 
   async user({ response, cookies }: RouterContext<"/user">) {
-    const { _id }: any = await this.jwtService.verify(cookies);
-
+    //TODO: this function is just a placeholder ATM
+    const { _id }: any = await this.jwtService.verifyRefresh(cookies);
     const databaseInformation = await this.mongoService.findUser("id", _id);
-
     const user = JSON.parse(JSON.stringify(databaseInformation));
-
     response.body = user._id;
   }
 
-  logout({ response, cookies }: RouterContext<"/user/logout">) {
-    cookies.delete("jwt");
 
+  ////////////////////////////// LOGOUT ////////////////////////////////////////////////////////////
+  async logout({ response, cookies, state }: RouterContext<"/user/logout">) {
+
+    const payload = state.userId
+
+    //Deleting the refresh token from mongo
+    await this.mongoService.deleteRefreshToken(payload)
+    
+    //Deleting refresh token from cookies
+    cookies.delete("jwt");
+    response.headers.delete("Authorization")
     response.body = {
       message: "success",
     };

@@ -1,7 +1,13 @@
 import { Cookies, djwt, Service, Inject } from "deps";
 //import {serviceCollection} from "./services.ts";
 
-const _key = await crypto.subtle.generateKey(
+const refreshKey = await crypto.subtle.generateKey(
+  { name: "HMAC", hash: "SHA-512" },
+  true,
+  ["sign", "verify"],
+)
+
+const accessKey = await crypto.subtle.generateKey(
   { name: "HMAC", hash: "SHA-512" },
   true,
   ["sign", "verify"],
@@ -10,26 +16,29 @@ const _key = await crypto.subtle.generateKey(
 //@Service()
 class JwtService {
    
-  async create(id: number) {
+  async refreshToken(id: string) {
     const payload = {
       id: id,
       exp: djwt.getNumericDate(30 * 60), // 30 min expiration time
     };
-    return await djwt.create({ alg: "HS512", typ: "JWT" }, payload, _key);
+    return await djwt.create({ alg: "HS512", typ: "JWT" }, payload, refreshKey);
   }
 
-  async temporal(jwt: string) {
+  async accessToken(id: string) {
     const payload = {
-      jwt: jwt,
+      id: id,
       exp: djwt.getNumericDate(2 * 60), // 2 min expiration time
     };
-    return await djwt.create({ alg: "HS512", typ: "JWT" }, payload, _key);
+    return await djwt.create({ alg: "HS512", typ: "JWT" }, payload, accessKey);
+  }
+  
+  async verifyAccess(header: string) {
+      return await djwt.verify(header!, accessKey);
   }
 
-  async verify(cookies: Cookies) {
-    const jwt = await cookies.get("jwt") || "";
-
-    return await djwt.verify(jwt, _key);
+  async verifyRefresh(cookies: Cookies) {
+    const jwt = await cookies?.get("jwt") || "";
+    return await djwt.verify(jwt, refreshKey);
   }
 }
 
