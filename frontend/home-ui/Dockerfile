@@ -1,6 +1,6 @@
 FROM node:16-alpine3.15
 
-RUN npm install --location=global pnpm
+RUN npm install -g pnpm
 
 USER node
 

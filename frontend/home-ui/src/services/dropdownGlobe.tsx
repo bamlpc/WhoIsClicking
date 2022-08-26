@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import i18next from 'i18next';
-import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
+import i18next from 'i18next';
 import Cookies from 'js-cookie';
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 //awsome tutorial an author of the code
 //https://github.com/hidjou/classsed-react-localization
@@ -121,7 +121,7 @@ function DropdownLanguage() {
                 {languages.map(({ code, name, country_code }) => (
                   //List of the supported languages
                   <li key={country_code}>
-                    <a
+                    <button
                       href="#"
                       className={classNames('dropdown-item', {
                         //This will show what language is selected
@@ -141,7 +141,7 @@ function DropdownLanguage() {
                       ></span>
                       {/*Name of the country in their own language! */}
                       {name}
-                    </a>
+                    </button>
                   </li>
                 ))}
               </ul>

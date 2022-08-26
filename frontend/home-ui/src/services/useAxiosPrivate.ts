@@ -14,7 +14,7 @@ const useAxiosPrivate = () => {
       (config: any) => {
         if (!config.headers['Authorization']) {
           //if Authorization doesn't exist we know this is not a retry/refresh
-          config.headers['Authorization'] = `Bearer ${auth?.accessToken}` //this set up the Authorization
+          config.headers['Authorization'] = `Bearer ${auth?.accessToken}`; //this set up the Authorization
         }
         return config;
       },

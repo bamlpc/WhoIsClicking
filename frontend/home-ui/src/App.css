@@ -47,17 +47,17 @@ p {
   color: var(--link);
 }
 
-section{
+section {
   color: #18ffff;
-  text-shadow: 3px 3px rgba(50,50,70,0.5);
+  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
   background-color: #282c34;
   height: 100vh;
 }
 
-.navBg{
+.navBg {
   background-color: #282c34;
 }
 
-.main-body{
+.main-body {
   background-color: #282c34;
 }

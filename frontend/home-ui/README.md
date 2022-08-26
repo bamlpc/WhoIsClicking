@@ -6,11 +6,12 @@ This is a basic structure that I made because I was experimenting with react and
 
 ## Installation
 
-This template was made thinking in VSCode. 
+This template was made thinking in VSCode.
 Install:
-  * [Vite plugin](https://marketplace.visualstudio.com/items?itemName=antfu.vite)
-  * [ESLint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-  * [Prettier plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
+- [Vite plugin](https://marketplace.visualstudio.com/items?itemName=antfu.vite)
+- [ESLint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Prettier plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 Clone the repo and open VSCode
 If you want to manually install the dependecies run `pnpm install`

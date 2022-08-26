@@ -6,7 +6,6 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import HttpApi from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
-
 i18next
   .use(initReactI18next)
   .use(HttpApi) //Utility that allows fetching language files
@@ -28,4 +27,4 @@ i18next
     },
   });
 
-  export default i18next;
+export default i18next;
