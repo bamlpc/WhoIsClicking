@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 //import i18next from './services/language';
 
-//TODO: fix dropdown select language button not working
+//TODO: [WHOIS-20] fix dropdown select language button not working
 //i18next;
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);

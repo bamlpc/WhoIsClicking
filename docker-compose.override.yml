@@ -9,8 +9,8 @@ services:
       dockerfile: Dockerfile
     restart: on-failure
     volumes:
-      - ./frontend/home-ui/src:/src
-      - ./frontend/home-ui/public:/public
+      - ./frontend/home-ui/src:/usr/app/src
+      - ./frontend/home-ui/public:/usr/app/public
     depends_on:
       nginx:
         condition: service_healthy
