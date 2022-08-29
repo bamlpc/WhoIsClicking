@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora&display=swap');
+:root {
+  --primay: white;
+  --bg-primay: #282c34;
+
+  --link: #18ffff;
+}
 
 * {
   font-family: 'Sora', sans-serif;
@@ -11,6 +16,19 @@
   text-align: center;
 }
 
+p {
+  margin: 20px 0px;
+}
+
+.header {
+  font-size: 3rem;
+}
+
+.body {
+  margin: 20px 0 10px;
+  font-size: 2rem;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -19,5 +37,27 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+
+  background: var(--bg-primay);
+  color: var(--primay);
+}
+
+.App-link {
+  color: #61dafb;
+  color: var(--link);
+}
+
+section {
+  color: #18ffff;
+  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+  background-color: #282c34;
+  height: 100vh;
+}
+
+.navBg {
+  background-color: #282c34;
+}
+
+.main-body {
+  background-color: #282c34;
 }

@@ -1,49 +1,38 @@
 import log from "log";
-import Link from "../model/link.ts";
+import { RouterContext } from "deps";
+import {/*serviceCollection,*/ MongoService} from "../services/services.ts"
 
-const QR_URL = Deno.env.get("QR_URL")!;
-
-const generateLinks = async (ctx: any) => {
+const generateLinks = async ({ response, state }: RouterContext<"/generate">) => {
   const newLink = {
     hunter: getRandomString(50),
     prey: getRandomString(50),
     action: "",
   };
+
+  //const mongoService = serviceCollection.get(MongoService);
+  //const jwtService = serviceCollection.get(JwtService);
+
+  const mongoService = new MongoService();
+
+  const payload = state.userId
+  
   try {
-    await Link.create(newLink.hunter, newLink.prey, newLink.action);
-    log.info(newLink);
-    const response = {
+    //saving the links in the link collection
+    await mongoService.createLinks(newLink.hunter, newLink.prey, newLink.action);
+    // updating the user's hunter link
+    await mongoService.associateHunter(newLink.hunter, payload.id)
+    const _response = {
       success: true,
       newLink,
     };
-    ctx.response.body = JSON.stringify(response);
+    response.body = JSON.stringify(_response);
+
   } catch (error) {
     log.error(error);
-    ctx.response.body = {
+    response.body = {
       success: false,
       error,
     };
-  } finally {
-    try {
-      await fetch( QR_URL , {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newLink),
-      });
-      const response = {
-        success: true,
-        newLink,
-      };
-      ctx.response.body = JSON.stringify(response);
-    } catch (error) {
-      log.error(error);
-      ctx.response.body = {
-        success: false,
-        error,
-      };
-    }
   }
 };
 

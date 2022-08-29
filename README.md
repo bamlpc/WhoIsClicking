@@ -10,23 +10,23 @@ Who is clicking is a simple yet powerful set of tools aimed to identify a person
 
 # Pre-requisites 
 
-This project is fully dockerized, you need docker installed in your environment in order to use it.
+This project is fully dockerized, you need docker installed in your environment to use it.
 
 Here is the official page: https://docs.docker.com/engine/install/
 
 &nbsp;
 
-# Project layout
+# Project Layout
 This project has 3 environments: 
 - Development 
 - Test 
 - Production
 
-Each enviroment has its own docker files associated and in order to run any of them you should use:
+Each environment has its docker files associated and to run any of them you should use:
 
 `docker-compose -f docker-compose.yml -f docker-compose.{enviroment}.yml up -d`
 
-More information about docker compose and enviroments: https://docs.docker.com/compose/extends/
+More information about docker compose and environments: https://docs.docker.com/compose/extends/
 
 ## Project Structure
 * Whoisclicking
@@ -36,7 +36,6 @@ More information about docker compose and enviroments: https://docs.docker.com/c
         * home-ui:
     * backend:
         * links-api:
-        * qr-api:
     * infra:
         * mongo-db:
         * nginx:
@@ -52,15 +51,17 @@ More information about docker compose and enviroments: https://docs.docker.com/c
 
 2. Build the project: `docker-compose up`
 
-This will automatically apply `-f docker-compose.override.yml` that is the development environment.
+This will automatically apply `-f docker-compose.override.yml` which is the development environment.
 
 ## Caveats
-Keep in mind that the development enviroment will make volumes for the database, so if you change something inside .env you must cleanup the data. 
+Keep in mind that the development environment will make volumes for the database, so if you change something inside .env you must clean up the data. 
 
 Restart the project:
 1. `docker-compose down`
-2. `docker system prune --all -f`
-3. `rm -rf backend\qr-api\qrs, infra\mongo-db\data, infra\mongo-db\log, infra\nginx\log`
+2. `docker system prune --all -f --volumes`
+3. remove all volumes:
+   * Linux / Mac: `rm -rf infra\mongo-db\data, infra\mongo-db\log, infra\nginx\log`
+   * PowerShell: `Remove-Item -recurse -force infra\mongo-db\data, infra\mongo-db\log, infra\nginx\log`
 4. `docker-compose up`
 
 &nbsp;
@@ -77,7 +78,6 @@ In development env we map all applications to localhost to make the process easi
 
 * Backend: 
     * links-api: [http://localhost:8000]
-    * qr-api: [http://localhost:8001]
 * Frontend: 
     * home-ui: [http://localhost:3000]
 * Infra:

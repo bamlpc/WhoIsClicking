@@ -2,8 +2,6 @@ FROM denoland/deno:alpine-1.22.1 as stage
 
 RUN deno install -qAf --unstable https://deno.land/x/denon@2.5.0/denon.ts
 
-EXPOSE 8000
-
 WORKDIR /deno-dir/links-api
 
 COPY ./config ./config
@@ -20,9 +18,6 @@ RUN chown -R deno:deno /deno-dir/links-api
 
 RUN denon compile
 
-HEALTHCHECK --interval=30s --timeout=30s --start-period=30s --retries=3 \
-  CMD deno run --allow-net --allow-env ./src/helper/healthCheck.ts
-
 FROM alpine:3.16 as base 
 
 RUN addgroup -S appgroup && adduser -h /home/appuser -S appuser -G appgroup -D 
@@ -31,6 +26,8 @@ RUN addgroup -S appgroup && adduser -h /home/appuser -S appuser -G appgroup -D
 USER appuser
 
 COPY --from=stage --chown=appuser:appgroup /deno-dir/links-api/links-api-bin /home/appuser
+
+#create new healthcheck
 
 ENTRYPOINT [ "/home/appuser" ]
 

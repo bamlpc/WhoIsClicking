@@ -23,18 +23,6 @@ services:
       wic_backend:
         aliases: 
           - links-api_ip
-  qr-api:
-    container_name: qr-api
-    build:
-      context: ./backend/qr-api
-    restart: on-failure
-    depends_on:
-      links-api:
-        condition: service_healthy
-    networks:
-      wic_backend:
-        aliases: 
-          - qr-api_ip
 
   mongo-db:
     container_name: mongo-db

@@ -7,11 +7,6 @@ services:
     build:
       context: ./backend/links-api
       dockerfile: Dockerfile.production
-  #qr-api:
-  #  container_name: qr-api
-  #  build:
-  #    context: ./backend/qr-api
-  #    dockerfile: Dockerfile.production
 
   #mongo-db:
   #  container_name: mongo-db
