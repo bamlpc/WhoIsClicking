@@ -16,7 +16,7 @@ Here is the official page: https://docs.docker.com/engine/install/
 
 &nbsp;
 
-# Project layout
+# Project Layout
 This project has 3 environments: 
 - Development 
 - Test 
@@ -51,14 +51,14 @@ More information about docker compose and environments: https://docs.docker.com/
 
 2. Build the project: `docker-compose up`
 
-This will automatically apply `-f docker-compose.override.yml` that is the development environment.
+This will automatically apply `-f docker-compose.override.yml` which is the development environment.
 
 ## Caveats
 Keep in mind that the development environment will make volumes for the database, so if you change something inside .env you must clean up the data. 
 
 Restart the project:
 1. `docker-compose down`
-2. `docker system prune --all -f`
+2. `docker system prune --all -f --volumes`
 3. remove all volumes:
    * Linux / Mac: `rm -rf infra\mongo-db\data, infra\mongo-db\log, infra\nginx\log`
    * PowerShell: `Remove-Item -recurse -force infra\mongo-db\data, infra\mongo-db\log, infra\nginx\log`
