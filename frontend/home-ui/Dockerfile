@@ -2,7 +2,7 @@ FROM node:16-alpine3.15
 
 RUN npm install -g pnpm
 
-USER node
+#USER node
 
 WORKDIR /usr/app
 

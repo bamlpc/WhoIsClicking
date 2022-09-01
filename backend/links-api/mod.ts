@@ -1,4 +1,4 @@
-import { Application, oakCors } from "deps";
+import { Application, oakCors, configSync } from "deps";
 import { api, user } from "./src/routes/routes.ts";
 import log from "log";
 import loggerMiddleware from "./src/middlewares/logger.ts";
@@ -6,6 +6,9 @@ import errorMiddleware from "./src/middlewares/error.ts";
 import notFoundMiddleware from "./src/middlewares/notFound.ts";
 import timingMiddleware from "./src/middlewares/timing.ts";
 
+configSync({path: "app.env"});
+
+//TODO: create an interface for state's user id
 interface State {
   userId: Object;
 }
@@ -14,7 +17,7 @@ const app = new Application<State>();
 
 app.use(oakCors({
   credentials: true,
-  origin: [/^.+localhost:(3000)$/, /^.+nginx_ip:80$/],
+  origin: [/^.+localhost:(3000)$/, /^.+nginx:80$/],
 }));
 
 app.use(loggerMiddleware);
