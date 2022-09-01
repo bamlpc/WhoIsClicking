@@ -63,9 +63,10 @@ services:
     depends_on:
       - links-api
     ports:
-      - "81:80"
+      - 80:80
+      - 443:443
     volumes:
-      - ./infra/nginx/log/:/var/log/nginx/log
+      - ./infra/nginx/log/:/var/log/nginx/
 
 volumes:
   mongo-data: {}
