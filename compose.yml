@@ -21,7 +21,7 @@ services:
     container_name: home-ui
     build:
       context: ./frontend/home-ui
-      dockerfile: Dockerfile
+      dockerfile: dev.Dockerfile
     restart: on-failure
     volumes:
       - ./frontend/home-ui/src:/usr/app/src
