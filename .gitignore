@@ -3,8 +3,7 @@
 .vscode/*
 !.vscode/settings.json
 !.vscode/extensions.json
-/.env
-/denon.yml
+*.log
 
 ############################  BACKEND ##################################
 
@@ -38,5 +37,8 @@ frontend/home-ui/yarn-error.log*
 ############################  INFRA ##################################
 infra/mongo-db/data/*
 infra/mongo-db/log/*
-
-infra/nginx/logs/*
+infra/nginx/log
+infra/nginx/log/*
+infra/nginx/log/access.log
+infra/nginx/log/error.log
+infra/nginx/log/access.log
