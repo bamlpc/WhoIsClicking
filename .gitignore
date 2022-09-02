@@ -41,3 +41,4 @@ infra/nginx/log
 infra/nginx/log/*
 infra/nginx/log/access.log
 infra/nginx/log/error.log
+infra/nginx/log/access.log
