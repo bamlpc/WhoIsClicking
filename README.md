@@ -45,11 +45,7 @@ More information about docker compose and environments: https://docs.docker.com/
 
 # Initialization
 
-1. Rename the `.env.example` to `.env` and set up your own IDs and passwords.
- * Linux / Mac: `mv .env.example .env`
- * PowerShell: `Rename-Item -Path ".env.example" -NewName ".env"` 
-
-2. Build the project: `docker-compose up`
+1. Build the project: `docker-compose up`
 
 This will automatically apply `-f docker-compose.override.yml` which is the development environment.
 
