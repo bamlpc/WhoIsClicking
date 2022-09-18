@@ -2,6 +2,7 @@ import { Router } from "deps";
 import generateLinks from "../controller/links_controller.ts";
 import healthCheck from "../controller/healthcheck_controller.ts";
 import preys from "../controller/preys_controller.ts";
+import scanner from "../controller/scanner_controller.ts";
 import qrGen from "../controller/qrGenerator_controller.ts";
 import LoginValidation from "../validations/login_validation.ts";
 import RegisterValidation from "../validations/register_validation.ts";
@@ -22,6 +23,7 @@ const authController = new AuthController(new JwtService(), new MongoService());
 
 api
   .get("/healthcheck", healthCheck)
+  .get("/scanner", scanner)
   .post(
     "/register",
     RegisterValidation,
