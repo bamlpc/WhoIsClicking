@@ -7,8 +7,12 @@ reset:
 	sudo rm -rf infra/mongo-db/data/ infra/mongo-db/log/
 	docker-compose up --build
 
-reload:
+backreload:
 	docker-compose up --detach --build links-api
+
+fullreload:
+	docker-compose down
+	docker-compose up --build
 
 winreset:
 	docker-compose down 
