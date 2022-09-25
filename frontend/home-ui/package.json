@@ -2,7 +2,7 @@
   "name": "react_template",
   "version": "1.0.0",
   "description": "This template uses: pnpm-ts-vite-eslint-prettier",
-  "proxy": "http://localhost:3000",
+  "proxy": "http://localhost:8000",
   "repository": {
     "type": "git",
     "url": "https://github.com/BMogetta/react_template.git"
