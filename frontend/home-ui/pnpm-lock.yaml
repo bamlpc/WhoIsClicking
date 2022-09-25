@@ -11,6 +11,7 @@ specifiers:
   axios: 0.27.2
   bootstrap: 5.2.0
   classnames: ^2.2.6
+  device-detector-js: ^3.0.3
   eslint: ^8.8.0
   eslint-config-prettier: ^8.3.0
   eslint-plugin-import: ^2.25.4
@@ -42,6 +43,7 @@ dependencies:
   axios: 0.27.2
   bootstrap: 5.2.0_@popperjs+core@2.11.5
   classnames: 2.3.1
+  device-detector-js: 3.0.3
   flag-icon-css: 3.5.0
   i18next: 19.9.2
   i18next-browser-languagedetector: 6.1.4
@@ -1036,6 +1038,11 @@ packages:
   /dequal/2.0.3:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
     engines: {node: '>=6'}
+    dev: false
+
+  /device-detector-js/3.0.3:
+    resolution: {integrity: sha512-jM89LJAvP6uOd84at8OlD9dWP8KeYCCHUde0RT0HQo/stdoRH4b54Xl/fntx2nEXCmqiFhmo+/cJetS2VGUHPw==}
+    engines: {node: '>= 8.11.4'}
     dev: false
 
   /dir-glob/3.0.1:

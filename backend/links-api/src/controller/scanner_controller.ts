@@ -15,7 +15,8 @@ const scanner = async ({ request, response, state }: RouterContext<"/scanner">) 
           prey: preyInfo,
         };
         response.body = JSON.stringify(_response);
-    
+        response.headers.set("Content-Type", "application/json");
+        
       } catch (error) {
         log.error(error);
         response.body = {

@@ -1,12 +1,12 @@
 //import { useTranslation } from 'react-i18next';
+import Scan from './../components/Scanner'
+import React from 'react'
 
 const Test = () => {
-  //const { t, i18n } = useTranslation();
-  //<h1>{t('welcome_message')}</h1>
-
   return (
     <div className="App-header">
-      <h1> This page should provide a clickeable button to self scan </h1>
+      <h1> Press the button to start a self scan </h1>
+      <button type="button" className="btn btn-lg btn-outline-primary" onClick={() => Scan()}>Self Scan</button>
     </div>
   );
 };
