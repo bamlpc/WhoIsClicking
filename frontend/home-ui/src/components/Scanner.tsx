@@ -3,16 +3,18 @@ import DeviceDetector from "device-detector-js";
 
 const Scan = () => {
     const { innerWidth: width, innerHeight: height } = window;
-    //TODO: remove log
-    console.log( {width} );
-    console.log( {height} );
 
     const deviceDetector = new DeviceDetector();
     const userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36";
     const device = deviceDetector.parse(userAgent);
-    //TODO: remove log
-    console.log( {device} );
-    DenoScan();
+    
+    const scan = DenoScan();
+
+    //TODO: Work on this object
+    const scanner = {width, height, userAgent, device, scan}
+    console.log(scanner)
+
+    return scanner
 }
 
 const DenoScan = async ( ) => {
@@ -37,13 +39,8 @@ const DenoScan = async ( ) => {
     .catch(error => {
         console.error(error)
     })
-
-    //TODO: remove log
-    console.log(fetchData);
     
     return fetchData
-    
-
 };
 
 export default Scan
