@@ -14,45 +14,28 @@ const Scan = () => {
 }
 
 const DenoScan = async ( ) => {
+    let fetchData;
+    let res;
+    fetch('http://localhost:8000/api/scanner', {
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        referrerPolicy: 'no-referrer' // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url  
+    } )
+    .then(response => {
+        if(!response.ok) {
+                throw Error('Fail to get links');
+        }
+        console.log(response);
+    })
+    .then(data =>  fetchData = data)
+    .catch(error => {console.log(error)})
 
-    /*const [data, setData] = React.useState(null);
-    
-      React.useEffect(() => {
-        fetch('/api/scanner')
-          .then((res) => res.text())
-          .then((data) => setData(data.message));
-      }, []);
-    
-      console.log(data);*/
-        let fetchData;
-        let responseClone;
-        fetch('/api/scanner', {
-            method: 'GET', // *GET, POST, PUT, DELETE, etc.
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            referrerPolicy: 'no-referrer' // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url  
-        } )
-        .then(function (response) {
-          responseClone = response.clone(); // 2
-          return response.json();
-        })
-        .then(function (data) {
-          data =>  fetchData = data
-        }, function (rejectionReason) { // 3
-          console.log('Error parsing JSON from response:', rejectionReason, responseClone); // 4
-          responseClone.text() // 5
-          .then(function (bodyText) {
-              console.log('Received the following instead of valid JSON:', bodyText); // 6
-          });
-        });
-      //   .then(response => response)
-      //   .then(data =>  fetchData = data)
-      //   .catch(error => {console.log(error)})
+    console.log( {fetchData} );
 
-      console.log( {fetchData} );
 };
 
 export default Scan

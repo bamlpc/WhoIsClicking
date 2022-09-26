@@ -10,7 +10,12 @@ reset:
 backreload:
 	docker-compose up --detach --build links-api
 
+reload:
+	docker-compose down
+	docker-compose up --build
+
 fullreload:
+	rm  ~/.docker/config.json
 	docker-compose down
 	docker-compose up --build
 
@@ -26,4 +31,4 @@ winreset:
 dockertotalreset:
 	docker system prune --all -f --volumes
 
-.PHONY: reset winreset
+.PHONY: reset backreload reload fullreload winreset dockertotalreset
