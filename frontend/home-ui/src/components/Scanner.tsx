@@ -1,33 +1,52 @@
 import React from 'react'
 import DeviceDetector from "device-detector-js";
 
+//TODO: WORK on this interface
+interface Scan {
+    width: number,
+    height: number,
+    userAgent: string, 
+    device: object, 
+    scan: Promise<object>
+}
+
 const Scan = () => {
+    
     const { innerWidth: width, innerHeight: height } = window;
 
     const deviceDetector = new DeviceDetector();
-    const userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36";
+    
+    const userAgent = navigator.userAgent;
     const device = deviceDetector.parse(userAgent);
     
     const scan = DenoScan();
 
     //TODO: Work on this object
-    const scanner = {width, height, userAgent, device, scan}
-    console.log(scanner)
-
+    const scanner: Scan = {
+        width, 
+        height, 
+        userAgent, 
+        device, 
+        scan
+    }
+    
     return scanner
 }
 
 const DenoScan = async ( ) => {
 
-    const fetchData = await fetch('http://localhost:8000/api/scanner', {
+    const requestOptions = {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         credentials: 'same-origin', // include, *same-origin, omit
         headers: {
             'Content-Type': 'application/json'
-        },
+            },
         referrerPolicy: 'no-referrer' // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url  
-    })
+        }
+    
+    
+    const fetchData = await fetch('http://localhost:8000/api/scanner', requestOptions)
     .then(response => {
         if(!response.ok) {
             throw Error('Fail to get links');
@@ -40,7 +59,11 @@ const DenoScan = async ( ) => {
         console.error(error)
     })
     
-    return fetchData
+    const resp = fetchData.prey
+
+    
+    return resp
+    
 };
 
 export default Scan
