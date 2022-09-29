@@ -7,7 +7,7 @@ interface Scan {
     height: number,
     userAgent: string, 
     device: object, 
-    scan: Promise<object>
+    denoScan: Promise<object>
 }
 
 const Scan = () => {
@@ -19,7 +19,9 @@ const Scan = () => {
     const userAgent = navigator.userAgent;
     const device = deviceDetector.parse(userAgent);
     
-    const scan = DenoScan();
+    const denoScan = DenoScan();
+
+    console.log(denoScan);
 
     //TODO: Work on this object
     const scanner: Scan = {
@@ -27,7 +29,7 @@ const Scan = () => {
         height, 
         userAgent, 
         device, 
-        scan
+        denoScan
     }
     
     return scanner
@@ -36,34 +38,24 @@ const Scan = () => {
 const DenoScan = async ( ) => {
 
     const requestOptions = {
-        method: 'GET', // *GET, POST, PUT, DELETE, etc.
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
+        method: 'GET',
+        cache: 'no-cache',
+        credentials: 'same-origin', 
         headers: {
             'Content-Type': 'application/json'
             },
-        referrerPolicy: 'no-referrer' // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url  
+        referrerPolicy: 'no-referrer'
         }
     
     
     const fetchData = await fetch('http://localhost:8000/api/scanner', requestOptions)
-    .then(response => {
-        if(!response.ok) {
-            throw Error('Fail to get links');
-        } 
-        return response.json();
-    })
-    .then(data =>  {
-        return data})
+    .then((response) => response.json())
     .catch(error => {
         console.error(error)
     })
     
-    const resp = fetchData.prey
-
-    
+    const resp = fetchData
     return resp
-    
 };
 
 export default Scan
