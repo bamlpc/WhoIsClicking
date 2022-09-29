@@ -10,7 +10,7 @@ interface Scan {
     denoScan: Promise<object>
 }
 
-const Scan = () => {
+const Scan = async () => {
     
     const { innerWidth: width, innerHeight: height } = window;
 
@@ -19,8 +19,9 @@ const Scan = () => {
     const userAgent = navigator.userAgent;
     const device = deviceDetector.parse(userAgent);
     
-    const denoScan = DenoScan();
+    const denoScan = await DenoScan();
 
+    //TODO: REMOVE THIS CONSOLE LOG
     console.log(denoScan);
 
     //TODO: Work on this object

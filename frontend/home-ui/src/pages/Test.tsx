@@ -7,7 +7,9 @@ const Test = () => {
   const [data, setData] = useState({});
   
   const autoScan = async () => {
-    const selfScan = Scan();
+    const selfScan = await Scan();
+    //TODO: REMOVE THIS CONSOLE LOG
+    console.log({selfScan});
     setData(selfScan)
   }
   const cleanUp = async () => {
