@@ -8,8 +8,6 @@ const Test = () => {
   
   const autoScan = async () => {
     const selfScan = await Scan();
-    //TODO: REMOVE THIS CONSOLE LOG
-    console.log({selfScan});
     setData(selfScan)
   }
   const cleanUp = async () => {

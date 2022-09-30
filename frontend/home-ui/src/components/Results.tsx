@@ -18,7 +18,7 @@ const Results = ({data, cleanner}) => {
                         <hr></hr>
                         <div className="row align-items-md-stretch">
                             <div className="col-md-4">
-                                <h2>Broser</h2>
+                                <h2>Browser</h2>
                                 <div className="fs-5">
                                     <p>Type: {data.device.client.type}</p>
                                     <p>Name: {data.device.client.name}</p>
@@ -38,7 +38,7 @@ const Results = ({data, cleanner}) => {
                                 </div>
                             </div>
                             <div className="col-md-4">
-                                <h2>Operating System</h2>
+                                <h2>O.S.</h2>
                                 <div className="fs-5">
                                     <p>Name: {data.device.os.name}</p>
                                     <p>Version: {data.device.os.version}</p>
@@ -53,6 +53,9 @@ const Results = ({data, cleanner}) => {
                 <div className="col-md-6">
                     <div className="h-100 p-5 bg-dark border rounded-3">
                         <h2>Internet Provider Info</h2>
+                        <div className="fs-5">
+                            <p>IP: {data.denoScan.prey.ip}</p>
+                        </div>
                     </div>
                 </div>
             </div>

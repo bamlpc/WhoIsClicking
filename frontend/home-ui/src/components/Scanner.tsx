@@ -1,7 +1,6 @@
 import React from 'react'
 import DeviceDetector from "device-detector-js";
 
-//TODO: WORK on this interface
 interface Scan {
     width: number,
     height: number,
@@ -21,10 +20,8 @@ const Scan = async () => {
     
     const denoScan = await DenoScan();
 
-    //TODO: REMOVE THIS CONSOLE LOG
     console.log(denoScan);
 
-    //TODO: Work on this object
     const scanner: Scan = {
         width, 
         height, 
