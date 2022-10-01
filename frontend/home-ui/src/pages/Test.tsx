@@ -1,12 +1,32 @@
 //import { useTranslation } from 'react-i18next';
+import Scan from './../components/Scanner'
+import Results from './../components/Results'
+import React, {useState} from 'react'
 
 const Test = () => {
-  //const { t, i18n } = useTranslation();
-  //<h1>{t('welcome_message')}</h1>
-
+  const [data, setData] = useState({});
+  
+  const autoScan = async () => {
+    const selfScan = await Scan();
+    setData(selfScan)
+  }
+  const cleanUp = async () => {
+    setData({})
+  }
+  
   return (
     <div className="App-header">
-      <h1> This page should provide a clickeable button to self scan </h1>
+      {
+        data.width == undefined
+        ? <>
+          <h1> Press the button to start a self scan </h1>
+          <button type="button" className="btn btn-lg btn-outline-primary" onClick={() => autoScan()}>Self Scan</button>
+        </> : <>
+        <Results data={data} cleanner={cleanUp}  /> 
+        <br></br>
+        <br></br>
+        </>
+      }
     </div>
   );
 };
