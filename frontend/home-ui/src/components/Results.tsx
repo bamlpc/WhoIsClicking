@@ -1,7 +1,8 @@
 import React from 'react'
 
 const Results = ({data, cleanner}) => {
-
+    const device = data.device;
+    const isp = data.denoScan.isp;
     return (
         <div className="container">
             <div className="p-5 mb-4 bg-dark border rounded-3">
@@ -13,18 +14,18 @@ const Results = ({data, cleanner}) => {
             </div>
             <div className="row align-items-md-stretch col-md-12">
                 <div className="col-md-6">
-                    <div className="h-100 p-5 text-bg-dark border rounded-3">
-                        <p>Information related to the client used to display this link.</p>
+                    <div className="h-100 p-5 bg-dark border rounded-3">
+                        <h2>Device Information</h2>
                         <hr></hr>
                         <div className="row align-items-md-stretch">
                             <div className="col-md-4">
                                 <h2>Browser</h2>
                                 <div className="fs-5">
-                                    <p>Type: {data.device.client.type}</p>
-                                    <p>Name: {data.device.client.name}</p>
-                                    <p>Version: {data.device.client.version}</p>
-                                    <p>Engine: {data.device.client.engine}</p>
-                                    <p>Engine Version: {data.device.client.engineVersion}</p>
+                                    <p>Type: {device.client.type}</p>
+                                    <p>Name: {device.client.name}</p>
+                                    <p>Version: {device.client.version}</p>
+                                    <p>Engine: {device.client.engine}</p>
+                                    <p>Engine Version: {device.client.engineVersion}</p>
                                 </div>
                             </div>
                             <div className="col-md-4">
@@ -32,17 +33,17 @@ const Results = ({data, cleanner}) => {
                                 <div className="fs-5">
                                     <p>Width: {data.width}px</p>
                                     <p>Height: {data.height}px</p>
-                                    <p>Brand: {data.device.device.brand}</p>
-                                    <p>Model: {data.device.device.model}</p>
-                                    <p>Type: {data.device.device.type}</p>
+                                    <p>Brand: {device.device.brand}</p>
+                                    <p>Model: {device.device.model}</p>
+                                    <p>Type: {device.device.type}</p>
                                 </div>
                             </div>
                             <div className="col-md-4">
                                 <h2>O.S.</h2>
                                 <div className="fs-5">
-                                    <p>Name: {data.device.os.name}</p>
-                                    <p>Version: {data.device.os.version}</p>
-                                    <p>Platform: {data.device.os.platform}</p>
+                                    <p>Name: {device.os.name}</p>
+                                    <p>Version: {device.os.version}</p>
+                                    <p>Platform: {device.os.platform}</p>
                                 </div>
                             </div>
                             <hr></hr>
@@ -52,7 +53,31 @@ const Results = ({data, cleanner}) => {
                 </div>
                 <div className="col-md-6">
                     <div className="h-100 p-5 bg-dark border rounded-3">
-                        <h2>Internet Provider Info</h2>
+                        <h2>Internet Provider Information</h2>
+                        <hr></hr>
+                        <div className="row align-items-md-stretch">
+                            <div className="col-md-6">
+                                <h2>Geolocalization</h2>
+                                <div className="fs-5">
+                                    <p>Continent: {isp.continent_name}</p>
+                                    <p>Country: {isp.country_name}</p>
+                                    <p>State: {isp.state_prov}</p>
+                                    <p>District: {isp.district}</p>
+                                    <p>City: {isp.city}</p>
+                                    <p>Zip Code: {isp.zipcode}</p>
+                                    <p>Calling Code: {isp.calling_code}</p>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <h2>ISP</h2>
+                                <div className="fs-5">
+                                    <p>Internet Provider: {isp.isp}</p>
+                                    <p>Connection Type: {isp.connection_type}</p>
+                                    <p>Organization: {isp.organization}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr></hr>
                         <div className="fs-5">
                             <p>IP: {data.denoScan.prey.ip}</p>
                         </div>

@@ -8,6 +8,7 @@
 ############################  BACKEND ##################################
 
 backend/links-api/logs.txt
+backend/links-api/app.env
 backend/qr-api/qrs/*.png
 
 ############################  FRONTEND ##################################

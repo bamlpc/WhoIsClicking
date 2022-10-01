@@ -1,12 +1,8 @@
 {
-  "name": "react_template",
+  "name": "who_is_clicking",
   "version": "1.0.0",
-  "description": "This template uses: pnpm-ts-vite-eslint-prettier",
+  "description": "Who is behind the screen?",
   "proxy": "http://localhost:8000",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/BMogetta/react_template.git"
-  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
