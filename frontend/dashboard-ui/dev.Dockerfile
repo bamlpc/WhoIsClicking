@@ -4,7 +4,7 @@ RUN npm install -g pnpm
 
 WORKDIR /usr/app
 
-COPY ["tsconfig.json", ".npmrc", "./"]
+COPY ["tsconfig.json", ".npmrc","index.html", "tsconfig.node.json", "vite.config.ts", "./"]
 
 COPY ["package.json", "pnpm-lock.yaml", "./"]
 
@@ -14,4 +14,4 @@ USER node
 
 RUN pnpm install
 
-CMD [ "pnpm", "start" ]
+CMD [ "pnpm", "dev", "--host" ]

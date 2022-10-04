@@ -49,7 +49,7 @@ services:
       HOME_UI_URL: http://dashboard-ui:3000
     tty: true
     ports:
-      - '3001:3000'
+      - '3001:3001'
 
 
   mongo-db:
