@@ -24,6 +24,7 @@ const authController = new AuthController(new JwtService(), new MongoService());
 api
   .get("/healthcheck", healthCheck)
   .get("/scanner", scanner)
+  .get("/generate", generateLinks)
   .post(
     "/register",
     RegisterValidation,

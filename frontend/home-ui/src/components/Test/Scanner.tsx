@@ -43,7 +43,7 @@ const DenoScan = async ( ) => {
             'Content-Type': 'application/json'
             },
         referrerPolicy: 'no-referrer'
-        }
+    }
     
     
     const fetchData = await fetch('http://localhost:8000/api/scanner', requestOptions)

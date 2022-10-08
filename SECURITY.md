@@ -3,7 +3,7 @@
 ## Reporting Potential Security Issues
 
 If you have encountered a potential security vulnerability in this project,
-please report it to us at <wic_temp_email@gmail.com>. We will work with you to
+please report it to us at <help@whoisclicking.com>. We will work with you to
 verify the vulnerability and patch it.
 
 When reporting issues, please provide the following information:
@@ -17,9 +17,6 @@ project contributors a chance to resolve the vulnerability and issue a new
 release prior to any public exposure; this helps protect the project's
 users, and provides them with a chance to upgrade and/or update in order to
 protect their applications.
-
-For sensitive email communications, please use
-[our PGP key](https://getlaminas.org/asset/laminas-security.asc).
 
 ## Policy
 
