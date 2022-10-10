@@ -11,7 +11,7 @@ const Welcome = ({generate}) => {
                 <button type="button" className="btn btn-lg btn-outline-primary" onClick={() => {
                         generate();
                         setSpinner(true);
-                    }}>Self Scan</button>
+                    }}>Generate my links</button>
             </>
             :<Spinner />
         }

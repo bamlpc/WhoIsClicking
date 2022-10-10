@@ -9,7 +9,7 @@ const Link = () => {
 
   const generate = async () => {
     const generatedLinks = await generateLinks();
-    setData(generatedLinks)
+    setLinks(generatedLinks)
   }
 
   return (

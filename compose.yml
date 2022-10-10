@@ -51,7 +51,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
       MONGO_INITDB_DATABASE: Whoisclicking
-      MONGO_INITDB_USERNAME: username_for_links_api
+      MONGO_INITDB_USERNAME: linksUser
       MONGO_INITDB_PASSWORD: password
 
   #nginx:
