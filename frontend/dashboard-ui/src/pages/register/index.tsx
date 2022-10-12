@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import {
   RegisterValidate,
@@ -28,10 +29,12 @@ const initialState: UserRegisterFrorm = {
   password1: '',
   password2: '',
 };
-//TODO: find bug because it was working
+
 const Register = () => {
   const [state, setState] = useState(initialState);
   const [error, setError] = useState('');
+
+  let navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,9 +46,9 @@ const Register = () => {
           username: state.username,
           password: state.password1,
         };
-        const signinRequest = await userSigninResquest(userRegister);
-        console.log(signinRequest); //TODO: DELETE THIS LOG
-        return signinRequest;
+        const signinResponse = await userSigninResquest(userRegister);
+        if (signinResponse.success) navigate("/login");
+        else setError('Cannot create the account');
       })
       .catch((err) => {
         setError(err.errors);

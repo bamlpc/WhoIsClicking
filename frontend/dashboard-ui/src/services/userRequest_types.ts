@@ -14,8 +14,9 @@ interface UserSigninResquest {
 }
 
 interface UserSigninResponse {
-  username: string;
-  password: string;
+  success: boolean;
+  status?: number;
+  error?: string;
 }
 
 export type {
