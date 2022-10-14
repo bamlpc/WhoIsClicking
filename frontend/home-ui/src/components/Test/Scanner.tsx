@@ -46,7 +46,7 @@ const DenoScan = async ( ) => {
     }
     
     
-    const fetchData = await fetch('http://localhost:8000/api/scanner', requestOptions)
+    const fetchData = await fetch('http://localhost:8000/api/testScan', requestOptions)
     .then((response) => response.json())
     .catch(error => {
         console.error(error)

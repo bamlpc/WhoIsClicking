@@ -15,7 +15,7 @@ const Links = ({links}) => {
     const copyPrey = () => {
         sethunterButtonText("Copy Hunter's Link");
         setpreyButtonText("Copied!");
-        navigator.clipboard.writeText(`https://${window.location.hostname}/hunter/${links.prey}`);
+        navigator.clipboard.writeText(`https://${window.location.hostname}/prey/${links.prey}`);
     }
 
     return (

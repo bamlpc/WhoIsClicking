@@ -22,7 +22,7 @@ Now you could inspect for example:
 
 * `show dbs` this will show all your databases.
 * `show collections` this will show all the collections in the database that you are logged in.
-* `db.{YOUR_COLLECTION_NAME_HERE}.find()` this will show all the elements in the collection.
+* `db.{COLLECTION_NAME}.find()` this will show all the elements in the collection.
 * `db.runCommand({usersInfo: {user: {MONGODB_USER}, db: {DB_NAME}}, showPrivileges: true})` this will show all the privileges of the user.
   
 

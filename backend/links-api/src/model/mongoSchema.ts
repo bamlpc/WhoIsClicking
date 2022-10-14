@@ -16,4 +16,10 @@ interface LinkSchema {
   action: string
 }
 
-export type {UserSchema, LinkSchema};
+interface PreySchema {
+  _id: Bson.ObjectId;
+  prey: string;
+  stolenData: any;
+}
+
+export type {UserSchema, LinkSchema, PreySchema};

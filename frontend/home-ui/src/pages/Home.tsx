@@ -9,7 +9,7 @@ const Home = () => {
     <div className="App-header">
               <div className="container px-4 px-lg-5">
             <div className="row gx-4 gx-lg-5 align-items-center my-5">
-                <div className="col-lg-7"><img className="img-fluid rounded mb-4 mb-lg-0" src="https://dummyimage.com/900x400/dee2e6/6c757d.jpg" alt="..." /></div>
+                <div className="col-lg-7"><img className="img-fluid rounded mb-4 mb-lg-0" src="images/home.png" alt="..." /></div>
                 <div className="col-lg-5">
                     <h1 className="font-weight-light">Who is Clicking</h1>
                     <p className="fs-5">Who is clicking is a simple yet powerful set of tools aimed to identify a person with the help of recon scripts executed when someone clicks a link.</p>
