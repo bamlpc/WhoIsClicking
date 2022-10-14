@@ -1,6 +1,7 @@
 //import { useTranslation } from 'react-i18next';
-import Scan from './../components/Scanner'
-import Results from './../components/Results'
+import Scan from '../components/Test/Scanner'
+import Welcome from '../components/Test/Welcome'
+import Results from '../components/Test/Results'
 import React, {useState} from 'react'
 
 const Test = () => {
@@ -16,17 +17,10 @@ const Test = () => {
   
   return (
     <div className="App-header">
-      {
-        data.width == undefined
-        ? <>
-          <h1> Press the button to start a self scan </h1>
-          <button type="button" className="btn btn-lg btn-outline-primary" onClick={() => autoScan()}>Self Scan</button>
-        </> : <>
-        <Results data={data} cleanner={cleanUp}  /> 
-        <br></br>
-        <br></br>
-        </>
-      }
+        {data.width == undefined
+          ? <Welcome autoScan={autoScan}  />
+          : <Results data={data} cleanner={cleanUp}  />
+        }
     </div>
   );
 };

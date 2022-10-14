@@ -3,7 +3,7 @@ import './App.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Layout from './layout/simple';
-import About from './pages/About';
+import Link from './pages/Links';
 import Contact from './pages/Contact';
 import Disclaimer from './pages/Disclaimer';
 import Home from './pages/Home';
@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
+          <Route path="link" element={<Link />} />
           <Route path="contact" element={<Contact />} />
           <Route path="test" element={<Test />} />
           <Route path="login" element={<Login />} />

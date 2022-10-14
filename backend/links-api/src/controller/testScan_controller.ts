@@ -2,7 +2,8 @@ import log from "log";
 import { RouterContext } from "deps";
 import {/*serviceCollection,*/ MongoService} from "../services/services.ts"
 
-const scanner = async ({ request, response, state }: RouterContext<"/scanner">) => {
+const testScan = async ({ request, response, state }: RouterContext<"/testScan">) => {
+  // TODO: Move scans to a helper class
     try {
         let preyInfo = {
           agent: request.headers.get('user-agent'), // User Agent we get from headers
@@ -32,4 +33,4 @@ const scanner = async ({ request, response, state }: RouterContext<"/scanner">) 
 
 };
 
-export default scanner;
+export default testScan;

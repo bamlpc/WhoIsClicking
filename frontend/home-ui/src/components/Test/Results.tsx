@@ -3,6 +3,7 @@ import React from 'react'
 const Results = ({data, cleanner}) => {
     const device = data.device;
     const isp = data.denoScan.isp;
+    
     return (
         <div className="container">
             <div className="p-5 mb-4 bg-dark border rounded-3">
@@ -84,6 +85,8 @@ const Results = ({data, cleanner}) => {
                     </div>
                 </div>
             </div>
+            <br></br>
+            <br></br>
         </div>
     )
 }
