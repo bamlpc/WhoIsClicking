@@ -37,7 +37,7 @@ class AuthController {
 
         await this.mongoService.createUser(_id, username, hashedPassword, "toBeCreated");
         const _response = {
-          succes: true,
+          success: true,
         };
 
         response.body = JSON.stringify(_response);
@@ -94,7 +94,7 @@ class AuthController {
         
         //sending access token in json
         const _response = {
-          succes: true,
+          success: true,
           status: 200,
           message: { "roles": store.roles,"hunter": store.hunter , "accessToken": accessToken},
         };

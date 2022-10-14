@@ -26,8 +26,6 @@ services:
     volumes:
       - ./frontend/home-ui/src:/usr/app/src
       - ./frontend/home-ui/public:/usr/app/public
-    #depends_on:
-    #  - nginx
     stop_signal: SIGKILL
     stdin_open: true
     environment:
@@ -35,6 +33,23 @@ services:
     tty: true
     ports:
       - '3000:3000'
+
+  dashboard-ui:
+    container_name: dashboard-ui
+    build:
+      context: ./frontend/dashboard-ui
+      dockerfile: dev.Dockerfile
+    restart: on-failure
+    volumes:
+      - ./frontend/dashboard-ui/src:/usr/app/src
+      - ./frontend/dashboard-ui/public:/usr/app/public
+    stop_signal: SIGKILL
+    stdin_open: true
+    environment:
+      HOME_UI_URL: http://dashboard-ui:3001
+    tty: true
+    ports:
+      - '3001:3001'
 
 
   mongo-db:
@@ -54,23 +69,9 @@ services:
       MONGO_INITDB_USERNAME: username_for_links_api
       MONGO_INITDB_PASSWORD: password
 
-  #nginx:
-  #  container_name: nginx
-  #  build: 
-  #    context: ./infra/nginx
-  #  restart: always
-  #  tty: true
-  #  depends_on:
-  #    - links-api
-  #  ports:
-  #    - 80:80
-  #    - 443:443
-  #  volumes:
-  #    - ./infra/nginx/log/:/var/log/nginx/
-
 volumes:
   mongo-data: {}
-  nginx: {}
   home-ui: {}
+  dashboard-ui: {}
 
 networks: {}
