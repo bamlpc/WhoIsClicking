@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 import {
   RegisterValidate,
@@ -47,7 +47,7 @@ const Register = () => {
           password: state.password1,
         };
         const signinResponse = await userSigninResquest(userRegister);
-        if (signinResponse.success) navigate("/login");
+        if (signinResponse.success) navigate('/login');
         else setError('Cannot create the account');
       })
       .catch((err) => {

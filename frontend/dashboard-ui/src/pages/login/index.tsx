@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 import {
   LoginValidate,
@@ -23,20 +25,29 @@ const initialState: UserLoginResquest = {
 };
 
 const Login = () => {
+  const { setAuth } = useAuth();
   const [state, setState] = useState(initialState);
   const [error, setError] = useState('');
+
+  let navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await LoginValidate.validate(state)
-      .then(() => {
-        console.log(state); //TODO: DELETE THIS LOG
-        userLoginResquest(state).then((state) => console.log(state)); //TODO: DELETE THIS LOG
-      })
-      .catch((err) => {
-        setError(err.errors);
-      });
+    await LoginValidate.validate(state).catch((err) => {
+      setError(err.errors);
+    });
+      
+    const loginResponse = await userLoginResquest(state).catch((err) => {
+      return setError("An error has occurred");
+    });
+    const accessToken = loginResponse?.message?.accessToken;
+    const roles = loginResponse?.message?.roles;
+    const hunter = loginResponse?.message?.hunter;
+    setAuth({ roles, accessToken, hunter });
+
+    if (loginResponse.success) navigate('/dashboard');
+    else if (!loginResponse.success) setError("Invalid email or password");
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {

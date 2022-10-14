@@ -1,11 +1,24 @@
 import SplitScreen from '../../Layout/base';
+import useRefreshToken from '../../hooks/useRefreshToken'
+import logout from '../logout';
+
 
 const LeftHandComponent = () => {
-  return <h1 style={{ backgroundColor: 'red' }}>Left!</h1>;
+  const refresh = useRefreshToken();
+  return <h1 style={{ backgroundColor: 'red' }}>
+    Left!
+    <br />
+    <button onClick={() => refresh}>Refresh</button>
+    </h1>;
 };
 
 const RightHandComponent = () => {
-  return <h1 style={{ backgroundColor: 'green' }}>Right!</h1>;
+  const logout_button = logout();
+  return <h1 style={{ backgroundColor: 'green' }}>
+    Right!
+    <br />
+    <button onClick={() => logout_button}>LogOut</button>
+    </h1>;
 };
 
 const Dashboard = () => {
