@@ -5,6 +5,8 @@ import JwtService from "../services/jwt_service.ts";
 import { bcrypt, RouterContext, ObjectId /*, Service, Inject*/} from "deps";
 import MongoService from "../services/mongodb_services.ts";
 
+const pepper = Deno.env.get("PEPPER")!
+
 //@Service()
 class AuthController {
   constructor(
@@ -28,14 +30,14 @@ class AuthController {
         
         // Checking if the email and password have the right format
 
-        const [username, hashedPassword] = await processedUserData(userInput);
+        const [username, hashedPassword] = await processedUserData(userInput, pepper);
 
         // Creating account
         const _id = new ObjectId()
 
         await this.mongoService.createUser(_id, username, hashedPassword, "toBeCreated");
         const _response = {
-          succes: true,
+          success: true,
         };
 
         response.body = JSON.stringify(_response);
@@ -72,7 +74,7 @@ class AuthController {
       // Checking the password
       const store = JSON.parse(JSON.stringify(databaseInformation));
       const compared = await bcrypt.compare(
-        userInput.password,
+        userInput.password + pepper,
         store.hashedPassword,
       );
 
@@ -92,7 +94,7 @@ class AuthController {
         
         //sending access token in json
         const _response = {
-          succes: true,
+          success: true,
           status: 200,
           message: { "roles": store.roles,"hunter": store.hunter , "accessToken": accessToken},
         };

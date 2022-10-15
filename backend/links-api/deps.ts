@@ -2,6 +2,8 @@
 
 //Standar library modules bellow
 export * as log from "std/log/mod.ts";
+export { configSync } from "std/dotenv/mod.ts";
+
 
 //Third party modules bellow
 export {

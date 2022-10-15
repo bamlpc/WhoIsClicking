@@ -88,7 +88,7 @@ function DropdownLanguage() {
     //Look for specific " dir: 'rtl'(right-to-left)" otherwise default to 'ltr' (left-to-right)
     document.body.dir = currentLanguage.dir || 'ltr';
     //Changing the tittle to match the current language
-    document.title = t('app_title');
+    document.title = t('Who is Clicking');
   }, [currentLanguage, t]);
 
   return (

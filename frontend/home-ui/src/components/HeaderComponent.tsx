@@ -14,8 +14,8 @@ const Header = () => {
             <Nav.Link as={Link} to={'/'}>
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to={'/about'}>
-              About
+            <Nav.Link as={Link} to={'/link'}>
+              Links
             </Nav.Link>
             <Nav.Link as={Link} to={'/contact'}>
               Contact
@@ -26,7 +26,7 @@ const Header = () => {
           </Nav>
         </Navbar.Collapse>
         <Nav>
-          <Button href="/login" variant="primary">
+          <Button href="http://localhost:3001" variant="primary">
             Login
           </Button>{' '}
           <DropdownGlobe />

@@ -2,6 +2,7 @@ import { Router } from "deps";
 import generateLinks from "../controller/links_controller.ts";
 import healthCheck from "../controller/healthcheck_controller.ts";
 import preys from "../controller/preys_controller.ts";
+import testScan from "../controller/testScan_controller.ts";
 import qrGen from "../controller/qrGenerator_controller.ts";
 import LoginValidation from "../validations/login_validation.ts";
 import RegisterValidation from "../validations/register_validation.ts";
@@ -22,6 +23,9 @@ const authController = new AuthController(new JwtService(), new MongoService());
 
 api
   .get("/healthcheck", healthCheck)
+  .get("/testScan", testScan)
+  .get("/generate", generateLinks)
+  .get("/prey/:id", preys)
   .post(
     "/register",
     RegisterValidation,
@@ -34,6 +38,5 @@ api
     .post("/logout",hasRefreshToken ,(ctx) => authController.logout(ctx))
     .get("/generate", authMiddleware,hasLinks, generateLinks)
     .post("/qrgenerator", authMiddleware, qrGen)
-    .get("/preys", authMiddleware, preys)
 
 export { api, user };

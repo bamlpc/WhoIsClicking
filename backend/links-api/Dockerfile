@@ -1,24 +1,30 @@
-FROM denoland/deno:alpine-1.22.1 as base
-
+FROM denoland/deno:alpine-1.22.1 as builder
+#denon as script runner
 RUN deno install -qAf --unstable https://deno.land/x/denon@2.5.0/denon.ts
+#preparing binary
+WORKDIR /usr/app
+COPY ["./config", "./config"]
+COPY ["deps.ts", "denon.yml", "mod.ts", "./"]
+RUN denon cache deps.ts
+COPY ["./src", "./src"]
+RUN denon cache mod.ts
+RUN denon compile
 
-EXPOSE 8000
+FROM alpine:3.16 as base
 
 WORKDIR /usr/app
+#create user
+RUN adduser \
+    --disabled-password \
+    --no-create-home \
+    "deno"
+# binary
+COPY --from=builder /usr/app/main ./
+#environment
+COPY ["app.env", "./"]
+#change user
+RUN chown -R deno:deno /usr/app
+USER deno
 
-COPY ["./config", "./config"]
-
-COPY ["deps.ts", "denon.yml", "mod.ts", "./"]
-
-COPY [ "./src", "./src" ]
-
-RUN denon cache deps.ts
-
-RUN denon cache mod.ts
-
-HEALTHCHECK --interval=30s --timeout=30s --start-period=30s --retries=3 \
-  CMD deno run --allow-net --allow-env ./src/helper/healthCheck.ts
-
-CMD [ "denon", "start" ]
-
-
+ENTRYPOINT [ "/usr/app" ]
+CMD [ "./main" ]

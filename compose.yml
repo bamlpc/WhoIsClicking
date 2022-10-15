@@ -1,0 +1,77 @@
+version: '3.7'
+
+services:
+
+  links-api:
+    container_name: links-api
+    build:
+      context: ./backend/links-api
+      dockerfile: dev.Dockerfile
+    restart: on-failure
+    depends_on:
+      mongo-db:
+        condition: service_healthy
+    init: true
+    env_file:
+      - ./backend/links-api/app.env
+    ports:
+      - 8000:8000
+
+  home-ui:
+    container_name: home-ui
+    build:
+      context: ./frontend/home-ui
+      dockerfile: dev.Dockerfile
+    restart: on-failure
+    volumes:
+      - ./frontend/home-ui/src:/usr/app/src
+      - ./frontend/home-ui/public:/usr/app/public
+    stop_signal: SIGKILL
+    stdin_open: true
+    environment:
+      HOME_UI_URL: http://home-ui:3000
+    tty: true
+    ports:
+      - '3000:3000'
+
+  dashboard-ui:
+    container_name: dashboard-ui
+    build:
+      context: ./frontend/dashboard-ui
+      dockerfile: dev.Dockerfile
+    restart: on-failure
+    volumes:
+      - ./frontend/dashboard-ui/src:/usr/app/src
+      - ./frontend/dashboard-ui/public:/usr/app/public
+    stop_signal: SIGKILL
+    stdin_open: true
+    environment:
+      HOME_UI_URL: http://dashboard-ui:3001
+    tty: true
+    ports:
+      - '3001:3001'
+
+
+  mongo-db:
+    container_name: mongo-db
+    build:
+      context: ./infra/mongo-db
+    restart: always
+    volumes:
+      - ./infra/mongo-db/data:/data/db
+      - ./infra/mongo-db/log:/var/log/mongodb/
+    ports:
+      - 82:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: Whoisclicking
+      MONGO_INITDB_USERNAME: linksUser
+      MONGO_INITDB_PASSWORD: password
+
+volumes:
+  mongo-data: {}
+  home-ui: {}
+  dashboard-ui: {}
+
+networks: {}

@@ -17,10 +17,13 @@ const generateLinks = async ({ response, state }: RouterContext<"/generate">) =>
   const payload = state.userId
   
   try {
+
     //saving the links in the link collection
     await mongoService.createLinks(newLink.hunter, newLink.prey, newLink.action);
-    // updating the user's hunter link
-    await mongoService.associateHunter(newLink.hunter, payload.id)
+
+    // updating the user's hunter link IF the user is logged
+    if(payload){await mongoService.associateHunter(newLink.hunter, payload.id)}
+
     const _response = {
       success: true,
       newLink,
@@ -31,7 +34,7 @@ const generateLinks = async ({ response, state }: RouterContext<"/generate">) =>
     log.error(error);
     response.body = {
       success: false,
-      error,
+      payload,
     };
   }
 };

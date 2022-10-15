@@ -3,13 +3,11 @@
 .vscode/*
 !.vscode/settings.json
 !.vscode/extensions.json
-/.env
-/denon.yml
+*.log
 
 ############################  BACKEND ##################################
 
 backend/links-api/logs.txt
-backend/qr-api/qrs/*.png
 
 ############################  FRONTEND ##################################
 # dependencies
@@ -34,9 +32,29 @@ frontend/home-ui/npm-debug.log*
 frontend/home-ui/yarn-debug.log*
 frontend/home-ui/yarn-error.log*
 
+# dependencies
+frontend/dashboard-ui/node_modules
+frontend/dashboard-ui/.pnp
+frontend/dashboard-ui/.pnp.js
+frontend/dashboard-ui/package-lock.json
+
+# testing
+frontend/dashboard-ui/coverage
+
+# production
+frontend/dashboard-ui/build
+
+# misc
+frontend/dashboard-ui/.DS_Store
+frontend/dashboard-ui/.env.local
+frontend/dashboard-ui/.env.development.local
+frontend/dashboard-ui/.env.test.local
+frontend/dashboard-ui/.env.production.local
+frontend/dashboard-ui/npm-debug.log*
+frontend/dashboard-ui/yarn-debug.log*
+frontend/dashboard-ui/yarn-error.log*
+
 
 ############################  INFRA ##################################
 infra/mongo-db/data/*
 infra/mongo-db/log/*
-
-infra/nginx/logs/*

@@ -28,6 +28,8 @@
   "https://deno.land/std@0.136.0/bytes/equals.ts": "a60ef9f01fb6e06a4e0343fc44d53d39d12dd66bc3f09ac8e6eb9cc1a6335e48",
   "https://deno.land/std@0.136.0/bytes/mod.ts": "4cef6fe8f0de217b9babbcbb0a566402b667f18a8e6d094a45e5fb3fc1afff70",
   "https://deno.land/std@0.136.0/crypto/mod.ts": "a10fee951ddf2c91ae5938ba2a1d123580f773e533008988ba6089ddd2b65d67",
+  "https://deno.land/std@0.136.0/dotenv/mod.ts": "5749c0c17ba03f977ce04439409107e7fd6de974b8f1208c6644f30c9699505e",
+  "https://deno.land/std@0.136.0/dotenv/util.ts": "6cc392f087577a26a27f0463f77cc0c31a390aa055917099935b36eb2454592d",
   "https://deno.land/std@0.136.0/encoding/base64.ts": "c8c16b4adaa60d7a8eee047c73ece26844435e8f7f1328d74593dbb2dd58ea4f",
   "https://deno.land/std@0.136.0/encoding/hex.ts": "7f023e1e51cfd6b189682e602e8640939e7be71a300a2fcf3daf8f84dc609bbc",
   "https://deno.land/std@0.136.0/fmt/colors.ts": "30455035d6d728394781c10755351742dd731e3db6771b1843f9b9e490104d37",
