@@ -4,7 +4,7 @@ interface UserLoginResquest {
 }
 
 interface UserLoginResponse {
-  roles: string;
+  roles: number;
   accessToken: string;
 }
 

@@ -67,12 +67,6 @@ const StyledError = styled.div`
   margin: 0 0 40px 0;
 `;
 
-const StyledButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const StyledButton = styled.button`
   display: block;
   background-color: #f7797d;
@@ -86,14 +80,36 @@ const StyledButton = styled.button`
   box-sizing: border-box;
 `;
 
+const StyledLinks = styled.a`
+  color: green;
+  font-size: 0.8rem;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+`;
+
+const StyledLinkContainer = styled.div`
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+`;
+const StyledLinkWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 export {
   GlobalStyle,
   StyledButton,
-  StyledButtonContainer,
   StyledError,
   StyledErrorBox,
   StyledForm,
   StyledFormWrapper,
   StyledInput,
   StyledTitleContainer,
+  StyledLinkContainer,
+  StyledLinks,
+  StyledLinkWrapper,
 };

@@ -32,4 +32,25 @@ const RegisterValidate = yup.object().shape({
   //.matches(/ATLEASTONECAPLETTER/, 'Password must have at least 1 cap letter'),
 });
 
-export { LoginValidate, RegisterValidate };
+const ResetPasswordValidate = yup.object().shape({
+  email: yup
+    .string()
+    .trim()
+    .email('Must be an Email Address')
+    .required('Token is required')
+});
+
+const RecoveryTokenValidate = yup.object().shape({
+  token: yup
+    .string()
+    .trim()
+    .required('Token is required')
+    .length(12),
+});
+
+export { 
+  LoginValidate, 
+  RegisterValidate, 
+  RecoveryTokenValidate, 
+  ResetPasswordValidate,
+};

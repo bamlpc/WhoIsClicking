@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
 
 import {
-  LoginValidate,
-  UserLoginResquest,
-  userLoginResquest,
+  RecoveryTokenValidate,
+  recoveryTokenResquest,
 } from '../../services/index';
 import {
   GlobalStyle,
@@ -21,14 +19,8 @@ import {
   StyledLinkWrapper,
 } from './custom/styled';
 
-const initialState: UserLoginResquest = {
-  username: '',
-  password: '',
-};
-
-const Login = () => {
-  const { setAuth } = useAuth();
-  const [state, setState] = useState(initialState);
+const Recover = () => {
+  const [state, setState] = useState('');
   const [error, setError] = useState('');
 
   let navigate = useNavigate();
@@ -36,20 +28,16 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await LoginValidate.validate(state).catch((err) => {
+    await RecoveryTokenValidate.validate(state).catch((err) => {
       setError(err.errors);
     });
       
-    const loginResponse = await userLoginResquest(state).catch((err) => {
+    const recoveryResponse = await recoveryTokenResquest(state).catch((err) => {
       return setError("An error has occurred");
     });
-    const accessToken = loginResponse?.message?.accessToken;
-    const roles = loginResponse?.message?.roles;
-    const hunter = loginResponse?.message?.hunter;
-    setAuth({ roles, accessToken, hunter });
 
-    if (loginResponse.success) navigate('/dashboard');
-    else if (!loginResponse.success) setError("Invalid email or password");
+    if (recoveryResponse.success) navigate('/login');
+    else if (!recoveryResponse.success) setError("An error has occurred");
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,26 +47,20 @@ const Login = () => {
     setState((prev) => ({ ...prev, [inputName]: value }));
   };
 
+  //TODO: WORK IN THE IMPLEMENTATION OF THIS, AT THIS POINT IT TAKES AN STRING -TOKEN-, NEED TO IMPLEMENT THE GETTER -EMAIL AS INPUT-
   return (
     <>
       <GlobalStyle />
       <StyledFormWrapper>
         <StyledForm onSubmit={handleSubmit}>
           <StyledTitleContainer>
-            <h2>Login</h2>
+            <h2>Recover your password</h2>
           </StyledTitleContainer>
-          <label htmlFor="username">Email</label>
+          <label htmlFor="token">Temporary token</label>
           <StyledInput
-            type="email"
-            name="username"
+            type="text"
+            name="token"
             value={state.username}
-            onChange={handleInput}
-          />
-          <label htmlFor="password">Password</label>
-          <StyledInput
-            type="password"
-            name="password"
-            value={state.password}
             onChange={handleInput}
           />
           <StyledErrorBox>
@@ -90,9 +72,9 @@ const Login = () => {
           </StyledErrorBox>
           <StyledLinkWrapper>
             <StyledLinkContainer>
-              <StyledLinks onClick={() => navigate("/recover")}>Forgot your password?</StyledLinks>
+              <StyledLinks onClick={() => navigate("/recover")}>Want an account? Sigup</StyledLinks>
             </StyledLinkContainer>
-            <StyledButton type="submit">Login</StyledButton>
+            <StyledButton type="submit">Send Email</StyledButton>
             <StyledLinkContainer>
               <StyledLinks onClick={() => navigate("/register")}>Have an accout? Login</StyledLinks>
             </StyledLinkContainer>
@@ -103,4 +85,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Recover;
