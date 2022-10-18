@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  RecoveryTokenValidate,
-  recoveryTokenResquest,
-} from '../../services/index';
+import { recoveryTokenResquest, RecoveryTokenValidate } from '../../services/index';
 import {
   GlobalStyle,
   StyledButton,
@@ -13,10 +10,10 @@ import {
   StyledForm,
   StyledFormWrapper,
   StyledInput,
-  StyledTitleContainer,
   StyledLinkContainer,
   StyledLinks,
   StyledLinkWrapper,
+  StyledTitleContainer,
 } from './custom/styled';
 
 const Recover = () => {
@@ -31,13 +28,13 @@ const Recover = () => {
     await RecoveryTokenValidate.validate(state).catch((err) => {
       setError(err.errors);
     });
-      
+
     const recoveryResponse = await recoveryTokenResquest(state).catch((err) => {
-      return setError("An error has occurred");
+      return setError('An error has occurred');
     });
 
     if (recoveryResponse.success) navigate('/login');
-    else if (!recoveryResponse.success) setError("An error has occurred");
+    else if (!recoveryResponse.success) setError('An error has occurred');
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,6 +53,7 @@ const Recover = () => {
           <StyledTitleContainer>
             <h2>Recover your password</h2>
           </StyledTitleContainer>
+          dd
           <label htmlFor="token">Temporary token</label>
           <StyledInput
             type="text"
@@ -72,11 +70,15 @@ const Recover = () => {
           </StyledErrorBox>
           <StyledLinkWrapper>
             <StyledLinkContainer>
-              <StyledLinks onClick={() => navigate("/recover")}>Want an account? Sigup</StyledLinks>
+              <StyledLinks onClick={() => navigate('/recover')}>
+                Want an account? Sigup
+              </StyledLinks>
             </StyledLinkContainer>
             <StyledButton type="submit">Send Email</StyledButton>
             <StyledLinkContainer>
-              <StyledLinks onClick={() => navigate("/register")}>Have an accout? Login</StyledLinks>
+              <StyledLinks onClick={() => navigate('/register')}>
+                Have an accout? Login
+              </StyledLinks>
             </StyledLinkContainer>
           </StyledLinkWrapper>
         </StyledForm>

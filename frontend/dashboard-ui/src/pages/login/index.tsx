@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
 
+import useAuth from '../../hooks/useAuth';
 import {
   LoginValidate,
   UserLoginResquest,
@@ -15,10 +15,10 @@ import {
   StyledForm,
   StyledFormWrapper,
   StyledInput,
-  StyledTitleContainer,
   StyledLinkContainer,
   StyledLinks,
   StyledLinkWrapper,
+  StyledTitleContainer,
 } from './custom/styled';
 
 const initialState: UserLoginResquest = {
@@ -39,9 +39,9 @@ const Login = () => {
     await LoginValidate.validate(state).catch((err) => {
       setError(err.errors);
     });
-      
+
     const loginResponse = await userLoginResquest(state).catch((err) => {
-      return setError("An error has occurred");
+      return setError('An error has occurred');
     });
     const accessToken = loginResponse?.message?.accessToken;
     const roles = loginResponse?.message?.roles;
@@ -49,7 +49,7 @@ const Login = () => {
     setAuth({ roles, accessToken, hunter });
 
     if (loginResponse.success) navigate('/dashboard');
-    else if (!loginResponse.success) setError("Invalid email or password");
+    else if (!loginResponse.success) setError('Invalid email or password');
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,11 +90,15 @@ const Login = () => {
           </StyledErrorBox>
           <StyledLinkWrapper>
             <StyledLinkContainer>
-              <StyledLinks onClick={() => navigate("/recover")}>Forgot your password?</StyledLinks>
+              <StyledLinks onClick={() => navigate('/recover')}>
+                Forgot your password?
+              </StyledLinks>
             </StyledLinkContainer>
             <StyledButton type="submit">Login</StyledButton>
             <StyledLinkContainer>
-              <StyledLinks onClick={() => navigate("/register")}>Have an accout? Login</StyledLinks>
+              <StyledLinks onClick={() => navigate('/register')}>
+                Have an accout? Login
+              </StyledLinks>
             </StyledLinkContainer>
           </StyledLinkWrapper>
         </StyledForm>

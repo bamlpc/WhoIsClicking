@@ -45,7 +45,7 @@ const authMiddleware = async (
     delete state.userId; 
 
     //  Checking for empty string
-  } catch (_error) {;
+  } catch (_error) {
     response.status = 401;
     response.body = {
       message: "Unauthenticated",

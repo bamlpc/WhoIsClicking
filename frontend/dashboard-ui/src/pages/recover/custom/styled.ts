@@ -86,20 +86,17 @@ const StyledLinks = styled.a`
   border: none;
   background: none;
   cursor: pointer;
-  
 `;
 
 const StyledLinkContainer = styled.div`
   padding: 0 10px;
   display: flex;
   align-items: center;
-  
 `;
 const StyledLinkWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  
 `;
 
 export {

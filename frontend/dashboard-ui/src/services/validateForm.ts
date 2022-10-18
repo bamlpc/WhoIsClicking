@@ -37,20 +37,11 @@ const ResetPasswordValidate = yup.object().shape({
     .string()
     .trim()
     .email('Must be an Email Address')
-    .required('Token is required')
+    .required('Token is required'),
 });
 
 const RecoveryTokenValidate = yup.object().shape({
-  token: yup
-    .string()
-    .trim()
-    .required('Token is required')
-    .length(12),
+  token: yup.string().trim().required('Token is required').length(12),
 });
 
-export { 
-  LoginValidate, 
-  RegisterValidate, 
-  RecoveryTokenValidate, 
-  ResetPasswordValidate,
-};
+export { LoginValidate, RecoveryTokenValidate, RegisterValidate, ResetPasswordValidate };

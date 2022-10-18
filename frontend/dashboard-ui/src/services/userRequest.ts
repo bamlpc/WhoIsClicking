@@ -1,4 +1,4 @@
-import { LOGIN_URL, LOGOUT_URL, SIGNIN_URL, RECOVERY_URL } from '../constant/urls';
+import { LOGIN_URL, LOGOUT_URL, RECOVERY_URL, SIGNIN_URL } from '../constant/urls';
 import {
   UserLoginResponse,
   UserLoginResquest,
@@ -58,9 +58,7 @@ const userSigninResquest = async (
 };
 
 // Recover TODO: type de esta response
-const recoveryTokenResquest = async (
-  email: string,
-) => {
+const recoveryTokenResquest = async (email: string) => {
   const requestOptions: RequestInit = {
     method: 'POST',
     body: JSON.stringify(email),
@@ -72,7 +70,7 @@ const recoveryTokenResquest = async (
     referrerPolicy: 'no-referrer',
   };
 
-  const url = `${RECOVERY_URL}/token`
+  const url = `${RECOVERY_URL}/token`;
   // TODO: CHANGE EL ENDPOINT DEL BACKEND
   const rawResponse = await fetch(url, requestOptions);
   const response = await rawResponse.json();
@@ -81,9 +79,7 @@ const recoveryTokenResquest = async (
 };
 
 // Recover TODO: type de esta response
-const resetPasswordRequest = async (
-  token: string,
-) => {
+const resetPasswordRequest = async (token: string) => {
   const requestOptions: RequestInit = {
     method: 'POST',
     body: JSON.stringify(token),
@@ -95,7 +91,7 @@ const resetPasswordRequest = async (
     referrerPolicy: 'no-referrer',
   };
 
-  const url = `${RECOVERY_URL}/email`
+  const url = `${RECOVERY_URL}/email`;
   // TODO: CHANGE EL ENDPOINT DEL BACKEND
   const rawResponse = await fetch(url, requestOptions);
   const response = await rawResponse.json();
@@ -103,4 +99,10 @@ const resetPasswordRequest = async (
   return response;
 };
 
-export { userLoginResquest, userLogoutResquest, userSigninResquest, recoveryTokenResquest, resetPasswordRequest };
+export {
+  recoveryTokenResquest,
+  resetPasswordRequest,
+  userLoginResquest,
+  userLogoutResquest,
+  userSigninResquest,
+};

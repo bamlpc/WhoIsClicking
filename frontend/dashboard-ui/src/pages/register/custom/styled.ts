@@ -108,8 +108,8 @@ export {
   StyledForm,
   StyledFormWrapper,
   StyledInput,
-  StyledTitleContainer,
   StyledLinkContainer,
   StyledLinks,
   StyledLinkWrapper,
+  StyledTitleContainer,
 };

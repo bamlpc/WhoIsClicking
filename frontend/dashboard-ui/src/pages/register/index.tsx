@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { HOME_URL } from '../../constant/urls';
 
+import { HOME_URL } from '../../constant/urls';
 import {
   RegisterValidate,
   UserSigninResquest,
@@ -15,10 +15,10 @@ import {
   StyledForm,
   StyledFormWrapper,
   StyledInput,
-  StyledTitleContainer,
   StyledLinkContainer,
   StyledLinks,
   StyledLinkWrapper,
+  StyledTitleContainer,
 } from './custom/styled';
 
 interface UserRegisterFrorm {
@@ -39,11 +39,11 @@ const Register = () => {
 
   let navigate = useNavigate();
 
-  const homeReturn = () =>{ 
+  const homeReturn = () => {
     useEffect(() => {
       window.location.href = HOME_URL;
     }, []);
-  }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -113,7 +113,9 @@ const Register = () => {
             </StyledLinkContainer>
             <StyledButton type="submit">Register</StyledButton>
             <StyledLinkContainer>
-              <StyledLinks onClick={() => navigate("/login")}>Have an accout? Login</StyledLinks>
+              <StyledLinks onClick={() => navigate('/login')}>
+                Have an accout? Login
+              </StyledLinks>
             </StyledLinkContainer>
           </StyledLinkWrapper>
         </StyledForm>

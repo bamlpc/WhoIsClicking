@@ -22,4 +22,11 @@ interface PreySchema {
   stolenData: any;
 }
 
-export type {UserSchema, LinkSchema, PreySchema};
+interface PassRecoverySchema{
+  _id: Bson.ObjectId;
+  username: string;
+  recoveryToken: string;
+  expiration: number;
+}
+
+export type {UserSchema, LinkSchema, PreySchema, PassRecoverySchema};

@@ -1,12 +1,14 @@
 import mongoDatabase from "../helper/mongodb.ts"
-import { Bson, Service, ObjectId } from "deps";
+import { ObjectId } from "deps";
 import {} from "../model/mongoSchema.ts"
 //import {serviceCollection} from "./services.ts";
-import {UserSchema, LinkSchema, PreySchema} from "../model/mongoSchema.ts"
+import {UserSchema, LinkSchema, PreySchema, PassRecoverySchema} from "../model/mongoSchema.ts"
+import getRandomString from "../helper/randomString.ts"
 
 const usersCollection = mongoDatabase.collection<UserSchema>("users")
 const linksCollection = mongoDatabase.collection<LinkSchema>("links")
 const preysCollection = mongoDatabase.collection<PreySchema>("preys")
+const passRecoveryCollection = mongoDatabase.collection<PassRecoverySchema>("recovery")
 
 //@Service()
 class MongoService {
@@ -14,7 +16,8 @@ class MongoService {
   constructor(
     private userCollection = usersCollection,
     private linkCollection = linksCollection,
-    private preyCollection = preysCollection
+    private preyCollection = preysCollection,
+    private recoveryCollection = passRecoveryCollection
   ){}
 
   async createUser(_id: any, username: string, hashedPassword: string, placeHolder: string) {
@@ -119,9 +122,9 @@ class MongoService {
 
     //TODO: We need to create update methods for changing password, to link a hunter ID into an account
   async update() {}
-   
+  
   async delete() {}
-   /*TODO:
+  /*TODO:
     Need to create a new collection called "preys". In there we'll store {praylink, stolen_data}. When we want to gather 
     the information we use the hunter link to find the prey link and then we aggregate the preys with:
         Aggregation
@@ -130,6 +133,76 @@ class MongoService {
               { $group: { _id: "$username", total: { $sum: 1 } } },
             ]).toArray();
    */
+
+  // 
+  async checkPasswordRecoveryToken(type: string, data: string): Promise< PassRecoverySchema | boolean | undefined> {
+    
+    if (type === 'email') {
+      try {
+        let userData = undefined;
+        userData = await this.recoveryCollection.findOne({ 
+          username: { $in: [data] } 
+        });
+        return userData === undefined ? false : userData
+      } catch (error) {
+          console.log(error);
+      }
+    }
+
+    else if (type === 'token') {
+      try {
+        let userData = undefined;
+        userData = await this.recoveryCollection.findOne({ 
+          recoveryToken: { $in: [data] } 
+        });
+        return userData === undefined ? false : userData
+      } catch (error) {
+          console.log(error);
+      }
+    }
+
+    else return false
+  }
+
+  // create a token
+  async passwordRecoveryToken(email: string): Promise<string | boolean | undefined> {
+    // user has account
+    if (this.findUser('email', email) === undefined) return false
+    // user doesnt have active token
+    const user = await this.checkPasswordRecoveryToken('email', email)
+    if (!user) return false
+    //TODO: ADD A CONDITION SO IF THE TOKEN IS ALLREADY CREATED, SEND IT AGAIN
+    //else if (user.recovery)
+    
+    // create and store recovery token
+    const recoveryToken = getRandomString(50);
+    try {
+      await this.recoveryCollection.insertOne({
+        username: email,
+        recoveryToken: recoveryToken,
+        expiration: Date.now()
+      });
+      // TODO: THIS FUNCTIONS RETURNS A RECOVERY TOKEN IF THE USER EXIST AND THERE IS NO TOKEN CREATED
+      return recoveryToken
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async resetPassword(token: string): Promise<boolean>{
+    
+    // user doesnt have active token
+    const user = await this.checkPasswordRecoveryToken('token', token)
+    if (!user) return false
+    
+    // token has expired
+    const time = Date.now();
+    const threshold = 30 * 60 * 1000 // token expires after 30 min
+    if (time /*- user.expiration*/ > threshold) return false
+
+    return true
+  } //TODO: THIS FUNCITON RETURNS TRUE IF YOU ARE ALLOWED TO CHANGE THE PASSWORD, CREATE WHANGE PASSWORD FUNCTION
+
 
 }
 

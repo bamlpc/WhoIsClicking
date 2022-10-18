@@ -2,9 +2,9 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Dashboard from './pages/dashboard/index';
 import Login from './pages/login/index';
+import Recover from './pages/recover/index';
 import Register from './pages/register/index';
 import PrivateRoutes from './utils/PrivateRoutes';
-import Recover from './pages/recover/index';
 
 function App() {
   return (
